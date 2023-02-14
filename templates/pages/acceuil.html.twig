@@ -6,26 +6,21 @@
 {% block body %}
 	<div id="first-page">
 		<nav>
-			<ul id="navigation">
+			<div id="navigation">
 				<div>
-					<img src="/assets/img/logo.png" alt="Logo Créasosm">
+					<img src="/assets/img/logo.png" alt="Logo Créasosm" class="logo">
 				</div>
-				<div>
-					<li>
-						<a href="#">Connexion</a>
-					</li>
-					<li>
-						<a href="#">Inscription</a>
-					</li>
+				<div id="nav-button">
+					<a href="#" class="button nav-button-a light-button-filed">Connexion</a>
+					<a href="#" class="button nav-button-a border-button">Inscription</a>
 				</div>
-
-			</ul>
+			</div>
 		</nav>
 		<h1>
 			Créacosm
 		</h1>
 		<div id="main-square"></div>
-		<a href="#">Contactez-Nous</a>
-		<a href="#">Découvrir nos Sondages</a>
+		<a href="#" class="button">Contactez-Nous</a>
+		<a href="#" class="button">Découvrir nos Sondages</a>
 	</div>
 {% endblock %}
