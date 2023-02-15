@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Commissioner&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap");
 
 * {
   border: 0;
@@ -15,9 +15,9 @@ ul {
   list-style-type: none;
 }
 
-#first-page{
-    width: 100vw;
-    height: 100vh;
+#first-page {
+  width: 100vw;
+  height: 100vh;
 }
 
 .logo {
@@ -66,25 +66,50 @@ ul {
 }
 
 #square-1 {
-  background-color: red;
-  width: 50vw;
-  height: 50vh;
+  width: 40vw;
+  height: 66vh;
 }
 
 #square-2 {
-  width: 50vw;
+  width: 60vw;
   height: 60vh;
 }
 
-#square-2 div{
-    background-color: #0b65ab;
-    width: 45vw;
-    height: 66vh;
+#square-2 div {
+  background-color: greenyellow;
+  width: 45vw;
+  height: 66vh;
 }
 
-#square{
+#square {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  height: 60vh;
+  height: 66vh;
+}
+
+.commissioner {
+  font-family: "Commissioner", sans-serif;
+}
+
+#title-creacosm {
+  letter-spacing: 8px;
+  font-size: 70px;
+  font-weight: 200;
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+#square-1 h1,
+p,
+a {
+  margin-left: 100px;
+}
+
+#square-1 p {
+  margin-bottom: 50px;
+  margin-right: 50px;
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: large;
 }
