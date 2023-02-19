@@ -1,0 +1,39 @@
+:root {
+    --primary-color: #0B65AB;
+    --secondary-color: #2278B4;
+    --gray: #F3F3F3;
+    --gray-dark: #DEDEDE;
+    --background: #E5E5E5;
+    --dark: #252525;
+}
+
+
+.card-squared {
+    border-radius: 12px;
+    height: 320px;
+    width: 320px;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.navbar {
+    background-color: var(--dark);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 85px;
+    height: 100%;
+    z-index: 1;
+}
+
+.main {
+    margin-left: 85px;
+    padding: 20px;
+}
+
+.material-symbols-outlined {
+    font-size: 32px !important;
+    filter: invert(1);
+}
