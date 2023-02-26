@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 a {
   outline: none;
   text-decoration: none;
@@ -15,9 +19,13 @@ ul {
   list-style-type: none;
 }
 
-#first-page {
+.viewh {
   width: 100vw;
   height: 100vh;
+}
+
+.viewhh {
+  width: 100vw;
 }
 
 .logo {
@@ -41,8 +49,7 @@ ul {
 
 #inscription {
   background-color: #fff;
-  border-radius: 50px;
-  font-size: 20px;
+  border-radius: 30px;
   border: 5px;
   border-color: #0b65ab;
 }
@@ -50,8 +57,7 @@ ul {
 .light-button-filed {
   background-color: #0b65ab;
   border-radius: 24px;
-  font-size: 20px;
-  padding: 12px 52px 12px 52px;
+  padding: 12px 32px 12px 32px;
   color: white;
 }
 
@@ -59,8 +65,7 @@ ul {
   color: black;
   background-color: #fff;
   border-radius: 24px;
-  font-size: 20px;
-  padding: 12px 52px 12px 52px;
+  padding: 12px 32px 12px 32px;
   border: 3px solid #0b65ab;
   margin-left: 40px;
 }
@@ -115,7 +120,7 @@ ul {
 }
 
 #square-1 h1,
-p,
+#square-1 p,
 a {
   margin-left: 100px;
 }
@@ -129,11 +134,112 @@ a {
 
 #square-2 div img {
   width: 100%;
-  height: 100%;
+  height: 120%;
+  position: relative;
+  top: -55px;
 }
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.aqua {
+  background-color: #a0cdda;
+  max-width: fit-content;
+}
+
+.aqua p {
+  max-width: fit-content;
+  background-color: yellow;
+}
+
+#second-page {
+  background-color: #a0cdda;
+  height: 100vh;
+}
+
+#second-square-one {
+  width: 50vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#second-square-two {
+  width: 50vw;
+  height: 80vh;
+}
+
+#second-square {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 80vh;
+}
+
+.cinq-vh {
+  height: 5vh;
+}
+
+.one-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 40vw;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.two-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 18vw;
+  margin-left: 5vw;
+  margin-top: 5vh;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.three-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 18vw;
+  margin-right: 5vw;
+  margin-top: 5vh;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square-up {
+  width: 50vw;
+  height: 40vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.square-down {
+  width: 50vw;
+  height: 40vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.psquare {
+  padding: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.psquare-mini {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
 }
