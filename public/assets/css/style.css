@@ -1,21 +1,50 @@
 :root {
     --primary-color: #0B65AB;
     --secondary-color: #2278B4;
+    --tertiary-color: #5E81AC;
+    --quaternary-color: #8FBCBB;
     --gray: #F3F3F3;
     --gray-dark: #DEDEDE;
     --background: #E5E5E5;
     --dark: #252525;
 }
 
-
-.card-squared {
-    border-radius: 12px;
-    height: 320px;
-    width: 320px;
+body {
+    margin: 0;
+    background-color: var(--background);
 }
 
-body {
-    background-color: var(--background);
+a{
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.primary {
+    background-color: var(--primary-color);
+}
+
+.secondary {
+    background-color: var(--secondary-color);
+}
+
+.tertiary {
+    background-color: var(--tertiary-color);
+}
+
+.quaternary {
+    background-color: var(--quaternary-color);
+}
+
+.card {
+    border-radius: 24px;
+    min-width: 64px;
+    min-height: 64px;
+}
+
+.card-squared {
+    border-radius: 24px;
+    height: 320px;
+    width: 320px;
 }
 
 .navbar {
@@ -26,14 +55,105 @@ body {
     width: 85px;
     height: 100%;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar .center {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    flex: 1;
+    justify-content: center;
+}
+
+.navbar > a {
+    position: absolute;
+}
+
+.navbar .home {
+    top: 32px;
+}
+
+.navbar .settings {
+    bottom: 96px;
+}
+
+.navbar .logout {
+    bottom: 32px;
 }
 
 .main {
     margin-left: 85px;
-    padding: 20px;
+    padding: 42px;
+}
+
+.dashboard{
+    height: 100vh;
+    box-sizing: border-box;
+    padding-left: 88px;
+    padding-right: 88px;
+}
+
+.dashboard > div:nth-child(1) {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 96px;
+}
+
+.dashboard > div:nth-child(2) {
+    width: 35%;
+}
+
+.dashboard .title-tool{
+    padding-top: 26px;
+    width: 30%;
+} 
+
+.dashboard-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.dashboard-card-list > .card {
+    height: 50%;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .material-symbols-outlined {
-    font-size: 32px !important;
+    font-size: 38px !important;
     filter: invert(1);
+}
+
+.title-dashboard {
+    margin-top: 0;
+}
+
+.search-bar {
+    width: 100%;
+    height: 48px;
+    border-radius: 24px;
+    border: none;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 18px;
+    background-color: var(--gray);
+    box-sizing: border-box;
+}
+
+.button {
+    border-radius: 24px;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
 }
