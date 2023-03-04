@@ -9,6 +9,8 @@
   --dark: #252525;
 }
 
+@import url("https://unpkg.com/css.gg@2.0.0/icons/css/eye-alt.css");
+
 @font-face {
   font-family: "NeueMontreal";
   src: url(/assets/font/PPNeueMontreal-Medium.otf);
@@ -16,7 +18,7 @@
 
 body {
   margin: 0;
-  background-color: #fff;
+  background-color: #f8f9fb;
 }
 
 a {
@@ -147,7 +149,7 @@ a {
 }
 
 .search-bar {
-  width: 100%;
+  width: 85%;
   height: 28px;
   border-radius: 24px;
   border: none;
@@ -156,6 +158,11 @@ a {
   font-size: 18px;
   background-color: var(--gray);
   box-sizing: border-box;
+}
+
+.title-tool > div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .button {
@@ -195,7 +202,7 @@ a {
 }
 
 #card-fourth {
-  background-color: red;
+  background-color: #fff;
   height: 40vh;
   margin-top: 28px;
 }
@@ -209,4 +216,123 @@ a {
   display: flex;
   justify-content: space-between;
   padding-top: 30px;
+}
+
+#card-one > div {
+  margin: 20px 15px 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  font-family: NeueMontreal;
+  color: #fff;
+  font-size: 20px;
+}
+
+#card-one > div > p {
+  margin: 0;
+  padding: 0;
+}
+
+#card-one > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 80px;
+  margin: 0;
+  padding: 0;
+  font-family: NeueMontreal;
+  margin-top: 15px;
+}
+
+#card-two > div {
+  margin: 20px 15px 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  font-family: NeueMontreal;
+  font-size: 20px;
+}
+
+#card-two > div > p {
+  margin: 0;
+  padding: 0;
+}
+
+#nb-clients {
+  font-weight: 800;
+  font-size: 30px;
+  font-family: NeueMontreal;
+}
+
+#plus-client {
+  font-size: 15px;
+  font-family: NeueMontreal;
+}
+
+#card-two > p {
+  padding: 80px 0px 50px 30px;
+}
+
+#card-three > div {
+  margin: 20px 15px 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  font-family: NeueMontreal;
+  font-size: 20px;
+}
+
+#card-three > div > p {
+  margin: 0;
+  padding: 0;
+}
+
+#card-three > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 80px;
+  margin: 0;
+  padding: 0;
+  font-family: NeueMontreal;
+  margin-top: 15px;
+}
+
+#card-fourth > p {
+  font-size: 30px;
+  font-family: NeueMontreal;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.quaternary > p,
+.tertiary > p {
+  color: #fff;
+  font-size: 30px;
+  font-family: NeueMontreal;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.recent {
+  background-color: #fff;
+  border-radius: 24px;
+  border: none;
+  padding: 10px 18px;
+  font-size: 18px;
+  font-family: NeueMontreal;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.recent-selected {
+  background-color: #0b65ab;
+  color: #fff;
+  border-radius: 24px;
+  border: none;
+  padding: 10px 18px;
+  font-size: 18px;
+  font-family: NeueMontreal;
+  margin-left: 12px;
+  margin-right: 12px;
 }
