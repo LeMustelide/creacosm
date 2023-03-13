@@ -379,3 +379,251 @@ a {
 .shadow {
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
 }
+=======
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap");
+
+* {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.viewh {
+  width: 100vw;
+  height: 100vh;
+}
+
+.viewhh {
+  width: 100vw;
+}
+
+.logo {
+  width: 200px;
+  height: 90px;
+  padding: 15px;
+}
+
+#navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#nav-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 40px;
+}
+
+#inscription {
+  background-color: #fff;
+  border-radius: 30px;
+  border: 5px;
+  border-color: #0b65ab;
+}
+
+.button-filed {
+  background-color: #0b65ab;
+  border-radius: 24px;
+  padding: 8px 48px 10px;
+  color: white;
+}
+
+.border-button {
+  color: black;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 8px 48px 10px;
+  border: 3px solid #0b65ab;
+  margin-left: 40px;
+  box-sizing: border-box;
+}
+
+.border-button-grey {
+  color: black;
+  background-color: #fff;
+  border-radius: 24px;
+  font-size: 20px;
+  padding: 12px 52px 12px 52px;
+  border: 3px solid grey;
+  margin-left: 40px;
+  margin-top: 35px;
+}
+
+#square-1 {
+  width: 45vw;
+  height: 66vh;
+}
+
+#square-2 {
+  width: 55vw;
+  height: 60vh;
+}
+
+#square-2 div {
+  background-color: #0b65ab;
+  width: 42vw;
+  height: 60vh;
+  margin-left: 80px;
+  margin-top: 50px;
+  border-radius: 24px;
+}
+
+#square {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 66vh;
+}
+
+.commissioner {
+  font-family: "Commissioner", sans-serif;
+}
+
+#title-creacosm {
+  letter-spacing: 8px;
+  font-size: 90px;
+  font-weight: 200;
+  margin-top: 65px;
+  margin-bottom: 40px;
+}
+
+#square-1 h1,
+#square-1 p,
+#square-1 a {
+  margin-left: 100px;
+}
+
+#square-1 p {
+  margin-bottom: 50px;
+  margin-right: 50px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+#square-2 div img {
+  width: 100%;
+  height: 120%;
+  position: relative;
+  top: -55px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aqua {
+  background-color: #a0cdda;
+  max-width: fit-content;
+}
+
+.aqua p {
+  max-width: fit-content;
+  background-color: yellow;
+}
+
+#second-page {
+  background-color: #a0cdda;
+  height: 100vh;
+}
+
+#second-square-one {
+  width: 50vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#second-square-two {
+  width: 50vw;
+  height: 80vh;
+}
+
+#second-square {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 80vh;
+}
+
+.cinq-vh {
+  height: 5vh;
+}
+
+.one-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 40vw;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.two-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 18vw;
+  margin-left: 5vw;
+  margin-top: 5vh;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.three-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 18vw;
+  margin-right: 5vw;
+  margin-top: 5vh;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square-up {
+  width: 50vw;
+  height: 40vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.square-down {
+  width: 50vw;
+  height: 40vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.psquare {
+  padding: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.psquare-mini {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+}
