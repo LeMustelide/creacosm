@@ -1,0 +1,629 @@
+:root {
+    --primary-color: #0b65ab;
+    --secondary-color: #2278b4;
+    --tertiary-color: #5e81ac;
+    --quaternary-color: #8fbcbb;
+    --gray: #f3f3f3;
+    --gray-dark: #dedede;
+    --background: #e5e5e5;
+    --dark: #252525;
+}
+
+@import url("https://unpkg.com/css.gg@2.0.0/icons/css/eye-alt.css");
+
+@font-face {
+    font-family: "NeueMontreal";
+    src: url(/assets/font/PPNeueMontreal-Medium.otf);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: NeueMontreal, sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #f8f9fb;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.primary {
+    background-color: var(--primary-color);
+}
+
+.secondary {
+    background-color: var(--secondary-color);
+}
+
+.tertiary {
+    background-color: var(--tertiary-color);
+}
+
+.quaternary {
+    background-color: var(--quaternary-color);
+}
+
+.card {
+    width: 100%;
+    border-radius: 24px;
+    min-width: 64px;
+    min-height: 64px;
+}
+
+.card-squared {
+    border-radius: 24px;
+    height: 320px;
+    width: 320px;
+}
+
+.navbar {
+    background-color: var(--dark);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 75px;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar .center {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    flex: 1;
+    justify-content: center;
+}
+
+.navbar>a {
+    position: absolute;
+}
+
+.navbar .home {
+    top: 32px;
+}
+
+.navbar .settings {
+    bottom: 96px;
+}
+
+.navbar .logout {
+    bottom: 32px;
+}
+
+.main {
+    margin-left: 75px;
+    padding: 42px;
+}
+
+.dashboard {
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.dashboard>div:nth-child(1) {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 3rem;
+    gap: 32px;
+}
+
+.dashboard > div:nth-child(1) > div {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard > div:nth-child(1) > div > div:nth-child(2) {
+    flex-grow: 1;
+}
+
+.dashboard>div:nth-child(2) {
+    width: 35%;
+}
+
+.dashboard .title-tool {
+    padding-top: 12px;
+    width: 30%;
+}
+
+.dashboard-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.dashboard-card-list>.tertiary {
+    height: 50%;
+}
+
+.dashboard-card-list>.quaternary {
+    height: 50%;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.material-symbols-outlined {
+    font-size: 38px !important;   
+}
+
+.material-symbols-outlined.small{
+    font-size: 28px !important;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.title-dashboard {
+    margin-top: 0;
+}
+
+.search-bar {
+    width: 85%;
+    height: 28px;
+    border-radius: 24px;
+    border: none;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 18px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.title-tool>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    border-radius: 24px;
+    border: none;
+    padding: 4px 18px;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 4px;
+}
+
+.button-selected {
+    background-color: white;
+    border-radius: 24px;
+    border: none;
+    padding: 4px 18px;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 4px;
+}
+
+.button-list {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 85px;
+    margin-right: 24px;
+}
+
+.title-dashboard p,
+.title-dashboard {
+    margin: 0;
+    font-family: NeueMontreal, sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 56px;
+    color: #2C2C2C;
+}
+
+.flex-row>div>p {
+    color: gray;
+    font-size: 10px;
+}
+
+#card-one {
+    background-color: #0b65ab;
+}
+
+#card-two {
+    background-color: #e5e5e5;
+}
+
+#card-three {
+    background-color: #a0b7da;
+}
+
+#card-fourth {
+    background-color: #fff;
+    height: 50%;
+}
+
+.card-list {
+    gap: 32px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+@media (max-width: 1200px) {
+    .card-list {
+        flex-direction: column;
+    }
+}
+
+#card-one>div {
+    margin: 20px 15px 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-family: NeueMontreal, sans-serif;
+    color: #fff;
+    font-size: 20px;
+}
+
+#card-one>div>p {
+    margin: 0;
+    padding: 0;
+}
+
+#card-one>p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 80px;
+    margin: 0;
+    padding: 0;
+    font-family: NeueMontreal, sans-serif;
+    margin-top: 15px;
+}
+
+#card-two>div {
+    margin: 20px 15px 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-family: NeueMontreal, sans-serif;
+    font-size: 20px;
+}
+
+#card-two>div>p {
+    margin: 0;
+    padding: 0;
+}
+
+#nb-clients {
+    font-weight: 800;
+    font-size: 30px;
+    font-family: NeueMontreal, sans-serif;
+}
+
+#plus-client {
+    font-size: 15px;
+    font-family: NeueMontreal, sans-serif;
+}
+
+#card-two>p {
+    padding: 80px 0px 50px 30px;
+}
+
+#card-three>div {
+    margin: 20px 15px 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-family: NeueMontreal, sans-serif;
+    font-size: 20px;
+}
+
+#card-three>div>p {
+    margin: 0;
+    padding: 0;
+}
+
+#card-three>p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 80px;
+    margin: 0;
+    padding: 0;
+    font-family: NeueMontreal, sans-serif;
+    margin-top: 15px;
+}
+
+#card-fourth>p {
+    font-size: 30px;
+    font-family: NeueMontreal, sans-serif;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.quaternary>p,
+.tertiary>p {
+    color: #fff;
+    font-size: 30px;
+    font-family: NeueMontreal, sans-serif;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.entry-round {
+    display: block;
+    background-color: #fff;
+    border-radius: 24px;
+    border: none;
+    padding: 10px 18px;
+    font-size: 18px;
+    font-family: NeueMontreal, sans-serif;
+}
+
+.entry-list {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    margin-right: 12px;
+    gap: 12px;
+}
+
+.shadow {
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+}
+=======
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap");
+
+* {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.viewh {
+  width: 100vw;
+  height: 100vh;
+}
+
+.viewhh {
+  width: 100vw;
+}
+
+.logo {
+  width: 200px;
+  height: 90px;
+  padding: 15px;
+}
+
+#navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#nav-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 40px;
+}
+
+#inscription {
+  background-color: #fff;
+  border-radius: 30px;
+  border: 5px;
+  border-color: #0b65ab;
+}
+
+.button-filed {
+  background-color: #0b65ab;
+  border-radius: 24px;
+  padding: 8px 48px 10px;
+  color: white;
+}
+
+.border-button {
+  color: black;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 8px 48px 10px;
+  border: 3px solid #0b65ab;
+  margin-left: 40px;
+  box-sizing: border-box;
+}
+
+.border-button-grey {
+  color: black;
+  background-color: #fff;
+  border-radius: 24px;
+  font-size: 20px;
+  padding: 12px 52px 12px 52px;
+  border: 3px solid grey;
+  margin-left: 40px;
+  margin-top: 35px;
+}
+
+#square-1 {
+  width: 45vw;
+  height: 66vh;
+}
+
+#square-2 {
+  width: 55vw;
+  height: 60vh;
+}
+
+#square-2 div {
+  background-color: #0b65ab;
+  width: 42vw;
+  height: 60vh;
+  margin-left: 80px;
+  margin-top: 50px;
+  border-radius: 24px;
+}
+
+#square {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 66vh;
+}
+
+.commissioner {
+  font-family: "Commissioner", sans-serif;
+}
+
+#title-creacosm {
+  letter-spacing: 8px;
+  font-size: 90px;
+  font-weight: 200;
+  margin-top: 65px;
+  margin-bottom: 40px;
+}
+
+#square-1 h1,
+#square-1 p,
+#square-1 a {
+  margin-left: 100px;
+}
+
+#square-1 p {
+  margin-bottom: 50px;
+  margin-right: 50px;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+#square-2 div img {
+  width: 100%;
+  height: 120%;
+  position: relative;
+  top: -55px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aqua {
+  background-color: #a0cdda;
+  max-width: fit-content;
+}
+
+.aqua p {
+  max-width: fit-content;
+  background-color: yellow;
+}
+
+#second-page {
+  background-color: #a0cdda;
+  height: 100vh;
+}
+
+#second-square-one {
+  width: 50vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#second-square-two {
+  width: 50vw;
+  height: 80vh;
+}
+
+#second-square {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 80vh;
+}
+
+.cinq-vh {
+  height: 5vh;
+}
+
+.one-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 40vw;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.two-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 18vw;
+  margin-left: 5vw;
+  margin-top: 5vh;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.three-square {
+  background-color: #fff;
+  height: 40vh;
+  width: 18vw;
+  margin-right: 5vw;
+  margin-top: 5vh;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square-up {
+  width: 50vw;
+  height: 40vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.square-down {
+  width: 50vw;
+  height: 40vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.psquare {
+  padding: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.psquare-mini {
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+}
