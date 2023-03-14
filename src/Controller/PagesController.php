@@ -17,6 +17,6 @@ class PagesController extends AbstractController
     #[Route('/home', name: 'home')]
     public function acceuil(): Response
     {
-        return $this->render('pages/acceuil.html.twig');
+        return $this->render('pages/accueil.html.twig');
     }
 }
