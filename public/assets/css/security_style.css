@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap%22");
+
+body {
+    background-color: #ececec;
+    font-family: "Commissioner", sans-serif;
+
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.logo1 {
+    width: 320px;
+    height: 270px;
+}
+.container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 375px;
+    margin-top: 50px;
+    background:#dfe5e7;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius:8%;
+}
+
+.form-control {
+
+    display: block;
+
+    margin-top: 25px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #3b4465;
+    background: #ffffff;
+    border: 1px solid #cddbef;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.btn {
+    display: block;
+
+    margin-top: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #3b4465;
+    background: #ffffff;
+    border: 1px solid #cddbef;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 50%;
+    cursor:pointer;
+    font-weight: bold;
+
+}
+
+.mdpo {
+    margin-top: 20px;
+    font-size: 12px;
+
+
+}
+
+
+
