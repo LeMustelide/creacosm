@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QuestionMCQMultiple index{% endblock %}
+
+{% block body %}
+    <h1>QuestionMCQMultiple index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Entitled</th>
+                <th>MinNumberAnswer</th>
+                <th>MaxNumberAnswer</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question_mcq_multiple in question_mcq_multiples %}
+            <tr>
+                <td>{{ question_mcq_multiple.id }}</td>
+                <td>{{ question_mcq_multiple.entitled }}</td>
+                <td>{{ question_mcq_multiple.minNumberAnswer }}</td>
+                <td>{{ question_mcq_multiple.maxNumberAnswer }}</td>
+                <td>
+                    <a href="{{ path('app_question_mcq_multiple_show', {'id': question_mcq_multiple.id}) }}">show</a>
+                    <a href="{{ path('app_question_mcq_multiple_edit', {'id': question_mcq_multiple.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_mcq_multiple_new') }}">Create new</a>
+{% endblock %}

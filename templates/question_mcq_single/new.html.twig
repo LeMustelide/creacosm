@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New QuestionMCQSingle{% endblock %}
+
+{% block body %}
+    <h1>Create new QuestionMCQSingle</h1>
+
+    {{ include('question_mcq_single/_form.html.twig') }}
+
+    <a href="{{ path('app_question_mcq_single_index') }}">back to list</a>
+{% endblock %}

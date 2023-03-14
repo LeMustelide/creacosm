@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QuestionText{% endblock %}
+
+{% block body %}
+    <h1>QuestionText</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ question_text.id }}</td>
+            </tr>
+            <tr>
+                <th>Entitled</th>
+                <td>{{ question_text.entitled }}</td>
+            </tr>
+            <tr>
+                <th>MinCharacterLimit</th>
+                <td>{{ question_text.minCharacterLimit }}</td>
+            </tr>
+            <tr>
+                <th>MaxCharacterLimit</th>
+                <td>{{ question_text.maxCharacterLimit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_text_index') }}">back to list</a>
+
+    <a href="{{ path('app_question_text_edit', {'id': question_text.id}) }}">edit</a>
+
+    {{ include('question_text/_delete_form.html.twig') }}
+{% endblock %}

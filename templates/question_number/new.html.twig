@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New QuestionNumber{% endblock %}
+
+{% block body %}
+    <h1>Create new QuestionNumber</h1>
+
+    {{ include('question_number/_form.html.twig') }}
+
+    <a href="{{ path('app_question_number_index') }}">back to list</a>
+{% endblock %}

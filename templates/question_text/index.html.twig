@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QuestionText index{% endblock %}
+
+{% block body %}
+    <h1>QuestionText index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Entitled</th>
+                <th>MinCharacterLimit</th>
+                <th>MaxCharacterLimit</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question_text in question_texts %}
+            <tr>
+                <td>{{ question_text.id }}</td>
+                <td>{{ question_text.entitled }}</td>
+                <td>{{ question_text.minCharacterLimit }}</td>
+                <td>{{ question_text.maxCharacterLimit }}</td>
+                <td>
+                    <a href="{{ path('app_question_text_show', {'id': question_text.id}) }}">show</a>
+                    <a href="{{ path('app_question_text_edit', {'id': question_text.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_text_new') }}">Create new</a>
+{% endblock %}

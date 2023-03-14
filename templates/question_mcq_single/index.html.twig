@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QuestionMCQSingle index{% endblock %}
+
+{% block body %}
+    <h1>QuestionMCQSingle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Entitled</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question_mcq_single in question_mcq_singles %}
+            <tr>
+                <td>{{ question_mcq_single.id }}</td>
+                <td>{{ question_mcq_single.entitled }}</td>
+                <td>
+                    <a href="{{ path('app_question_mcq_single_show', {'id': question_mcq_single.id}) }}">show</a>
+                    <a href="{{ path('app_question_mcq_single_edit', {'id': question_mcq_single.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_mcq_single_new') }}">Create new</a>
+{% endblock %}

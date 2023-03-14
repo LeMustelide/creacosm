@@ -27,7 +27,7 @@ class QuestionMCQMultiple
     #[ORM\ManyToMany(targetEntity: Poll::class, inversedBy: 'questionsMCQMultiple')]
     private Collection $poll;
 
-    #[ORM\OneToMany(mappedBy: 'questionMultiple', targetEntity: Answer::class)]
+    #[ORM\OneToMany(mappedBy: 'questionMultiple', targetEntity: Answer::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $answers;
 
     public function __construct()
