@@ -8,19 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PagesController extends AbstractController
 {
-    #[Route('/pages', name: 'app_pages')]
+    #[Route('/dashboard', name: 'dashboard')]
     public function index(): Response
     {
-        return $this->render('pages/index.html.twig', [
-            'controller_name' => 'PagesController',
-        ]);
+        return $this->render('pages/dashboard.html.twig');
     }
 
-    #[Route('/home', name: 'app_home')]
+    #[Route('/home', name: 'home')]
     public function acceuil(): Response
     {
-        return $this->render('pages/acceuil.html.twig', [
-            'controller_name' => 'PagesController',
-        ]);
+        return $this->render('pages/accueil.html.twig');
     }
 }
