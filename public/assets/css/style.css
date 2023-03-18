@@ -642,7 +642,7 @@ ul {
 }
 
 .topbar .logo{
-width: 142px;
+  width: 142px;
 }
 
 .title{
@@ -650,6 +650,73 @@ width: 142px;
 }
 
 .center > .search-bar {
-width: 33%;
-justify-content: center;
+  width: 33%;
+  justify-content: center;
+}
+
+.clients-list{
+  background-color: var(--gray);
+  margin-top: 50px;
+  border-radius: 24px;
+}
+
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+.flex-between > div{
+  display: flex;
+  justify-content: center;
+}
+
+.background-white{
+  background-color: #fff;
+}
+
+.square-button{
+  background-color: #fff;
+  padding: 5px 15px 5px 15px;
+  margin: 20px;
+  border-radius: 12px;
+}
+
+.data-clients{
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 24px;
+}
+
+.data-clients > table{
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 24px;
+}
+
+.data-clients > table tbody th, .data-clients > table tbody td{
+  text-align: center;
+  padding: 20px;
+}
+
+.data-clients > table th{
+  padding: 15px 0 25px 0;
+}
+
+.table-white{
+  background-color: #fff;
+  border-radius: 24px;
+}
+
+.table-grey{
+  background-color: var(--gray-dark);
+  border-radius: 24px;
+}
+
+.last-td-left{
+  border-bottom-left-radius: 24px;
+}
+
+.last-td-right{
+  border-bottom-right-radius: 24px;
 }
