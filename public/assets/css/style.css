@@ -5,6 +5,7 @@
     --quaternary-color: #8fbcbb;
     --gray: #f3f3f3;
     --gray-dark: #dedede;
+    --gray-second: #eceff4;
     --background: #e5e5e5;
     --dark: #252525;
 }
@@ -377,7 +378,7 @@ a {
 .shadow {
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
 }
-=======
+
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap");
 
 body {
@@ -620,4 +621,35 @@ ul {
   padding: 10px;
   font-size: 18px;
   text-align: center;
+}
+
+.background-color-gray{
+  background-color: var(--gray-second);
+}
+
+.topbar{
+  padding: 0;
+  margin-left: 75px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 90px;
+}
+
+.topbar > a {
+  position: absolute; 
+  left: 24px;
+}
+
+.topbar .logo{
+width: 142px;
+}
+
+.title{
+  font-weight: 300;
+}
+
+.center > .search-bar {
+width: 33%;
+justify-content: center;
 }
