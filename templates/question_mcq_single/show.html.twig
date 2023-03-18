@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QuestionMCQSingle{% endblock %}
+
+{% block body %}
+    <h1>QuestionMCQSingle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ question_mcq_single.id }}</td>
+            </tr>
+            <tr>
+                <th>Entitled</th>
+                <td>{{ question_mcq_single.entitled }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_mcq_single_index') }}">back to list</a>
+
+    <a href="{{ path('app_question_mcq_single_edit', {'id': question_mcq_single.id}) }}">edit</a>
+
+    {{ include('question_mcq_single/_delete_form.html.twig') }}
+{% endblock %}

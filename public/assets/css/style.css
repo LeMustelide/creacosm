@@ -380,14 +380,11 @@ a {
 =======
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap");
 
-* {
+body {
+  overflow-x: hidden;
   border: 0;
   padding: 0;
   margin: 0;
-}
-
-body {
-  overflow-x: hidden;
 }
 
 a {
