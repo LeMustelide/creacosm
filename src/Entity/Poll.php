@@ -20,7 +20,7 @@ class Poll
     private ?string $name = null;
 
     #[ORM\Column(length: 1024, nullable: true)]
-    private ?string $dscription = null;
+    private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationDate = null;
@@ -31,16 +31,16 @@ class Poll
     #[ORM\Column]
     private ?bool $public = null;
 
-    #[ORM\ManyToMany(targetEntity: QuestionText::class, mappedBy: 'poll')]
+    #[ORM\ManyToMany(targetEntity: QuestionText::class, mappedBy: 'poll', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $questionsText;
 
-    #[ORM\ManyToMany(targetEntity: QuestionNumber::class, mappedBy: 'poll')]
+    #[ORM\ManyToMany(targetEntity: QuestionNumber::class, mappedBy: 'poll', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $questionsNumber;
 
-    #[ORM\ManyToMany(targetEntity: QuestionMCQMultiple::class, mappedBy: 'poll')]
+    #[ORM\ManyToMany(targetEntity: QuestionMCQMultiple::class, mappedBy: 'poll', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $questionsMCQMultiple;
 
-    #[ORM\ManyToMany(targetEntity: QuestionMCQSingle::class, mappedBy: 'poll')]
+    #[ORM\ManyToMany(targetEntity: QuestionMCQSingle::class, mappedBy: 'poll', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $questionsMCQSingle;
 
     public function __construct()
@@ -68,14 +68,14 @@ class Poll
         return $this;
     }
 
-    public function getDscription(): ?string
+    public function getdescription(): ?string
     {
-        return $this->dscription;
+        return $this->description;
     }
 
-    public function setDscription(?string $dscription): self
+    public function setdescription(?string $description): self
     {
-        $this->dscription = $dscription;
+        $this->description = $description;
 
         return $this;
     }
@@ -221,6 +221,54 @@ class Poll
             $questionsMCQSingle->removePoll($this);
         }
 
+        return $this;
+    }
+
+    public function getQuestions(): ?array
+    {
+        $questions = [];
+        foreach ($this->questionsText as $questionText) {
+            $questions[] = new question($questionText->getQuestion(), "Texte");
+        }
+        foreach ($this->questionsNumber as $questionNumber) {
+            $questions[] = new question($questionNumber->getQuestion(), "Nombre");
+        }
+        foreach ($this->questionsMCQMultiple as $questionMCQMultiple) {
+            $questions[] = new question($questionMCQMultiple->getQuestion(), "Choix multiple");
+        }
+        foreach ($this->questionsMCQSingle as $questionMCQSingle) {
+            $questions[] = new question($questionMCQSingle->getQuestion(), "Choix unique");
+        }
+        return $questions;
+    }
+
+    public function setQuestions(array $questions): self
+    {
+        foreach ($questions as $question) {
+            var_dump($question);
+            switch ($question["type"]) {
+                case "Texte":
+                    $questionText = new QuestionText();
+                    $questionText->setEntitled($question["entitled"]);
+                    $this->addQuestionsText($questionText);
+                    break;
+                case "Nombre":
+                    $questionNumber = new QuestionNumber();
+                    $questionNumber->setEntitled($question["entitled"]);
+                    $this->addQuestionsNumber($questionNumber);
+                    break;
+                case "Choix multiple":
+                    $questionMCQMultiple = new QuestionMCQMultiple();
+                    $questionMCQMultiple->setEntitled($question["entitled"]);
+                    $this->addQuestionsMCQMultiple($questionMCQMultiple);
+                    break;
+                case "Choix unique":
+                    $questionMCQSingle = new QuestionMCQSingle();
+                    $questionMCQSingle->setEntitled($question["entitled"]);
+                    $this->addQuestionsMCQSingle($questionMCQSingle);
+                    break;
+            }
+        }
         return $this;
     }
 }
