@@ -10,8 +10,6 @@
     --dark: #252525;
 }
 
-@import url("https://unpkg.com/css.gg@2.0.0/icons/css/eye-alt.css");
-
 @font-face {
     font-family: "NeueMontreal";
     src: url(/assets/font/PPNeueMontreal-Medium.otf);
@@ -658,12 +656,13 @@ ul {
   background-color: var(--gray);
   margin-top: 50px;
   border-radius: 24px;
+  padding-bottom: 24px;
 }
 
 .flex-between{
   display: flex;
   justify-content: space-between;
-  margin: 15px;
+  margin: 16px;
 }
 
 .flex-between > div{
@@ -683,9 +682,9 @@ ul {
 }
 
 .data-clients{
-  width: 100%;
-  margin-top: 10px;
+  margin: 16px;
   border-radius: 24px;
+  background-color: var(--gray-dark);
 }
 
 .data-clients > table{
@@ -703,6 +702,14 @@ ul {
   padding: 15px 0 25px 0;
 }
 
+.data-clients tr:last-of-type td:nth-child(1){
+  border-bottom-left-radius: 24px;
+}
+
+.data-clients tr:last-of-type td:last-of-type{
+  border-bottom-right-radius: 24px;
+}
+
 .table-white{
   background-color: #fff;
   border-radius: 24px;
@@ -711,12 +718,4 @@ ul {
 .table-grey{
   background-color: var(--gray-dark);
   border-radius: 24px;
-}
-
-.last-td-left{
-  border-bottom-left-radius: 24px;
-}
-
-.last-td-right{
-  border-bottom-right-radius: 24px;
 }
