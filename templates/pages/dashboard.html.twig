@@ -3,7 +3,7 @@
 {% endblock %}
 {% block body %}
 	{{ include('overlay/_navbar.html.twig') }}
-	<div class="main flex-row dashboard">
+	<div class="main dashboard">
 		<div>
             <div>
                 <div class="flex-row">
@@ -65,6 +65,7 @@
             </div>
             <div class="card shadow" id="card-fourth">
                 <p>Réponses aux sondages</p>
+                <canvas id="poll_answer"></canvas>
             </div>
         </div>
         <div class="dashboard-card-list">
@@ -86,4 +87,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="module" src="/assets/js/dashboard.js"></script>
 {% endblock %}

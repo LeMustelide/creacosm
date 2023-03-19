@@ -103,8 +103,12 @@ a {
 }
 
 .dashboard {
-    height: 100vh;
+    min-height: 100vh;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: auto;
 }
 
 .dashboard>div:nth-child(1) {
@@ -116,7 +120,7 @@ a {
 }
 
 .dashboard > div:nth-child(1) > div {
-    height: 50%;
+    height: calc(50% - 16px);
     display: flex;
     flex-direction: column;
 }
@@ -141,11 +145,11 @@ a {
 }
 
 .dashboard-card-list>.tertiary {
-    height: 50%;
+    height: calc(50% - 16px);
 }
 
 .dashboard-card-list>.quaternary {
-    height: 50%;
+    height: calc(50% - 16px);
 }
 
 .flex-row {
@@ -216,6 +220,10 @@ a {
     margin-right: 24px;
 }
 
+.button-list > button:nth-child(1) {
+    margin-left: 0px;
+}
+
 .title-dashboard p,
 .title-dashboard {
     margin: 0;
@@ -245,7 +253,7 @@ a {
 
 #card-fourth {
     background-color: #fff;
-    height: 50%;
+    height: calc(50% - 16px);
 }
 
 .card-list {
@@ -258,6 +266,29 @@ a {
 @media (max-width: 1200px) {
     .card-list {
         flex-direction: column;
+    }
+    .dashboard>div:nth-child(1){
+        padding-right: 0px;
+        width: 100%;
+    }
+    .dashboard>div:nth-child(2){
+        width: 100%;
+    }
+    .dashboard>div:nth-child(1)>div {
+        height: auto;
+    }
+    .dashboard {
+        height: auto;
+        flex-direction: column;
+    }
+    #card-fourth {
+        height: 512px;
+    }
+}
+
+@media (min-height: 1000px) {
+    .dashboard {
+        max-height: 100vh;
     }
 }
 
@@ -631,4 +662,13 @@ ul {
   padding: 10px;
   font-size: 18px;
   text-align: center;
+}
+
+#poll_answer {
+    padding: 16px;
+}
+
+canvas {
+  max-width: 100% !important;
+  max-height: calc(100% - 100px);
 }
