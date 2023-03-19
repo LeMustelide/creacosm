@@ -19,4 +19,10 @@ class PagesController extends AbstractController
     {
         return $this->render('pages/accueil.html.twig');
     }
+
+    #[Route('/questionsLibrary', name: 'questionsLibrary')]
+    public function questionsLibrary(): Response
+    {
+        return $this->render('pages/questionsLibrary.html.twig');
+    }
 }
