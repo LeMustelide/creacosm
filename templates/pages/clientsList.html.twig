@@ -6,15 +6,20 @@
 
 {% block body %}
 
+    <div class="overlay"></div>
+
 	{{ include('overlay/_navbar.html.twig') }}
 	{{ include('overlay/_topbar.html.twig') }}
 
 	<div class="main">
 		<div class="center">
-			<input type="text" class="search-bar shadow">
-            <span class="material-symbols-outlined small">
-                search
-            </span>
+			<div class="search-container large">
+                <input type="text" class="search-bar shadow">
+                </input>
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+            </div>
 		</div>
 
 		<div class="clients-list shadow">
@@ -76,4 +81,38 @@
 		</div>
 	</div>
 
+{% endblock %}
+
+{% block javascripts %}
+<script>
+function showPopUp() {
+    const popUp = document.querySelector('.pop-up-added');
+    const overlay = document.querySelector('.overlay');
+    popUp.style.display = 'flex';
+    overlay.style.display = 'block';
+}
+
+const addButton = document.querySelector('.square-button:nth-child(1)');
+addButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    showPopUp();
+});
+
+const overlay = document.querySelector('.overlay');
+overlay.addEventListener('click', () => {
+    hidePopUp();
+});
+
+const cancelButton = document.querySelector('.pop-up-added-bot .button-selected:nth-child(2)');
+cancelButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    hidePopUp();
+});
+
+function hidePopUp() {
+    const popUp = document.querySelector('.pop-up-added');
+    popUp.style.display = 'none';
+    overlay.style.display = 'none';
+}
+</script>
 {% endblock %}
