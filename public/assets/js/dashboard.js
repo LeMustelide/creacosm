@@ -1,9 +1,13 @@
+Chart.defaults.font.size = 18;
+Chart.defaults.font.family = 'Roboto, sans-serif';
+Chart.defaults.font.weight = 'bold';
+Chart.defaults.font.color = '#000000';
+
+
 const DATA_COUNT = 12;
-const labels = [];
-for (let i = 0; i < DATA_COUNT; ++i) {
-    labels.push(i.toString());
-}
-const datapoints = [0, 20, 20, 60, 60, 120, 180, 120, 125, 105, 110, 170];
+const datapoints = [0, 20, 20, 60, 60, 120, 180, 120, 125, 105, 110];
+const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+const labels = months.slice(0, DATA_COUNT);
 const data = {
     labels: labels,
     datasets: [
@@ -17,7 +21,7 @@ const data = {
     ]
 };
 
-const config = {
+const config_PollAnswers = {
     type: 'line',
     data: data,
     options: {
@@ -39,11 +43,50 @@ const config = {
                     display: true,
                     text: 'Value'
                 },
-                suggestedMin: -10,
-                suggestedMax: 200
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
             }
         }
     },
 };
 
-new Chart(document.getElementById('poll_answer'),config);
+
+new Chart(document.getElementById('poll_answer'), config_PollAnswers);
+
+const config_clientsChart = {
+    type: 'bar',
+    data: data,
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                display: false
+            },
+            y: {
+                display: false
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'top',
+                display: false
+            },
+            title: {
+                display: false,
+                text: 'Chart.js Floating Bar Chart'
+            }
+        }
+    }
+};
+
+new Chart(document.getElementById('clientsChart'), config_clientsChart);
+
+
+function responsiveFonts() {
+    const html = document.querySelector('html');
+    const width = html.clientWidth;
+    html.style.fontSize = width / 19.2 + 'px';
+}
