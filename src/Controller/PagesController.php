@@ -20,9 +20,9 @@ class PagesController extends AbstractController
         return $this->render('pages/accueil.html.twig');
     }
 
-    #[Route('/liste_clients', name: 'liste_clients')]
+    #[Route('/clients', name: 'clients_list')]
     public function listeClients(): Response
     {
-        return $this->render('pages/liste_clients.html.twig');
+        return $this->render('pages/clientsList.html.twig');
     }
 }
