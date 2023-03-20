@@ -8,16 +8,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PagesController extends AbstractController
 {
-
-    #[Route('/dashboard', name: 'dashboard')]
+    #[Route('/dashboard', name: 'app_home')]
     public function index(): Response
     {
         return $this->render('pages/dashboard.html.twig');
     }
 
-    #[Route('/home', name: 'home')]
+    #[Route('/', name: 'home')]
     public function acceuil(): Response
     {
-        return $this->render('pages/accueil.html.twig');
+        return $this->render('pages/acceuil.html.twig', [
+            'controller_name' => 'PagesController',
+        ]);
     }
 }

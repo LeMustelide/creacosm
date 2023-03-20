@@ -55,7 +55,7 @@ a {
     padding: 24px;
 }
 
-.card > h2 {
+.card>h2 {
     font-size: 24px;
     font-weight: 500;
     margin: 0;
@@ -66,12 +66,12 @@ a {
     height: calc(50% - 16px);
 }
 
-.recent-poll > h2,
-.recent-stats > h2 {
+.recent-poll>h2,
+.recent-stats>h2 {
     color: white;
     font-size: 2rem;
     font-weight: 500;
-    margin-bottom: 24px ;
+    margin-bottom: 24px;
 }
 
 .card-squared {
@@ -139,13 +139,13 @@ a {
     gap: 32px;
 }
 
-.dashboard > div:nth-child(1) > div {
+.dashboard>div:nth-child(1)>div {
     height: calc(50% - 16px);
     display: flex;
     flex-direction: column;
 }
 
-.dashboard > div:nth-child(1) > div > div:nth-child(2) {
+.dashboard>div:nth-child(1)>div>div:nth-child(2) {
     flex-grow: 1;
 }
 
@@ -171,10 +171,10 @@ a {
 }
 
 .material-symbols-outlined {
-    font-size: 38px !important;   
+    font-size: 38px !important;
 }
 
-.material-symbols-outlined.small{
+.material-symbols-outlined.small {
     font-size: 28px !important;
 }
 
@@ -202,7 +202,7 @@ a {
     position: relative;
 }
 
-.search-container > .material-symbols-outlined {
+.search-container>.material-symbols-outlined {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -221,6 +221,10 @@ a {
     border-radius: 24px;
     border: none;
     cursor: pointer;
+    padding: 12px;
+    font-size: 18px;
+    min-width: 192px;
+    text-align: center;
 }
 
 .button-selected {
@@ -242,7 +246,7 @@ a {
     margin-right: 24px;
 }
 
-.button-list > button:nth-child(1) {
+.button-list>button:nth-child(1) {
     margin-left: 0px;
 }
 
@@ -298,21 +302,26 @@ a {
     .card-list {
         flex-direction: column;
     }
-    .dashboard>div:nth-child(1){
+
+    .dashboard>div:nth-child(1) {
         padding-right: 0px;
         width: 100%;
     }
-    .dashboard>div:nth-child(2){
+
+    .dashboard>div:nth-child(2) {
         width: 100%;
     }
+
     .dashboard>div:nth-child(1)>div {
         height: auto;
     }
+
     .dashboard {
         height: auto;
         flex-direction: column;
         gap: 32px;
     }
+
     #card-fourth {
         height: 512px;
     }
@@ -341,8 +350,10 @@ a {
     margin: auto;
     color: #fff;
     font-weight: 800;
-    font-size: 80px; /* Browsers that do not support "MIN () - MAX ()" and "Clamp ()" functions will take this value.*/
-    font-size: max(80px, min(5vw, 512px)); /* Browsers that do not support the "clamp ()" function will take this value. */
+    font-size: 80px;
+    /* Browsers that do not support "MIN () - MAX ()" and "Clamp ()" functions will take this value.*/
+    font-size: max(80px, min(5vw, 512px));
+    /* Browsers that do not support the "clamp ()" function will take this value. */
     font-size: clamp(80px, 5vw, 512px);
 }
 
@@ -381,8 +392,10 @@ a {
     text-align: center;
     margin: auto;
     font-weight: 800;
-    font-size: 80px; /* Browsers that do not support "MIN () - MAX ()" and "Clamp ()" functions will take this value.*/
-    font-size: max(80px, min(5vw, 512px)); /* Browsers that do not support the "clamp ()" function will take this value. */
+    font-size: 80px;
+    /* Browsers that do not support "MIN () - MAX ()" and "Clamp ()" functions will take this value.*/
+    font-size: max(80px, min(5vw, 512px));
+    /* Browsers that do not support the "clamp ()" function will take this value. */
     font-size: clamp(80px, 5vw, 512px);
 }
 
@@ -417,43 +430,46 @@ a {
 
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap");
 
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
 body {
-  overflow-x: hidden;
-  border: 0;
-  padding: 0;
-  margin: 0;
+    overflow-x: hidden;
 }
 
 a {
-  outline: none;
-  text-decoration: none;
+    outline: none;
+    text-decoration: none;
 }
 
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 .viewh {
-  width: 100vw;
-  height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 
 .viewhh {
-  width: 100vw;
+    width: 100vw;
 }
 
 .logo {
-  width: 256px;
-  padding: 16px;
+    width: 256px;
+    padding: 16px;
 }
 
 .home-navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#nav-button > a {
+#nav-button>a {
     padding: 12px;
     font-size: 18px;
     min-width: 192px;
@@ -461,209 +477,209 @@ ul {
 }
 
 #nav-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding-right: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-right: 40px;
 }
 
 #inscription {
-  background-color: #fff;
-  border-radius: 30px;
-  border: 5px;
-  border-color: #0b65ab;
+    background-color: #fff;
+    border-radius: 30px;
+    border: 5px;
+    border-color: #0b65ab;
 }
 
 .button-filed {
-  background-color: #0b65ab;
-  border-radius: 24px;
-  padding: 12px 48px;
-  color: white;
+    background-color: #0b65ab;
+    border-radius: 24px;
+    padding: 12px 48px;
+    color: white;
 }
 
 .border-button {
-  color: black;
-  background-color: #fff;
-  border-radius: 24px;
-  padding: 8px 48px 10px;
-  border: 3px solid #0b65ab;
-  margin-left: 40px;
-  box-sizing: border-box;
+    color: black;
+    background-color: #fff;
+    border-radius: 24px;
+    padding: 8px 48px 10px;
+    border: 3px solid #0b65ab;
+    margin-left: 40px;
+    box-sizing: border-box;
 }
 
 .border-button-grey {
-  color: black;
-  background-color: #fff;
-  border-radius: 24px;
-  font-size: 20px;
-  padding: 12px 52px 12px 52px;
-  border: 3px solid grey;
-  margin-left: 40px;
-  margin-top: 35px;
+    color: black;
+    background-color: #fff;
+    border-radius: 24px;
+    font-size: 20px;
+    padding: 12px 52px 12px 52px;
+    border: 3px solid grey;
+    margin-left: 40px;
+    margin-top: 35px;
 }
 
 #square-1 {
-  width: 45vw;
-  height: 66vh;
+    width: 45vw;
+    height: 66vh;
 }
 
 #square-2 {
-  width: 55vw;
-  height: 60vh;
+    width: 55vw;
+    height: 60vh;
 }
 
 #square-2 div {
-  background-color: #0b65ab;
-  width: 42vw;
-  height: 60vh;
-  margin-left: 80px;
-  margin-top: 50px;
-  border-radius: 24px;
+    background-color: #0b65ab;
+    width: 42vw;
+    height: 60vh;
+    margin-left: 80px;
+    margin-top: 50px;
+    border-radius: 24px;
 }
 
 #square {
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  height: 66vh;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 66vh;
 }
 
 .commissioner {
-  font-family: "Commissioner", sans-serif;
+    font-family: "Commissioner", sans-serif;
 }
 
 #title-creacosm {
-  letter-spacing: 8px;
-  font-size: 90px;
-  font-weight: 200;
-  margin-top: 65px;
-  margin-bottom: 40px;
+    letter-spacing: 8px;
+    font-size: 90px;
+    font-weight: 200;
+    margin-top: 65px;
+    margin-bottom: 40px;
 }
 
 #square-1 h1,
 #square-1 p,
 #square-1 a {
-  margin-left: 100px;
+    margin-left: 100px;
 }
 
 #square-1 p {
-  margin-bottom: 50px;
-  margin-right: 50px;
-  font-family: sans-serif;
-  font-size: 20px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    font-family: sans-serif;
+    font-size: 20px;
 }
 
 #square-2 div img {
-  width: 100%;
-  height: 120%;
-  position: relative;
-  top: -55px;
+    width: 100%;
+    height: 120%;
+    position: relative;
+    top: -55px;
 }
 
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .aqua {
-  background-color: #a0cdda;
-  max-width: fit-content;
+    background-color: #a0cdda;
+    max-width: fit-content;
 }
 
 .aqua p {
-  max-width: fit-content;
-  background-color: yellow;
+    max-width: fit-content;
+    background-color: yellow;
 }
 
 #second-page {
-  background-color: #a0cdda;
-  height: 100vh;
+    background-color: #a0cdda;
+    height: 100vh;
 }
 
 #second-square-one {
-  width: 50vw;
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 50vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #second-square-two {
-  width: 50vw;
-  height: 80vh;
+    width: 50vw;
+    height: 80vh;
 }
 
 #second-square {
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 80vh;
 }
 
 .cinq-vh {
-  height: 5vh;
+    height: 5vh;
 }
 
 .one-square {
-  background-color: #fff;
-  height: 40vh;
-  width: 40vw;
-  border-radius: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #fff;
+    height: 40vh;
+    width: 40vw;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .two-square {
-  background-color: #fff;
-  height: 40vh;
-  width: 18vw;
-  margin-left: 5vw;
-  margin-top: 5vh;
-  border-radius: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #fff;
+    height: 40vh;
+    width: 18vw;
+    margin-left: 5vw;
+    margin-top: 5vh;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .three-square {
-  background-color: #fff;
-  height: 40vh;
-  width: 18vw;
-  margin-right: 5vw;
-  margin-top: 5vh;
-  border-radius: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #fff;
+    height: 40vh;
+    width: 18vw;
+    margin-right: 5vw;
+    margin-top: 5vh;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .square-up {
-  width: 50vw;
-  height: 40vh;
-  margin-left: 5vw;
-  margin-right: 5vw;
+    width: 50vw;
+    height: 40vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
 .square-down {
-  width: 50vw;
-  height: 40vh;
-  display: flex;
-  justify-content: space-between;
+    width: 50vw;
+    height: 40vh;
+    display: flex;
+    justify-content: space-between;
 }
 
 .psquare {
-  padding: 30px;
-  font-size: 30px;
-  text-align: center;
+    padding: 30px;
+    font-size: 30px;
+    text-align: center;
 }
 
 .psquare-mini {
-  padding: 10px;
-  font-size: 18px;
-  text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
 }
 
 #poll_answer {
@@ -671,6 +687,6 @@ ul {
 }
 
 .charts-container {
-  max-width: 100% !important;
-  max-height: 100%;
+    max-width: 100% !important;
+    max-height: 100%;
 }
