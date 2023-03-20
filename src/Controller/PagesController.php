@@ -20,4 +20,10 @@ class PagesController extends AbstractController
     {
         return $this->render('pages/accueil.html.twig');
     }
+
+    #[Route('/clients', name: 'clients_list')]
+    public function listeClients(): Response
+    {
+        return $this->render('pages/clientsList.html.twig');
+    }
 }
