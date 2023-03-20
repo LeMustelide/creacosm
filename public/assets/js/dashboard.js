@@ -61,6 +61,7 @@ const config_clientsChart = {
     data: data,
     options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
             x: {
                 display: false
