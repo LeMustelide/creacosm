@@ -1,0 +1,49 @@
+{{ form_start(form) }}
+
+{{ form_row(form.entitled) }}
+{{ form_row(form.minNumberAnswer) }}
+{{ form_row(form.maxNumberAnswer) }}
+
+<h2>Réponses</h2>
+<div id="form_answers" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
+	{% for answer in form.answers %}
+		<div>
+			{{ form_row(answer.entitled) }}
+			<button class="remove-answer">Supprimer réponse</button>
+		</div>
+	{% endfor %}
+</div>
+
+<button id="add-answer">Ajouter réponse</button>
+<button class="btn">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form) }}
+
+<script>
+	// Récupérer le conteneur qui contiendra les réponses
+    let answersContainer = document.querySelector('#form_answers');
+
+    // Ajouter un écouteur d'événements pour le bouton "Ajouter réponse"
+    document.querySelector('#add-answer').addEventListener('click', function (e) { // Obtenir le nombre de réponses actuellement dans le conteneur
+        let index = answersContainer.children.length;
+
+        // Créer une nouvelle réponse en clonant le modèle de réponse
+        let prototype = answersContainer.dataset.prototype.replace(/__name__/g, index);
+        let newAnswer = document.createElement('div');
+        newAnswer.innerHTML = prototype;
+
+        // Ajouter la nouvelle réponse au conteneur
+        answersContainer.appendChild(newAnswer);
+
+        e.preventDefault();
+    });
+
+    answersContainer.addEventListener('click', (event) => {
+        if (event.target.classList.contains('remove-answer')) {
+            const answerDiv = event.target.parentElement;
+            answerDiv.remove();
+        }
+    });
+
+
+</script>

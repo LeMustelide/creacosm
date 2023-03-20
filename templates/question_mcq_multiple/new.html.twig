@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New QuestionMCQMultiple{% endblock %}
+
+{% block body %}
+    <h1>Create new QuestionMCQMultiple</h1>
+
+    {{ include('question_mcq_multiple/_form.html.twig') }}
+
+    <a href="{{ path('app_question_mcq_multiple_index') }}">back to list</a>
+{% endblock %}
