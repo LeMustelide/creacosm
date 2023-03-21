@@ -2,84 +2,44 @@
 {% block title %}Page d'administration
 {% endblock %}
 {% block body %}
-	{{ include('overlay/_navbar.html.twig') }}
-	<div class="main">
-        <div class="title-tools">
-            <a href="" class="square-blue-button shadow">
-                <span class="material-symbols-outlined small">
-                    add
-                </span>
-            </a>
-            <div>
-                <div class="search-container">
-                    <input type="text" class="search-bar shadow"></input>
-                    <span class="material-symbols-outlined">
-                        search
-                    </span>
-                </div>
-                <div class="categories-container">
-                    <select class="shadow">
-                        <option value="1">Tous</option>
-                        <option value="2">User 1</option>
-                    </select>
-                    <select class="shadow">
-                        <option value="1">Tous</option>
-                        <option value="2">Écriture</option>
-                    </select>
-                    <div>
-                        <input type="checkbox" id="isPublished" name="isPublished" value="isPublished"> Publié </input>
-                    </div>
-                    <select class="shadow">
-                        <option value="1">Tous</option>
-                        <option value="2">Question à choix multiple</option>
-                        <option value="3">Question à choix unique</option>
-                        <option value="4">Question à réponse ouverte</option>
-                        <option value="5">Question à nombre</option>
-                    </select>
-                </div>
-            </div>
-            <div class="sort-container">
-                <select class="shadow">
-                    <option value="1">Trier par</option>
-                    <option value="2">Date de création</option>
-                    <option value="3">Date de modification</option>
-                    <option value="4">Date de publication</option>
-                </select>
-                <select class="shadow">
-                    <option value="1">Croissant</option>
-                    <option value="2">Décroissant</option>
-                </select>
-            </div>
-        </div>
-        <div class="card-container">
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-        </div>
-    </div>
+{{ include('overlay/_navbar.html.twig') }}
+<div class="main">
+	<div class="search-container">
+		<input type="text" class="search-input" placeholder="Rechercher...">
+		<div class="sort-container">
+			<button>Trier par titre</button>
+			<button>Trier par date</button>
+		</div>
+	</div>
+	<div class="card-container">
+		<div class="card shadow">
+			<div class="card-title">Titre</div>
+			<div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
+		</div>
+		<div class="card shadow">
+			<div class="card-title">Titre</div>
+			<div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
+		</div>
+		<div class="card shadow">
+			<div class="card-title">Titre</div>
+			<div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
+		</div>
+		<div class="card shadow">
+			<div class="card-title">Titre</div>
+			<div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
+		</div>
+		<div class="card shadow">
+			<div class="card-title">Titre</div>
+			<div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
+		</div>
+		<div class="card shadow">
+			<div class="card-title">Titre</div>
+			<div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
+		</div>
+		<div class="card shadow">
+			<div class="card-title">Titre</div>
+			<div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
