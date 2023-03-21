@@ -19,4 +19,13 @@ class PagesController extends AbstractController
     {
         return $this->render('pages/accueil.html.twig');
     }
+
+    #[Route('/new_sondage', name: 'new_sondage')]
+    public function newSondage(): Response
+    {
+        return $this->render('pages/creation_sondage.html.twig');
+    }
+
+
+
 }

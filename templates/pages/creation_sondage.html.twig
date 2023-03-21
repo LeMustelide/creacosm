@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+{% block title %}Création d'un sondage
+{% endblock %}
+
+
+{% block body %}
+    {# include 'overlay/_topbar.html.twig' #}
+    {{ include('overlay/_navbar.html.twig') }}
+    <div class="main create-poll">
+        <div class="flex-row">
+            <div class="card card-two-side shadow">
+                <div>
+                    <h2>Détails</h2>
+                </div>
+                <div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">person</span>
+                        </div>
+                        <div>
+                            <p>Propriétaire</p>
+                            <p>TEST</p>
+                        </div>
+                    </div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">calendar_month</span>
+                        </div>
+                        <div>
+                            <p>Date de création</p>
+                            <p>06/01/2023 21:52</p>
+                        </div>
+                    </div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">send</span>
+                        </div>
+                        <div>
+                            <p>Nombres de réponses</p>
+                            <p>---</p>
+                        </div>
+                    </div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">public</span>
+                        </div>
+                        <div>
+                            <p>Date de publication</p>
+                            <p>---</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="addSondage" class="flex-column">
+                <form id="addSondage-form" class="card card-two-side shadow">
+                    <div>
+                        <h2>Informations</h2>
+                    </div>
+                    <div>
+                        <div class="flex-column">
+                            <label>Titre : </label>
+                            <input type="text"/>
+                            <label>Description : </label>
+                            <textarea>Sondage à propos du produit Maskara 2004</textarea>
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <div class="button-collection">
+                        <button class="button-success button" type="submit">Sauvegarder</button>
+                        <button class="button-info button" type="submit">Publier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fenetreUtilisateur">
+            <div class="optionUtilisateur">
+                <div>
+                    <h2>Utilisateurs autorisés</h2>
+                </div>
+                <div>
+                    <button class="boutonPlus">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <div class="nomColonne">
+                    <h3>Nom</h3>
+                </div>
+                <div class="listeUtilisateur">
+                    {# faire un système qui alterne 2 couleurs #}
+                    <div class="switch_sombre">
+                        <p>Zozo</p>
+                        <button>
+                        <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                    <div class="switch_clair">
+                        <p>mourc</p>
+                        <button>
+                        <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                    <div class="switch_sombre">
+                        <p>harry peter parker</p>
+                        <button>
+                        <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                    <div class="switch_clair">
+                        <p>yohan le iencli</p>
+                        <button>
+                        <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="fenetreListeQuestions">
+            <div class="optionQuestion">
+                <div>
+                    <h2>Liste des questions</h2>
+                </div>
+                <div>
+                    <div class="boutonPlus">
+                        <button id="btnAjouterQuestion">
+                            <span class="material-symbols-outlined">add</span>
+                        </button>
+                    </div>
+                    <div class="boutonPlus">
+                        <button>
+                            <span class="material-symbols-outlined">upload_file</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="nomColonne">
+                <div>
+                    <h3>Question</h3>
+                </div>
+                <div>
+                    <h3>Type</h3>
+                </div>
+            </div>
+            <div class="listeUtilisateur">
+                {# faire un système qui alterne 2 couleurs #}
+                <div class="switch_sombre">
+                    <p>De 1 à 10, notre marque vous inspire t-elle confiance ?</p>
+                    <p>Nombre</p>
+                    <button>
+                        <span class="material-symbols-outlined">edit</span>
+                    </button>
+                    <button>
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+                <div class="switch_clair">
+                    <p>Quelle est votre avis sur notre prise de conscience envers l'environnement ?</p>
+                    <p>Choix unique</p>
+                    <button>
+                    <span class="material-symbols-outlined">edit</span>
+                    </button>
+                    <button>
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+                <div class="switch_sombre">
+                    <p>Que pensez vous de notre crème de soin visage ?</p>
+                    <p>Choix multiple</p>
+                    <button>
+                    <span class="material-symbols-outlined">edit</span>
+                    </button>
+                    <button>
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+                <div class="switch_clair">
+                    <p>Un commentaire sur notre logo ?</p>
+                    <p>Texte</p>
+                    <button>
+                    <span class="material-symbols-outlined">edit</span>
+                    </button>
+                    <button>
+                    <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="#popupQuestion" style="display: none">
+        <div>
+            <h2>Créer une question</h2>
+            <form>
+                <div class="flexQuestion">
+                    <div>
+                        <label>Question à </label>
+                        <select>
+                            <option>choix multiple</option>
+                            <option>choix unique</option>
+                            <option>nombre</option>
+                            <option>texte</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>L'intitulé de la question : </label>
+                        <textarea></textarea>
+                    </div>
+                    <div class="listeReponse">
+                        <!--jsp comment faut faire ici-->
+                        <input type="text"/>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="boutonFormQuestion">
+                    <button type="submit">Ajouter</button>
+                    <button id="closePopupQuestion">Annuler</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        /*let popUpQuestion = document.getElementById("#popupQuestion")
+        let btnAjouterQuestion = document.getElementById("#btnAjouterQuestion")
+        let btnFermerPopUp = document.getElementById("#closePOpUpQuestion")
+
+        btnAjouterQuestion.onclick = function (){
+            popUpQuestion.style.display = "block"
+        }
+        btnFermerPopUp.onclick = function (){
+            popUpQuestion.style.display = "none"
+        }*/
+    </script>
+
+{% endblock %}
