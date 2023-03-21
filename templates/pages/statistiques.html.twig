@@ -56,8 +56,14 @@
 					<p>Avis soin crème</p>
 					<p>7.6</p>
 				</div>
-
+			</div>
+			<div class="charts-container" onresize="responsiveFonts()">
+				<canvas id="bar"></canvas>
 			</div>
 		</div>
 
+	{% endblock %}
+
+	{% block javascripts %}
+		<script type="module" src="/assets/js/statistiques.js"></script>
 	{% endblock %}
