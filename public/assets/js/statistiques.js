@@ -23,29 +23,15 @@ const data = {
   datasets: [
     {
       data: [1, 2, 1, 4, 6, 2, 1, 3, 1, 4, 2, 2],
-      borderColor: "#4dc9f6",
       fill: false,
-      cubicInterpolationMode: "",
+      cubicInterpolationMode: "monotone",
       tension: 0.4,
       borderColor: "#000",
-      borderWidth: 1,
-      grouped: true
+      borderWidth: 2,
+      backgroundColor: "#dedede"
 
     },
   ],
-};
-
-const config = {
-  type: "bar",
-  data: data,
-  grouped: true,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
 };
 
 const config_clientsChart = {
@@ -69,14 +55,53 @@ const config_clientsChart = {
         display: false,
       },
       title: {
-        display: false,
-        text: "Chart.js Floating Bar Chart",
+        display: true,
+        text: "Nombre de mauvais retour sur le produit \"Huile de ricin\"",
       },
     },
   },
 };
 
+const dataa = {
+    labels: ["Satisfaite", "Insatisfaite"],
+    datasets: [
+      {
+        data: [75, 25],
+        borderColor: "#000",
+        fill: false,
+        cubicInterpolationMode: "monopole",
+        tension: 0.4,
+        borderWidth: 1,
+        grouped: true,
+        backgroundColor: [
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+        ]
+      },
+    ],
+  };
+
+const config_pieChart = {
+    type: 'pie',
+    data: dataa,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+        },
+        title: {
+          display: true,
+          text: 'Indice de satisfaction sur le produit \"Huile de ricin\"'
+        }
+      }
+    },
+  };
+
 new Chart(document.getElementById("bar"), config_clientsChart);
+new Chart(document.getElementById("pie"), config_pieChart);
+
+
 
 function responsiveFonts() {
   const html = document.querySelector("html");
