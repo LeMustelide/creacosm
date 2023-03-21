@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% set title = 'Liste des clients' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="overlay"></div>
+
+	{{ include('overlay/_navbar.html.twig') }}
+	{{ include('overlay/_topbar.html.twig') }}
+
+	<div class="main">
+		<div class="center">
+			<div class="search-container large">
+                <input type="text" class="search-bar shadow">
+                </input>
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+            </div>
+		</div>
+
+		<div class="clients-list shadow">
+			<div class="flex-between">
+				<h3>Liste des clients</h3>
+				<div>
+					<a href="" class="square-button shadow">
+						<span class="material-symbols-outlined small">
+							add
+						</span>
+					</a>
+					<a href="" class="square-button shadow">
+						<span class="material-symbols-outlined small">
+							upload_file
+						</span>
+					</a>
+				</div>
+			</div>
+
+			<div class="data-clients">
+				<table>
+					<thead>
+						<tr>
+							<th>Numéro</th>
+							<th>Mail</th>
+							<th>Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-white">
+							<td>1</td>
+							<td>michel.blanc@gmail.com</td>
+							<td>23/11/2022</td>
+						</tr>
+						<tr class="table-gray">
+							<td>2</td>
+							<td>mohamed.djibali@gmail.com</td>
+							<td>16/02/2023</td>
+						</tr>
+						<tr class="table-white">
+							<td>3</td>
+							<td>pierre.delaroche@gmail.com</td>
+							<td>21/01/2023</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="pop-up-added">
+		<div class="pop-up-added-top shadow">
+			<p>Email</p>
+			<input type="text" class="search-bar shadow">
+		</div>
+		<div class="pop-up-added-bot shadow">
+			<a href="" class="button-selected shadow">Ajouter</a>
+			<a href="" class="button-selected shadow">Annuler</a>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+function showPopUp() {
+    const popUp = document.querySelector('.pop-up-added');
+    const overlay = document.querySelector('.overlay');
+    popUp.style.display = 'flex';
+    overlay.style.display = 'block';
+}
+
+const addButton = document.querySelector('.square-button:nth-child(1)');
+addButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    showPopUp();
+});
+
+const overlay = document.querySelector('.overlay');
+overlay.addEventListener('click', () => {
+    hidePopUp();
+});
+
+const cancelButton = document.querySelector('.pop-up-added-bot .button-selected:nth-child(2)');
+cancelButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    hidePopUp();
+});
+
+function hidePopUp() {
+    const popUp = document.querySelector('.pop-up-added');
+    popUp.style.display = 'none';
+    overlay.style.display = 'none';
+}
+</script>
+{% endblock %}
