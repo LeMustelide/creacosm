@@ -217,8 +217,8 @@ a {
 .button {
     border-radius: 24px;
     border: none;
-    padding: 4px 18px;
-    font-size: 10px;
+    padding: 8px 18px;
+    font-size: 18px;
     font-weight: 500;
     cursor: pointer;
 }
@@ -701,11 +701,11 @@ ul {
     gap: 65px;
 }
 
-#addSondage{
+.column-info-sondage{
     width: 100%;
 }
 
-#addSondage > div {
+.column-info-sondage > div:last-child {
     margin: auto;
 }
 
@@ -766,6 +766,7 @@ ul {
 
 .create-poll > .flex-row:nth-of-type(1) {
     gap: 45px;
+    height: 350px;
 }
 
 .create-poll > .flex-row:nth-of-type(1) > div:nth-of-type(1) {
@@ -774,4 +775,96 @@ ul {
 
 .create-poll > .flex-row:nth-of-type(1) > div:nth-of-type(2) {
     width: 75%;
+}
+
+input[type="text"] {
+    width: 85%;
+    height: 28px;
+    border-radius: 24px;
+    border: none;
+    padding-left: 12px;
+    font-size: 16px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: white;
+    box-sizing: border-box;
+    resize: none;
+}
+
+#infoSondage-form {
+    height: 80%;
+}
+
+#infoSondage-form > div:nth-of-type(2) {
+    height: calc(100% - 60px);
+}
+
+#infoSondage-form > div:nth-of-type(2) > div:nth-of-type(1) {
+    height: 100%;
+    gap: 8px;
+}
+
+.create-poll {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.scrollable-list-card {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background-color: var(--gray);
+    border-radius: 24px;
+    padding: 12px 18px 32px;
+}
+
+.scrollable-list-card > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+}
+
+.scrollable-list-card > div:first-child > h2 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.square-button {
+    background-color: white;
+    border-radius: 18px;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scrollable-list-card > .list {
+    overflow-y: auto;
+    border-radius: 24px;
+}
+
+.scrollable-list-card > .list > div {
+    padding: 18px 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.scrollable-list-card > .list > div:nth-child(2n+1){
+    background-color: var(--gray-dark);
+}
+
+.scrollable-list-card > .list > div:nth-child(2n){
+    background-color: white;
 }

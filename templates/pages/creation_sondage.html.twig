@@ -51,20 +51,20 @@
                     </div>
                 </div>
             </div>
-            <div id="addSondage" class="flex-column">
-                <form id="addSondage-form" class="card card-two-side shadow">
+            <div class="flex-column column-info-sondage">
+                <div id="infoSondage-form" class="card card-two-side shadow">
                     <div>
                         <h2>Informations</h2>
                     </div>
                     <div>
                         <div class="flex-column">
-                            <label>Titre : </label>
-                            <input type="text"/>
-                            <label>Description : </label>
-                            <textarea>Sondage à propos du produit Maskara 2004</textarea>
+                            <label>Titre</label>
+                            <input type="text" placeholder="Titre"> </input>
+                            <label>Description</label>
+                            <textarea placeholder="description"></textarea>
                         </div>
                     </div>
-                </form>
+                </div>
                 <div>
                     <div class="button-collection">
                         <button class="button-success button" type="submit">Sauvegarder</button>
@@ -74,124 +74,100 @@
             </div>
         </div>
 
-        <div class="fenetreUtilisateur">
-            <div class="optionUtilisateur">
-                <div>
-                    <h2>Utilisateurs autorisés</h2>
-                </div>
-                <div>
-                    <button class="boutonPlus">
-                        <span class="material-symbols-outlined">add</span>
-                    </button>
-                </div>
-            </div>
+        <div class="scrollable-list-card shadow">
             <div>
-                <div class="nomColonne">
+                <h2>Utilisateurs autorisés</h2>
+                <a class="square-button shadow" href="#">
+                    <span class="material-symbols-outlined">add</span>
+                </a>
+            </div>
+            <div class="list">
+                <div>
                     <h3>Nom</h3>
                 </div>
-                <div class="listeUtilisateur">
-                    {# faire un système qui alterne 2 couleurs #}
-                    <div class="switch_sombre">
-                        <p>Zozo</p>
-                        <button>
+                <div>
+                    <p>Zozo</p>
+                    <a href="#">
                         <span class="material-symbols-outlined">delete</span>
-                        </button>
-                    </div>
-                    <div class="switch_clair">
-                        <p>mourc</p>
-                        <button>
-                        <span class="material-symbols-outlined">delete</span>
-                        </button>
-                    </div>
-                    <div class="switch_sombre">
-                        <p>harry peter parker</p>
-                        <button>
-                        <span class="material-symbols-outlined">delete</span>
-                        </button>
-                    </div>
-                    <div class="switch_clair">
-                        <p>yohan le iencli</p>
-                        <button>
-                        <span class="material-symbols-outlined">delete</span>
-                        </button>
-                    </div>
+                    </a>
                 </div>
-
+                <div>
+                    <p>mourc</p>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </div>
+                <div>
+                    <p>harry peter parker</p>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </div>
+                <div>
+                    <p>yohan le iencli</p>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="fenetreListeQuestions">
-            <div class="optionQuestion">
-                <div>
-                    <h2>Liste des questions</h2>
-                </div>
-                <div>
-                    <div class="boutonPlus">
-                        <button id="btnAjouterQuestion">
-                            <span class="material-symbols-outlined">add</span>
-                        </button>
-                    </div>
-                    <div class="boutonPlus">
-                        <button>
-                            <span class="material-symbols-outlined">upload_file</span>
-                        </button>
-                    </div>
-                </div>
+        <div class="scrollable-list-card shadow">
+            <div>
+                <h2>Liste des questions</h2>
+                <a class="square-button shadow" href="#">
+                    <span class="material-symbols-outlined">add</span>
+                </a>
             </div>
-            <div class="nomColonne">
+            <div class="list">
                 <div>
-                    <h3>Question</h3>
+                    <h3 style="width: 10%; text-align: center">Numéro</h3>
+                    <h3 style="width: 70%">Question</h3>
+                    <h3 style="width: 10%">Type</h3>
+                    <h3 style="width: 10%">Actions</h3>
                 </div>
                 <div>
-                    <h3>Type</h3>
+                    <p style="width: 10%; text-align: center">1</p>
+                    <p style="width: 70%">De 1 à 10, notre marque vous inspire t-elle confiance ?</p>
+                    <p style="width: 10%">Type</p>
+                    <div style="width: 10%">
+                        <a href="#">
+                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="listeUtilisateur">
-                {# faire un système qui alterne 2 couleurs #}
-                <div class="switch_sombre">
-                    <p>De 1 à 10, notre marque vous inspire t-elle confiance ?</p>
-                    <p>Nombre</p>
-                    <button>
-                        <span class="material-symbols-outlined">edit</span>
-                    </button>
-                    <button>
-                    <span class="material-symbols-outlined">delete</span>
-                    </button>
+                <div>
+                    <p style="width: 10%; text-align: center">1</p>
+                    <p style="width: 70%">De 1 à 10, notre marque vous inspire t-elle confiance ?</p>
+                    <p style="width: 10%">Type</p>
+                    <div style="width: 10%">
+                        <a href="#">
+                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="switch_clair">
-                    <p>Quelle est votre avis sur notre prise de conscience envers l'environnement ?</p>
-                    <p>Choix unique</p>
-                    <button>
-                    <span class="material-symbols-outlined">edit</span>
-                    </button>
-                    <button>
-                    <span class="material-symbols-outlined">delete</span>
-                    </button>
-                </div>
-                <div class="switch_sombre">
-                    <p>Que pensez vous de notre crème de soin visage ?</p>
-                    <p>Choix multiple</p>
-                    <button>
-                    <span class="material-symbols-outlined">edit</span>
-                    </button>
-                    <button>
-                    <span class="material-symbols-outlined">delete</span>
-                    </button>
-                </div>
-                <div class="switch_clair">
-                    <p>Un commentaire sur notre logo ?</p>
-                    <p>Texte</p>
-                    <button>
-                    <span class="material-symbols-outlined">edit</span>
-                    </button>
-                    <button>
-                    <span class="material-symbols-outlined">delete</span>
-                    </button>
+                <div>
+                    <p style="width: 10%; text-align: center">1</p>
+                    <p style="width: 70%">De 1 à 10, notre marque vous inspire t-elle confiance ?</p>
+                    <p style="width: 10%">Type</p>
+                    <div style="width: 10%">
+                        <a href="#">
+                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div id="#popupQuestion" style="display: none">
-        <div>
             <h2>Créer une question</h2>
             <form>
                 <div class="flexQuestion">
@@ -219,7 +195,6 @@
                     <button id="closePopupQuestion">Annuler</button>
                 </div>
             </form>
-        </div>
         </div>
     </div>
 
