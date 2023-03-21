@@ -26,4 +26,10 @@ class PagesController extends AbstractController
     {
         return $this->render('pages/clientsList.html.twig');
     }
+
+    #[Route('/statistiques', name: 'statistiques')]
+    public function statistiques(): Response
+    {
+        return $this->render('pages/statistiques.html.twig');
+    }
 }
