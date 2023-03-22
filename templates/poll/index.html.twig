@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Poll index{% endblock %}
+
+{% block body %}
+    <h1>Poll index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Dscription</th>
+                <th>CreationDate</th>
+                <th>LimitDate</th>
+                <th>Public</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for poll in polls %}
+            <tr>
+                <td>{{ poll.id }}</td>
+                <td>{{ poll.name }}</td>
+                <td>{{ poll.dscription }}</td>
+                <td>{{ poll.creationDate ? poll.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ poll.limitDate ? poll.limitDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ poll.public ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_poll_show', {'id': poll.id}) }}">show</a>
+                    <a href="{{ path('app_poll_edit', {'id': poll.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_poll_new') }}">Create new</a>
+{% endblock %}
