@@ -1,0 +1,410 @@
+{{ form_start(form) }}
+
+    <div class="main create-poll">
+        <div class="flex-row">
+            <div class="card-two-side shadow">
+                <div>
+                    <h2>Détails</h2>
+                </div>
+                <div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">person</span>
+                        </div>
+                        <div>
+                            <p>Propriétaire</p>
+                            <p>TEST</p>
+                        </div>
+                    </div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">calendar_month</span>
+                        </div>
+                        <div>
+                            <p>Date de création</p>
+                            <p>06/01/2023 21:52</p>
+                        </div>
+                    </div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">send</span>
+                        </div>
+                        <div>
+                            <p>Temps de réponse</p>
+                            <p>~ 1mn</p>
+                        </div>
+                    </div>
+                    <div class="attribut">
+                        <div>
+                            <span class="material-symbols-outlined">public</span>
+                        </div>
+                        <div>
+                            <p>Date limite</p>
+                            <p>{{ form_row(form.limitDate) }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-column column-info-sondage">
+                <div id="infoSondage-form" class="card-two-side shadow">
+                    <div>
+                        <h2>Informations</h2>
+                    </div>
+                    <div>
+                        <div class="flex-column">
+                            {{ form_row(form.name) }}
+                            {{ form_row(form.description) }}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="button-collection">
+                        <button class="button-success button" type="submit">{{ button_label|default('Sauvegarder') }}</button>
+                        <button class="button-info button" type="submit">Publier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrollable-list-card shadow">
+            <div>
+                <h2>Utilisateurs autorisés</h2>
+                <a class="square-button shadow" href="#">
+                    <span class="material-symbols-outlined">add</span>
+                </a>
+            </div>
+            <div class="list">
+                <div>
+                    <h3>Nom</h3>
+                </div>
+                <div>
+                    <p>Zozo</p>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </div>
+                <div>
+                    <p>mourc</p>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </div>
+                <div>
+                    <p>harry peter parker</p>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </div>
+                <div>
+                    <p>yohan le iencli</p>
+                    <a href="#">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scrollable-list-card shadow">
+            <div>
+                <h2>Liste des questions</h2>
+                <a id="add-question" class="square-button shadow" href="#">
+                    <span class="material-symbols-outlined">add</span>
+                </a>
+            </div>
+            <div class="list" id="listQuestions">
+                <div>
+                    <h3 style="width: 10%; text-align: center">Numéro</h3>
+                    <h3 style="width: 70%">Question</h3>
+                    <h3 style="width: 10%">Type</h3>
+                    <h3 style="width: 10%">Actions</h3>
+                </div>
+            </div>
+        </div>
+        {{ form_row(form.public) }}
+    </div>
+    <div id="questionsMCQMultiple_list" style="display:none" data-prototype="{{ form_widget(form.questionsMCQMultiple.vars.prototype)|e('html_attr') }}">
+    </div>
+    <div id="questionsMCQSingle_list" style="display:none" data-prototype="{{ form_widget(form.questionsMCQSingle.vars.prototype)|e('html_attr') }}">
+    </div>
+    <div id="questionsMCQNumber_list" style="display:none" data-prototype="{{ form_widget(form.questionsNumber.vars.prototype)|e('html_attr') }}">
+    </div>
+    <div id="questionsText_list" style="display:none" data-prototype="{{ form_widget(form.questionsText.vars.prototype)|e('html_attr') }}">
+    </div>
+{{ form_end(form) }}
+
+<div id="popupQuestion" class="pop-up">
+    <h2>Créer une question</h2>
+    <div>
+        <select id="questionTypeSelect">
+            <option>choix multiple</option>
+            <option>choix unique</option>
+            <option>nombre</option>
+            <option>texte</option>
+        </select>
+    </div>
+    <form>
+        <div>
+            <div id="QuestionMCQMultipleType">
+                {% include 'question_mcq_multiple/_form.html.twig' with {'form': formMultiple} %}
+            </div>
+            <div id="QuestionMCQSingleType">
+                {% include 'question_mcq_single/_form.html.twig' with {'form': formSingle} %}
+            </div>
+            <div id="QuestionNumberType">
+                {% include 'question_number/_form.html.twig' with {'form': formNumber} %}
+            </div>
+            <div id="QuestionTextType">
+                {% include 'question_text/_form.html.twig' with {'form': formText} %}
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="button button-success">Ajouter</button>
+            <a id="closePopupQuestion" class="button button-danger" href="#" >Annuler</a>
+        </div>
+    </form>
+</div>
+
+{% block javascripts %}
+<script>
+
+    let temporaryQuestions = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateFormVisibility();
+        updateRequiredAttributes();
+    });
+
+    document.querySelector('#popupQuestion form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const questionData = {
+            type: questionTypeSelect.value,
+        };
+        switch (questionData.type) {
+            case 'choix multiple':
+                questionData.entitled = document.querySelector('#QuestionMCQMultipleType input[name="question_mcq_multiple[entitled]"]').value;
+                questionData.answers = [];
+                document.querySelectorAll('#form_answers input[name*="question_mcq_multiple[answers]"]').forEach(function (answer) {
+                    questionData.answers.push(answer.value);
+                });
+                questionData.minNumberAnswer = document.querySelector('#QuestionMCQMultipleType input[name="question_mcq_multiple[minNumberAnswer]"]').value;
+                questionData.maxNumberAnswer = document.querySelector('#QuestionMCQMultipleType input[name="question_mcq_multiple[maxNumberAnswer]"]').value;
+                
+                break;
+            case 'choix unique':
+                questionData.entitled = document.querySelector('#QuestionMCQSingleType input[name="question_mcq_single[entitled]"]').value;
+                questionData.answers = [];
+                document.querySelectorAll('#QuestionMCQSingleType input[name="question_mcq_single[answers][]"]').forEach(function (answer) {
+                    questionData.answers.push(answer.value);
+                });
+                break;
+            case 'nombre':
+                questionData.entitled = document.querySelector('#QuestionNumberType input[name="question_number[entitled]"]').value;
+                questionData.start = document.querySelector('#QuestionNumberType input[name="question_number[start]"]').value;
+                questionData.end = document.querySelector('#QuestionNumberType input[name="question_number[end]"]').value;
+                questionData.step = document.querySelector('#QuestionNumberType input[name="question_number[step]"]').value;
+                break;
+            case 'texte':
+                questionData.entitled = document.querySelector('#QuestionTextType input[name="question_text[entitled]"]').value;
+                break;
+        }
+
+        temporaryQuestions.push(questionData);
+
+        // Mettez à jour l'affichage des questions
+        updateQuestionList();
+
+        // Fermer la fenêtre contextuelle
+        hidePopUp();
+    });
+
+    const questionTypeSelect = document.getElementById('questionTypeSelect');
+    const questionForms = {
+        'choix multiple': document.getElementById('QuestionMCQMultipleType'),
+        'choix unique': document.getElementById('QuestionMCQSingleType'),
+        'nombre': document.getElementById('QuestionNumberType'),
+        'texte': document.getElementById('QuestionTextType'),
+    };
+
+    function updateFormVisibility() {
+        const selectedFormType = questionTypeSelect.value;
+        for (const formType in questionForms) {
+            if (questionForms.hasOwnProperty(formType)) {
+                questionForms[formType].style.display = formType === selectedFormType ? 'block' : 'none';
+            }
+        }
+    }
+
+    questionTypeSelect.addEventListener('change', () => {
+        updateFormVisibility();
+        updateRequiredAttributes();
+    });
+    updateFormVisibility();
+
+    function showPopUp() {
+        const popUp = document.querySelector('#popupQuestion');
+        const overlay = document.querySelector('.overlay');
+        popUp.style.display = 'flex';
+        overlay.style.display = 'block';
+    }
+
+    const addButton = document.querySelector('#add-question');
+    addButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        showPopUp();
+    });
+
+    const overlay = document.querySelector('.overlay');
+    overlay.addEventListener('click', () => {
+        hidePopUp();
+    });
+
+    const cancelButton = document.querySelector('#closePopupQuestion');
+    cancelButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        hidePopUp();
+    });
+
+    function hidePopUp() {
+        const popUp = document.querySelector('#popupQuestion');
+        popUp.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+
+    function updateRequiredAttributes() {
+        const selectedFormType = questionTypeSelect.value;
+
+        for (const formType in questionForms) {
+            if (questionForms.hasOwnProperty(formType)) {
+                const form = questionForms[formType];
+                const isDisplayed = formType === selectedFormType;
+
+                // Sélectionner tous les champs de formulaire requis dans le formulaire actuel
+                const requiredFields = form.querySelectorAll('[required]');
+
+                // Activer ou désactiver l'attribut "required" en fonction de l'affichage du formulaire
+                for (const field of requiredFields) {
+                    field.required = isDisplayed;
+                }
+            }
+        }
+    }
+
+    function updateQuestionList() {
+        // Remplacez ceci par les données réelles des questions (peut-être récupérées via AJAX)
+        const questions = temporaryQuestions;
+
+        const listContainer = document.querySelector('#listQuestions');
+        listContainer.innerHTML = '';
+
+        // Ajout de l'en-tête
+        const header = document.createElement('div');
+        header.innerHTML = `
+            <h3 style="width: 10%; text-align: center">Numéro</h3>
+            <h3 style="width: 70%">Question</h3>
+            <h3 style="width: 10%">Type</h3>
+            <h3 style="width: 10%">Actions</h3>
+        `;
+        listContainer.appendChild(header);
+
+        // Ajout des questions à la liste
+        questions.forEach((question, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.innerHTML = `
+                <p style="width: 10%; text-align: center">${index + 1}</p>
+                <p style="width: 70%">${question.entitled}</p>
+                <p style="width: 10%">${question.type}</p>
+                <div style="width: 10%">
+                    <a href="#" class="delete-question" data-id="${index}">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                    <a href="#" class="edit-question" data-id="${index}">
+                        <span class="material-symbols-outlined">edit</span>
+                    </a>
+                </div>
+            `;
+            listContainer.appendChild(questionDiv);
+            
+            switch (question.type) {
+                case 'choix multiple':
+                    let questionsContainer = document.querySelector('#questionsMCQMultiple_list');
+                    let index = questionsContainer.children.length;
+                    let prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
+                    let newQuestion = document.createElement('div');
+                    newQuestion.innerHTML = prototype;
+                    let entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
+                    entitledInput.value = question.entitled;
+                    let minNumberAnswerInput = newQuestion.querySelector('input[name*="[minNumberAnswer]"]');
+                    minNumberAnswerInput.value = question.minNumberAnswer;
+                    let maxNumberAnswerInput = newQuestion.querySelector('input[name*="[maxNumberAnswer]"]');
+                    maxNumberAnswerInput.value = question.maxNumberAnswer;
+                    questionsContainer.appendChild(newQuestion);
+                    question.answers.forEach((answer, indexAnswer) => {
+                        let answersContainer = questionsContainer.querySelector('#poll_questionsMCQMultiple_'+index+'_answers');
+                        let prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
+                        let newAnswer = document.createElement('div');
+                        newAnswer.innerHTML = prototypeAnswer;
+                        let entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
+                        entitledInput.value = answer;
+                        answersContainer.appendChild(newAnswer);
+                    });
+                    break;
+            }
+        });
+
+        // Ajout des gestionnaires d'événements pour la suppression et la modification
+        const deleteButtons = document.querySelectorAll('.delete-question');
+        deleteButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const questionId = e.target.closest('.delete-question').dataset.id;
+                console.log('Supprimer la question:', questionId);
+                // Ajoutez ici le code pour supprimer la question
+            });
+        });
+
+        const editButtons = document.querySelectorAll('.edit-question');
+        editButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const questionId = e.target.closest('.edit-question').dataset.id;
+                console.log('Modifier la question:', questionId);
+                // Ajoutez ici le code pour modifier la question
+            });
+        });
+    }
+   
+
+
+
+
+
+/*
+	// Récupérer le conteneur qui contiendra les questions
+    let questionsContainer = document.querySelector('#form_questions');
+
+    // Ajouter un écouteur d'événements pour le bouton "Ajouter questions"
+    document.querySelector('#add-question').addEventListener('click', function (e) { // Obtenir le nombre de questions actuellement dans le conteneur
+        let index = questionsContainer.children.length;
+
+        // Créer une nouvelle questions en clonant le modèle de questions
+        let prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
+        let newAnswer = document.createElement('div');
+        newAnswer.innerHTML = prototype;
+
+        // Ajouter la nouvelle questions au conteneur
+        questionsContainer.appendChild(newAnswer);
+
+        e.preventDefault();
+    });
+
+    questionsContainer.addEventListener('click', (event) => {
+        if (event.target.classList.contains('remove-answer')) {
+            const answerDiv = event.target.parentElement;
+            answerDiv.remove();
+        }
+    });
+
+*/
+</script>
+
+{% endblock %}

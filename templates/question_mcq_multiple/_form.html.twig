@@ -1,5 +1,3 @@
-{{ form_start(form) }}
-
 {{ form_row(form.entitled) }}
 {{ form_row(form.minNumberAnswer) }}
 {{ form_row(form.maxNumberAnswer) }}
@@ -15,16 +13,24 @@
 </div>
 
 <button id="add-answer">Ajouter réponse</button>
-<button class="btn">{{ button_label|default('Save') }}</button>
+{# <button class="btn">{{ button_label|default('Save') }}</button> #}
 
-{{ form_end(form) }}
 
 <script>
-	// Récupérer le conteneur qui contiendra les réponses
+    // Récupérer le conteneur qui contiendra les réponses
     let answersContainer = document.querySelector('#form_answers');
 
+    // Fonction pour ajouter un bouton "Supprimer réponse" à un élément
+    function addRemoveButton(answerElement) {
+        let removeButton = document.createElement('button');
+        removeButton.textContent = 'Supprimer réponse';
+        removeButton.classList.add('remove-answer');
+        answerElement.appendChild(removeButton);
+    }
+
     // Ajouter un écouteur d'événements pour le bouton "Ajouter réponse"
-    document.querySelector('#add-answer').addEventListener('click', function (e) { // Obtenir le nombre de réponses actuellement dans le conteneur
+    document.querySelector('#add-answer').addEventListener('click', function (e) {
+        // Obtenir le nombre de réponses actuellement dans le conteneur
         let index = answersContainer.children.length;
 
         // Créer une nouvelle réponse en clonant le modèle de réponse
@@ -32,18 +38,26 @@
         let newAnswer = document.createElement('div');
         newAnswer.innerHTML = prototype;
 
+        // Ajouter le bouton "Supprimer réponse" à la nouvelle réponse
+        addRemoveButton(newAnswer);
+
         // Ajouter la nouvelle réponse au conteneur
         answersContainer.appendChild(newAnswer);
 
         e.preventDefault();
     });
 
+    // Ajouter des boutons "Supprimer réponse" aux réponses existantes
+    for (let answer of answersContainer.children) {
+        addRemoveButton(answer);
+    }
+
+    // Gérer les clics sur les boutons "Supprimer réponse"
     answersContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('remove-answer')) {
             const answerDiv = event.target.parentElement;
             answerDiv.remove();
         }
     });
-
-
 </script>
+

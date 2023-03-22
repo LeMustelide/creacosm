@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Dscription</th>
+                <th>Description</th>
                 <th>CreationDate</th>
                 <th>LimitDate</th>
                 <th>Public</th>
@@ -22,7 +22,7 @@
             <tr>
                 <td>{{ poll.id }}</td>
                 <td>{{ poll.name }}</td>
-                <td>{{ poll.dscription }}</td>
+                <td>{{ poll.description }}</td>
                 <td>{{ poll.creationDate ? poll.creationDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ poll.limitDate ? poll.limitDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ poll.public ? 'Yes' : 'No' }}</td>

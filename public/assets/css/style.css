@@ -10,6 +10,7 @@
     --dark: #252525;
     --success: #0bab2d;
     --info: #0b65ab;
+    --danger: #d81e5b;
 }
 
 @import url("https://unpkg.com/css.gg@2.0.0/icons/css/eye-alt.css");
@@ -82,11 +83,11 @@ a {
     margin-bottom: 24px;
 }
 
-.card-two-side{
+.card-two-side {
     border-radius: 24px;
 }
 
-.card-two-side > div:nth-of-type(1) {
+.card-two-side>div:nth-of-type(1) {
     background-color: var(--gray-dark);
     border-radius: 24px 24px 0px 0px;
     padding: 12px;
@@ -95,12 +96,12 @@ a {
     align-items: center;
 }
 
-.card-two-side > div:nth-of-type(1) > h2 {
+.card-two-side>div:nth-of-type(1)>h2 {
     margin: 0;
     font-weight: 500;
 }
 
-.card-two-side > div:nth-of-type(2) {
+.card-two-side>div:nth-of-type(2) {
     padding: 12px;
     border-radius: 0px 0px 24px 24px;
     background-color: var(--gray);
@@ -113,6 +114,17 @@ a {
 
 .card-two-side input[type="text"] {
     width: 85%;
+    height: 28px;
+    border-radius: 24px;
+    border: none;
+    padding-left: 12px;
+    font-size: 14px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+input[type="datetime-local"] {
+    margin-top: 6px;
     height: 28px;
     border-radius: 24px;
     border: none;
@@ -286,13 +298,18 @@ a {
     text-align: center;
 }
 
-.button-success{
+.button-success {
     background-color: var(--success);
     color: white;
 }
 
-.button-info{
+.button-info {
     background-color: var(--info);
+    color: white;
+}
+
+.button-danger {
+    background-color: var(--danger);
     color: white;
 }
 
@@ -751,22 +768,22 @@ ul {
 }
 
 .psquare-mini {
-  padding: 10px;
-  font-size: 18px;
-  text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
 }
 
-.flex-column{
+.flex-column {
     display: flex;
     flex-direction: column;
 }
 
-.attribut{
+.attribut {
     display: flex;
     gap: 16px;
 }
 
-.attribut div:nth-of-type(2){
+.attribut div:nth-of-type(2) {
     display: flex;
     flex-direction: column;
 }
@@ -780,97 +797,53 @@ ul {
     font-size: small;
 }
 
-.save-button{
+.save-button {
     background-color: #76b01b;
     border-radius: 24px;
     margin: 3px;
 }
 
-.publish_button{
+.publish_button {
     background-color: #0b65ab;
     border-radius: 24px;
     margin: 3px;
 }
 
-.button-collection{
+.button-collection {
     display: flex;
     justify-content: center;
     gap: 65px;
 }
 
-.column-info-sondage{
+.column-info-sondage {
     width: 100%;
 }
 
-.column-info-sondage > div:last-child {
+.column-info-sondage>div:last-child {
     margin: auto;
 }
 
-.optionUtilisateur{
+.optionUtilisateur {
     display: flex;
     justify-content: space-between;
 }
 
-.fenetreUtilisateur{
+.fenetreUtilisateur {
     background-color: #e7e7e7;
     border-radius: 24px;
     padding: 5px;
 }
 
-.listeUtilisateur{
-    display: flex;
-    flex-direction: column;
-}
-
-.switch_sombre{
-    display: inline-flex;
-    background-color: #b4b4b4;
-    justify-content: space-around;
-}
-
-.switch_clair{
-    display: inline-flex;
-    background-color: #e7e7e7;
-    justify-content: space-around;
-}
-
-.boutonPlus{
-    background-color: #ffffff;
-    border-radius: 20px;
-    border-color: white;
-}
-
-.fenetreListeQuestions{
-    background-color: #e7e7e7;
-    border-radius: 24px;
-    padding: 5px;
-}
-
-.optionQuestion{
-    display: flex;
-    justify-content: space-between;
-}
-
-.flexQuestion{
-    display: flex;
-    flex-direction: column;
-}
-
-.boutonFormQuestion{
-    display: inline-flex;
-    justify-content: space-around;
-}
-
-.create-poll > .flex-row:nth-of-type(1) {
+.create-poll>.flex-row:nth-of-type(1) {
     gap: 45px;
     height: 350px;
 }
 
-.create-poll > .flex-row:nth-of-type(1) > div:nth-of-type(1) {
+.create-poll>.flex-row:nth-of-type(1)>div:nth-of-type(1) {
     width: 25%;
 }
 
-.create-poll > .flex-row:nth-of-type(1) > div:nth-of-type(2) {
+.create-poll>.flex-row:nth-of-type(1)>div:nth-of-type(2) {
     width: 75%;
 }
 
@@ -890,11 +863,11 @@ textarea {
     height: 80%;
 }
 
-#infoSondage-form > div:nth-of-type(2) {
+#infoSondage-form>div:nth-of-type(2) {
     height: calc(100% - 60px);
 }
 
-#infoSondage-form > div:nth-of-type(2) > div:nth-of-type(1) {
+#infoSondage-form>div:nth-of-type(2)>div:nth-of-type(1) {
     height: 100%;
     gap: 8px;
 }
@@ -914,14 +887,14 @@ textarea {
     padding: 12px 18px 32px;
 }
 
-.scrollable-list-card > div:first-child {
+.scrollable-list-card>div:first-child {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
 }
 
-.scrollable-list-card > div:first-child > h2 {
+.scrollable-list-card>div:first-child>h2 {
     margin: 0;
     font-weight: 500;
 }
@@ -1113,23 +1086,59 @@ textarea {
     align-items: center;
 }
 
-.scrollable-list-card > .list {
+.scrollable-list-card>.list {
     overflow-y: auto;
     border-radius: 24px;
 }
 
-.scrollable-list-card > .list > div {
+.scrollable-list-card>.list>div {
     padding: 18px 18px;
     display: flex;
     justify-content: space-between;
 }
 
-.scrollable-list-card > .list > div:nth-child(2n+1){
+.scrollable-list-card>.list>div:nth-child(2n+1) {
     background-color: var(--gray-dark);
 }
 
-.scrollable-list-card > .list > div:nth-child(2n){
+.scrollable-list-card>.list>div:nth-child(2n) {
     background-color: white;
+}
+
+.pop-up {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    border-radius: 16px;
+    background-color: var(--gray);
+    padding: 16px;
+}
+
+.pop-up>div:last-child {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#popupQuestion {
+    width: 40vw;
+    height: 40vh;
+    justify-content: space-between;
+}
+
+#popupQuestion>form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    gap: 16px;
 }
 
 .pop-up-added {
@@ -1142,10 +1151,9 @@ textarea {
     align-items: center;
     justify-content: center;
     z-index: 100;
-    border-radius: 5px;
+    border-radius: 16px;
     background-color: var(--gray);
     padding: 16px;
-    border-radius: 24px;
 }
 
 .pop-up-added-top {

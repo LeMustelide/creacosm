@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Poll{% endblock %}
+{% set title = 'Création sondage' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Poll</h1>
 
-    {{ include('poll/_form.html.twig') }}
+    <div class="overlay"></div>
+
+    {{ include('overlay/_navbar.html.twig') }}
+    {{ include('overlay/_topbar.html.twig') }}
+
+    {{ include('poll/_new_form.html.twig') }}
 
     <a href="{{ path('app_poll_index') }}">back to list</a>
+    
 {% endblock %}

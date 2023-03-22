@@ -1,0 +1,15 @@
+{% block text_row %}
+	{% set type = type|default('text') %}
+	<label for="{{ id }}">{{ label }}</label>
+	<input type="{{ type }}" id="{{ id }}" placeholder="{{ attr.placeholder|default('') }}" name="{{ full_name }}" {% if value is not empty %}value="{{ value }}" {% endif %} {{ required ? 'required' : '' }}></input>
+{% endblock %}
+
+{% block textarea_row %}
+    <label for="{{ id }}">{{ label }}</label>
+    <textarea id="{{ id }}" placeholder="{{ attr.placeholder|default('') }}" name="{{ full_name }}" {% if value is not empty %}value="{{ value }}" {% endif %} {{ required ? 'required' : '' }}></textarea>
+{% endblock %}
+
+{% block date_row %}
+    <label>{{ label }}</label>
+    <input value="{{ value ? value : '' }}" type="datetime-local" name="{{ full_name }}" class="form-control" required={{required|default('1')}}>
+{% endblock %}
