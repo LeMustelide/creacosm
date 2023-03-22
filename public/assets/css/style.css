@@ -348,6 +348,10 @@ a {
     justify-content: space-between
 }
 
+#card-two .charts-container {
+    max-height: calc(100% - 100px) !important;
+}
+
 #card-three {
     background-color: #a0b7da;
     display: flex;
