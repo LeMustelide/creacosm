@@ -16,12 +16,14 @@ class ConsumerController extends AbstractController
     #[Route('/', name: 'app_consumer_index', methods: ['GET'])]
     public function index(ConsumerRepository $consumerRepository): Response
     {
+        $form = $this->createForm(ConsumerType::class);
         return $this->render('consumer/index.html.twig', [
             'consumers' => $consumerRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 
-    #[Route('/new', name: 'app_consumer_new', methods: ['GET', 'POST'])]
+    #[Route('/', name: 'app_consumer_new', methods: ['POST'])]
     public function new(Request $request, ConsumerRepository $consumerRepository): Response
     {
         $consumer = new Consumer();
@@ -29,6 +31,7 @@ class ConsumerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $consumer->setDate(new \DateTime());
             $consumerRepository->save($consumer, true);
 
             return $this->redirectToRoute('app_consumer_index', [], Response::HTTP_SEE_OTHER);

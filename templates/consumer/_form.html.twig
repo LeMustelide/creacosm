@@ -1,4 +1,9 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {% block form_actions %}
+        <div>
+            <button type="submit" class="button button-success">Ajouter</button>
+            <a id="closePopupQuestion" class="button button-danger" href="#">Annuler</a>
+        </div>
+    {% endblock %}
 {{ form_end(form) }}

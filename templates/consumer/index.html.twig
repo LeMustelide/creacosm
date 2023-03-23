@@ -1,119 +1,170 @@
 {% extends 'base.html.twig' %}
 {% set title = 'Liste des clients' %}
 {% block title %}
-    {{ title }}
+	{{ title }}
 {% endblock %}
 
 {% block body %}
 
     <div class="overlay"></div>
 
-    {{ include('overlay/_navbar.html.twig') }}
-    {{ include('overlay/_topbar.html.twig') }}
+	{{ include('overlay/_navbar.html.twig') }}
+	{{ include('overlay/_topbar.html.twig') }}
 
-    <div class="main">
-        <div class="center">
-            <div class="search-container large">
-                <input type="text" class="search-bar shadow">
+	<div class="main">
+		<div class="center">
+			<div class="search-container large">
+                <input type="text" class="search-bar shadow" id="searchBar">
                 </input>
                 <span class="material-symbols-outlined">
                     search
                 </span>
             </div>
-        </div>
+		</div>
 
-        <div class="card clients-list shadow">
-            <div class="flex-between">
-                <h3>Liste des clients</h3>
-                <div>
-                    <a href="" class="square-button shadow">
+		<div class="card clients-list shadow">
+			<div class="flex-between">
+				<h3>Liste des clients</h3>
+				<div>
+					<a href="" class="square-button shadow">
 						<span class="material-symbols-outlined small">
 							add
 						</span>
-                    </a>
-                    <a href="" class="square-button shadow">
+					</a>
+					<a href="" class="square-button shadow">
 						<span class="material-symbols-outlined small">
 							upload_file
 						</span>
-                    </a>
-                </div>
-            </div>
+					</a>
+				</div>
+			</div>
 
-            <div class="data-clients">
-                <table class="scrollable-list-card">
-                    <thead>
-                    <tr>
-                        <th>Mail</th>
-                        <th>Date</th>
-                    </tr>
-                    </thead>
-                    <tbody class="list">
+			<div class="data-clients">
+				<table>
+					<thead>
+						<tr>
+							<th>Mail</th>
+							<th style="width: 230px">Date</th>
+                            <th style="width: 150px">Actions</th>
+						</tr>
+					</thead>
+					<tbody class="list" id="consumerList">
+						{% for consumer in consumers %}
+                            <tr>
+                                <td>{{ consumer.mail }}</td>
+                                <td>{{ consumer.date ? consumer.date|date('Y-m-d') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('app_consumer_edit', {'id': consumer.id}) }}"> <span class="material-symbols-outlined">edit</span></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4">no records found</td>
+                            </tr>
+                        {% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
-                    {% for consumer in consumers %}
-                        <tr>
-                            <td>{{ consumer.mail }}</td>
-                            <td>{{ consumer.date ? consumer.date|date('Y-m-d') : '' }}</td>
-                            <td>
-                                <a href="{{ path('app_consumer_show', {'id': consumer.id}) }}">show</a>
-                                <a href="{{ path('app_consumer_edit', {'id': consumer.id}) }}">edit</a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="4">no records found</td>
-                        </tr>
-                    {% endfor %}
-
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="pop-up-added">
-        <div class="pop-up-added-top shadow">
-            <p>Email</p>
-            <input type="text" class="search-bar shadow">
-        </div>
-        <div class="pop-up-added-bot shadow">
-            <a href="" class="button-selected shadow">Ajouter</a>
-            <a href="" class="button-selected shadow">Annuler</a>
-        </div>
-    </div>
+	<div class="pop-up" id="add">
+		{% include 'consumer/_form.html.twig' with {'form': form} %}
+	</div>
 
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        function showPopUp() {
-            const popUp = document.querySelector('.pop-up-added');
-            const overlay = document.querySelector('.overlay');
-            popUp.style.display = 'flex';
-            overlay.style.display = 'block';
+<script>
+function showPopUp() {
+    const popUp = document.querySelector('#add');
+    const overlay = document.querySelector('.overlay');
+    popUp.style.display = 'flex';
+    overlay.style.display = 'block';
+}
+
+const addButton = document.querySelector('.square-button:nth-child(1)');
+addButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    showPopUp();
+});
+
+const overlay = document.querySelector('.overlay');
+overlay.addEventListener('click', () => {
+    hidePopUp();
+});
+
+const cancelButton = document.querySelector('#closePopupQuestion');
+cancelButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    hidePopUp();
+});
+
+function hidePopUp() {
+    const popUp = document.querySelector('#add');
+    popUp.style.display = 'none';
+    overlay.style.display = 'none';
+}
+
+const searchBar = document.getElementById('searchBar');
+searchBar.addEventListener('input', (event) => {
+    const searchValue = event.target.value.toLowerCase();
+    const consumerList = document.getElementById('consumerList');
+    const consumers = consumerList.getElementsByTagName('tr');
+
+    for (let i = 0; i < consumers.length; i++) {
+        const mail = consumers[i].getElementsByTagName('td')[0];
+        const date = consumers[i].getElementsByTagName('td')[1];
+        if (mail || date) {
+            const mailText = mail.textContent.toLowerCase();
+            const dateText = date.textContent.toLowerCase();
+            if (mailText.includes(searchValue) || dateText.includes(searchValue)) {
+                consumers[i].style.display = '';
+            } else {
+                consumers[i].style.display = 'none';
+            }
         }
+    }
 
-        const addButton = document.querySelector('.square-button:nth-child(1)');
-        addButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            showPopUp();
-        });
+    applyAlternatingRowColors();
+    updateRoundedBottom();
+});
 
-        const overlay = document.querySelector('.overlay');
-        overlay.addEventListener('click', () => {
-            hidePopUp();
-        });
+function applyAlternatingRowColors() {
+    const consumerList = document.getElementById('consumerList');
+    const consumers = consumerList.getElementsByTagName('tr');
+    let visibleRowIndex = 0;
 
-        const cancelButton = document.querySelector('.pop-up-added-bot .button-selected:nth-child(2)');
-        cancelButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            hidePopUp();
-        });
-
-        function hidePopUp() {
-            const popUp = document.querySelector('.pop-up-added');
-            popUp.style.display = 'none';
-            overlay.style.display = 'none';
+    for (let i = 0; i < consumers.length; i++) {
+        if (consumers[i].style.display !== 'none') {
+            if (visibleRowIndex % 2 === 0) {
+                consumers[i].style.backgroundColor = 'white';
+            } else {
+                consumers[i].style.backgroundColor = 'var(--gray-dark)';
+            }
+            visibleRowIndex++;
         }
-    </script>
+    }
+}
+
+function updateRoundedBottom() {
+    const consumerList = document.getElementById('consumerList');
+    const consumers = consumerList.getElementsByTagName('tr');
+    let lastVisibleRowIndex = -1;
+
+    for (let i = 0; i < consumers.length; i++) {
+        consumers[i].classList.remove('rounded-bottom');
+        if (consumers[i].style.display !== 'none') {
+            lastVisibleRowIndex = i;
+        }
+    }
+
+    if (lastVisibleRowIndex !== -1) {
+        consumers[lastVisibleRowIndex].classList.add('rounded-bottom');
+    }
+}
+
+
+applyAlternatingRowColors();
+</script>
 {% endblock %}

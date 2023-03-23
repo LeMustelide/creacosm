@@ -11,5 +11,5 @@
 
 {% block date_row %}
     <label>{{ label }}</label>
-    <input value="{{ value ? value : '' }}" type="datetime-local" name="{{ full_name }}" class="form-control" required={{required|default('1')}}>
+    <input value="{{ value ? value : '' }}" type="{{ attr.type|default('datetime-local') }}" name="{{ full_name }}" class="form-control" required={{required|default('1')}}>
 {% endblock %}
