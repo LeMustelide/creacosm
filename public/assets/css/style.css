@@ -961,7 +961,6 @@ textarea {
 .flex-between {
     display: flex;
     justify-content: space-between;
-    margin: 16px;
 }
 
 .flex-between>div {
@@ -981,7 +980,6 @@ textarea {
 }
 
 .data-clients {
-    margin: 16px;
     border-radius: 24px;
     background-color: var(--gray-dark);
 }
@@ -1002,11 +1000,11 @@ textarea {
     padding: 15px 0 25px 0;
 }
 
-.data-clients tr:last-of-type td:nth-child(1) {
+.data-clients tr:last-of-type td:nth-child(1), tbody tr.rounded-bottom td:nth-child(1) {
     border-bottom-left-radius: 24px;
 }
 
-.data-clients tr:last-of-type td:last-of-type {
+.data-clients tr:last-of-type td:last-of-type, tbody tr.rounded-bottom td:last-of-type {
     border-bottom-right-radius: 24px;
 }
 
@@ -1097,11 +1095,11 @@ textarea {
     justify-content: space-between;
 }
 
-.scrollable-list-card>.list>div:nth-child(2n+1) {
+.scrollable-list-card>.list>div:nth-child(2n+1), .list tr:nth-child(2n+1) {
     background-color: var(--gray-dark);
 }
 
-.scrollable-list-card>.list>div:nth-child(2n) {
+.scrollable-list-card>.list>div:nth-child(2n), .list tr:nth-child(2n) {
     background-color: white;
 }
 
