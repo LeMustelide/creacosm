@@ -13,10 +13,17 @@ class QuestionMCQMultipleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('entitled')
-            ->add('minNumberAnswer')
-            ->add('maxNumberAnswer')
+            ->add('entitled', null, [
+                'label' => 'Question',
+            ])
+            ->add('minNumberAnswer', null, [
+                'label' => 'Nombre de réponses minimum',
+            ])
+            ->add('maxNumberAnswer', null, [
+                'label' => 'Nombre de réponses maximum',
+            ])
             ->add('answers', CollectionType::class, [
+                'label' => 'Réponses',
                 'entry_type' => AnswerType::class,
                 'allow_add' => true,
                 'allow_delete' => true,

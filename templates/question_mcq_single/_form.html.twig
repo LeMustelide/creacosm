@@ -1,1 +1,58 @@
-{{ form_widget(form) }}
+{{ form_row(form.entitled) }}
+<h2>Réponses</h2>
+<div id="form_answers_MCQSingle" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
+	{% for answer in form.answers %}
+		<div>
+			{{ form_row(answer.entitled) }}
+			<button class="remove-answer">Supprimer réponse</button>
+		</div>
+	{% endfor %}
+</div>
+
+<button id="add-answer-MCQSingle">Ajouter réponse</button>
+{# <button class="btn">{{ button_label|default('Save') }}</button> #}
+<script>
+    // Récupérer le conteneur qui contiendra les réponses
+    let answersContainerMCQSingle = document.querySelector('#form_answers_MCQSingle');
+
+    // Fonction pour ajouter un bouton "Supprimer réponse" à un élément
+    function addRemoveButton(answerElement) {
+        let removeButton = document.createElement('button');
+        removeButton.textContent = 'Supprimer réponse';
+        removeButton.classList.add('remove-answer');
+        answerElement.appendChild(removeButton);
+    }
+
+    // Ajouter un écouteur d'événements pour le bouton "Ajouter réponse"
+    document.querySelector('#add-answer-MCQSingle').addEventListener('click', function (e) {
+        // Obtenir le nombre de réponses actuellement dans le conteneur
+        let index = answersContainerMCQSingle.children.length;
+
+        // Créer une nouvelle réponse en clonant le modèle de réponse
+        let prototype = answersContainerMCQSingle.dataset.prototype.replace(/__name__/g, index);
+        let newAnswer = document.createElement('div');
+        newAnswer.innerHTML = prototype;
+
+        // Ajouter le bouton "Supprimer réponse" à la nouvelle réponse
+        addRemoveButton(newAnswer);
+
+        // Ajouter la nouvelle réponse au conteneur
+        answersContainerMCQSingle.appendChild(newAnswer);
+
+        e.preventDefault();
+    });
+
+    // Ajouter des boutons "Supprimer réponse" aux réponses existantes
+    for (let answer of answersContainerMCQSingle.children) {
+        addRemoveButton(answer);
+    }
+
+    // Gérer les clics sur les boutons "Supprimer réponse"
+    answersContainerMCQSingle.addEventListener('click', (event) => {
+        if (event.target.classList.contains('remove-answer')) {
+            const answerDiv = event.target.parentElement;
+            answerDiv.remove();
+        }
+    });
+</script>
+

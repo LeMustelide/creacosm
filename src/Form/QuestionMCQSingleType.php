@@ -13,8 +13,11 @@ class QuestionMCQSingleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('entitled')
+            ->add('entitled', null, [
+                'label' => 'Question',
+            ])
             ->add('answers', CollectionType::class, [
+                'label' => 'Réponses',
                 'entry_type' => AnswerType::class,
                 'allow_add' => true,
                 'allow_delete' => true,

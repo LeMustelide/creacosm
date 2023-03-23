@@ -199,8 +199,8 @@
                 break;
             case 'nombre':
                 questionData.entitled = document.querySelector('#QuestionNumberType input[name="question_number[entitled]"]').value;
-                questionData.start = document.querySelector('#QuestionNumberType input[name="question_number[start]"]').value;
-                questionData.end = document.querySelector('#QuestionNumberType input[name="question_number[end]"]').value;
+                questionData.start = document.querySelector('#QuestionNumberType input[name="question_number[nbStart]"]').value;
+                questionData.end = document.querySelector('#QuestionNumberType input[name="question_number[nbEnd]"]').value;
                 questionData.step = document.querySelector('#QuestionNumberType input[name="question_number[step]"]').value;
                 break;
             case 'texte':
@@ -212,6 +212,8 @@
 
         // Mettez à jour l'affichage des questions
         updateQuestionList();
+
+        resetPopUp();
 
         // Fermer la fenêtre contextuelle
         hidePopUp();
@@ -323,30 +325,55 @@
                 </div>
             `;
             listContainer.appendChild(questionDiv);
-            
+            let questionsContainer = document.querySelector('#questionsMCQMultiple_list');
+            let index2 = 0;
+            let prototype, newQuestion, entitledInput, minNumberAnswerInput, maxNumberAnswerInput, answersContainer, prototypeAnswer, newAnswer, entitledAnswerInput, isCorrectAnswerInput;
             switch (question.type) {
                 case 'choix multiple':
-                    let questionsContainer = document.querySelector('#questionsMCQMultiple_list');
-                    let index = questionsContainer.children.length;
-                    let prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
-                    let newQuestion = document.createElement('div');
+                    questionsContainer = document.querySelector('#questionsMCQMultiple_list');
+                    index2 = questionsContainer.children.length;
+                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
+                    newQuestion = document.createElement('div');
                     newQuestion.innerHTML = prototype;
-                    let entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
+                    entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
                     entitledInput.value = question.entitled;
-                    let minNumberAnswerInput = newQuestion.querySelector('input[name*="[minNumberAnswer]"]');
+                    minNumberAnswerInput = newQuestion.querySelector('input[name*="[minNumberAnswer]"]');
                     minNumberAnswerInput.value = question.minNumberAnswer;
-                    let maxNumberAnswerInput = newQuestion.querySelector('input[name*="[maxNumberAnswer]"]');
+                    maxNumberAnswerInput = newQuestion.querySelector('input[name*="[maxNumberAnswer]"]');
                     maxNumberAnswerInput.value = question.maxNumberAnswer;
                     questionsContainer.appendChild(newQuestion);
                     question.answers.forEach((answer, indexAnswer) => {
-                        let answersContainer = questionsContainer.querySelector('#poll_questionsMCQMultiple_'+index+'_answers');
-                        let prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
-                        let newAnswer = document.createElement('div');
+                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQMultiple_'+index2+'_answers');
+                        prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
+                        newAnswer = document.createElement('div');
                         newAnswer.innerHTML = prototypeAnswer;
-                        let entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
+                        entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
                         entitledInput.value = answer;
                         answersContainer.appendChild(newAnswer);
                     });
+                    break;
+                case 'choix unique':
+                    questionsContainer = document.querySelector('#questionsMCQSingle_list');
+                    index2 = questionsContainer.children.length;
+                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index2);
+                    newQuestion = document.createElement('div');
+                    newQuestion.innerHTML = prototype;
+                    entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
+                    entitledInput.value = question.entitled;
+                    questionsContainer.appendChild(newQuestion);
+                    question.answers.forEach((answer, indexAnswer) => {
+                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQSingle_'+index2+'_answers');
+                        prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
+                        newAnswer = document.createElement('div');
+                        newAnswer.innerHTML = prototypeAnswer;
+                        entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
+                        entitledInput.value = answer;
+                        answersContainer.appendChild(newAnswer);
+                    });
+                    break;
+                case 'nombre':
+                    break;
+                case 'texte':
                     break;
             }
         });
@@ -373,6 +400,38 @@
         });
     }
    
+    function resetPopUp() {
+        // Réinitialiser la sélection du type de question
+        questionTypeSelect.value = 'choix multiple';
+
+        // Réinitialiser tous les champs du formulaire et supprimer les réponses ajoutées
+        for (const formType in questionForms) {
+            if (questionForms.hasOwnProperty(formType)) {
+                const form = questionForms[formType];
+                const inputs = form.querySelectorAll('input, select');
+                for (const input of inputs) {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        input.checked = false;
+                    } else {
+                        input.value = '';
+                    }
+                }
+
+                // Supprimer les réponses ajoutées
+                const answerSelectors = ['#form_answers_MCQSingle', '#form_answers'];
+                for (const selector of answerSelectors) {
+                    const addedAnswers = form.querySelectorAll(selector);
+                    for (const answer of addedAnswers) {
+                        answer.remove();
+                    }
+                }
+            }
+        }
+
+        // Mettre à jour la visibilité du formulaire et les attributs requis
+        updateFormVisibility();
+        updateRequiredAttributes();
+    }
 
 
 

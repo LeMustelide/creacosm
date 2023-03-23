@@ -12,9 +12,15 @@ class QuestionTextType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('entitled')
-            ->add('minCharacterLimit')
-            ->add('maxCharacterLimit')
+            ->add('entitled', null, [
+                'label' => 'Question',
+            ])
+            ->add('minCharacterLimit', null, [
+                'label' => 'Nombre de caractères minimum',
+            ])
+            ->add('maxCharacterLimit', null, [
+                'label' => 'Nombre de caractères maximum',
+            ])
         ;
     }
 
