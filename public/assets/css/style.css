@@ -1097,11 +1097,11 @@ textarea {
     justify-content: space-between;
 }
 
-.scrollable-list-card>.list>div:nth-child(2n+1) {
+.scrollable-list-card>.list>div:nth-child(2n+1), .list>tr:nth-child(2n+1) {
     background-color: var(--gray-dark);
 }
 
-.scrollable-list-card>.list>div:nth-child(2n) {
+.scrollable-list-card>.list>div:nth-child(2n), .list>tr:nth-child(2n) {
     background-color: white;
 }
 
