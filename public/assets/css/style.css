@@ -23,7 +23,7 @@
 
 body {
     margin: 0;
-    background-color: #f8f9fb;
+    background-color: #ececec;
 }
 
 a {
@@ -377,7 +377,7 @@ a {
 .shadow {
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
 }
-=======
+
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@500&display=swap");
 
 * {
@@ -624,3 +624,415 @@ ul {
   font-size: 18px;
   text-align: center;
 }
+.logo3 {
+margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    width: 100px;
+    height: 46px;
+
+}
+.main-question {
+    width: 75%;
+    height: 100%;
+}
+.header-question{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    height: 8%;
+    border-bottom: 2px solid #FFFFFF;
+
+}
+
+.container-pannel-question {
+    width: 25%;
+    height: 100%;
+    border-left : 2px solid #BDBFC3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+
+
+    font-size: 20px;
+
+}
+
+
+.text-sondage{
+    margin-top: 10%;
+    width: 80%;
+    margin-left: 10%;
+    font-size: 30px;
+}
+.p1 {
+font-size: 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+}
+
+.viewh2 {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ececec;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.container-question {
+    margin-left: 20%;
+    margin-top: 10%;
+    height: 92%;
+    align-content: center;
+
+}
+.question {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 25px;
+
+}
+.btn-question-ok {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #3b4465;
+    background: #ffffff;
+    border: 1px solid #cddbef;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 90px;
+    cursor:pointer;
+    font-weight: bold;
+
+}
+.btn-question-precedent {
+    display: flex;
+
+    margin-top: 20%;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #3b4465;
+    background: #ffffff;
+    border: 1px solid #cddbef;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 160px;
+    cursor:pointer;
+    font-weight: bold;
+
+}
+
+
+
+input::placeholder {
+
+    font-weight: 400;
+    color: 	#808080;
+    font-size: 20px;
+    position: relative;
+}
+input::placeholder:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    left: 0;
+    top: 22px;
+    background: #ececec;
+    height: 1px;
+}
+input::placeholder i {
+    font-style: normal;
+    background: #fff;
+    position: relative;
+    padding: 10px;
+}
+:focus{outline: none;}
+
+/* necessary to give position: relative to parent. */
+input[type="text"]{font: 15px/24px 'Muli', sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+
+:focus{outline: none;}
+
+.col-3{float: left; width: 27.33%; margin-top: 40px; position: relative;} /* necessary to give position: relative to parent. */
+input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+.effect-1
+{border: 0; padding: 7px 0; border-bottom: 1px solid #ccc; background-color: #ececec;}
+.effect-1 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #000000; transition: 0.4s;}
+.effect-1:focus ~ .focus-border{width: 100%; transition: 0.4s;}
+
+.text-circle-wrap {
+margin-top: 10px;
+    font-size: 30px;
+    color: #cdcbd0;
+}
+
+.circle-wrap {
+    width: 320px;
+    height: 320px;
+    background: #bdbfc3;
+    border-radius: 50%;
+    border: 1px solid #cdcbd0;
+    margin-top: 50%;
+}
+
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill {
+    width: 320px;
+    height: 320px;
+    position: absolute;
+    border-radius: 105%;
+}
+
+.circle-wrap .circle .mask {
+    clip: rect(0px, 320px, 320px, 160px);
+}
+
+
+.circle-wrap .inside-circle {
+    width: 292px;
+    height: 292px;
+    border-radius: 50%;
+    background: #ffffff;
+
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #1e51dc;
+
+    position: absolute;
+    z-index: 100;
+    font-weight: 700;
+    font-size: 2em;
+}
+.inside-circle {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.mask .fill {
+    clip: rect(0px, 160px, 320px, 0px);
+    background-color: #227ded;
+}
+
+.mask.full,
+.circle .fill {
+    animation: fill ease-in-out 3s;
+    transform: rotate(100deg);
+}
+
+@keyframes fill{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(100deg);
+    }
+}
+
+
+input[type="radio"].demo1 {
+    display: none;
+}
+
+.checkbox-number-question {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.rating {
+    font-size: 24px;
+    color: #FFD700;
+    margin-top: 20px;
+
+}
+.rating input[type="radio"] {
+    display: none;
+}
+.rating label {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: inline-block;
+    margin-right: 0;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+
+background-color: #FFFFFF;
+    transition: all 0.2s ease-in-out;
+    color: #000;
+    border-radius: 5px;
+}
+.rating input[type="radio"]:checked + label {
+    border: solid #000000;
+
+
+
+}
+.rating label:nth-of-type(1) {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.rating label:last-child {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.number {
+    font-size: 25px;
+}
+.text-satisfaction {
+
+    color: #696969;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+
+}
+
+
+
+
+.card-checkbox {
+    margin-top: 20px;
+
+
+}
+
+.reponse-question-multiple {
+    margin-top: 15px;
+}
+
+
+.checkbox-wrapper-4 * {
+    box-sizing: border-box;
+
+
+}
+.checkbox-wrapper-4 .cbx {
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+.checkbox-wrapper-4 .cbx:not(:last-child) {
+    margin-right: 6px;
+}
+.checkbox-wrapper-4 .cbx:hover {
+    background: rgba(0,119,255,0.06);
+}
+.checkbox-wrapper-4 .cbx span {
+    float: left;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-4 .cbx span:first-child {
+    position: relative;
+    background-color: #FFFFFF;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    transform: scale(1);
+    border: 1px solid #cccfdb;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 1px rgba(0,16,75,0.05);
+}
+.checkbox-wrapper-4 .cbx span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+}
+.checkbox-wrapper-4 .cbx span:last-child {
+    padding-left: 8px;
+    line-height: 18px;
+}
+.checkbox-wrapper-4 .cbx:hover span:first-child {
+    border-color: #07f;
+}
+.checkbox-wrapper-4 .inp-cbx {
+    position: absolute;
+    visibility: hidden;
+}
+.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child {
+    background: #07f;
+    border-color: #07f;
+    animation: wave-4 0.4s ease;
+}
+.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+}
+.checkbox-wrapper-4 .inline-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+@media screen and (max-width: 640px) {
+    .checkbox-wrapper-4 .cbx {
+        width: 100%;
+        display: inline-block;
+    }
+}
+@-moz-keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+@-webkit-keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+@-o-keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+@keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+
+
+.reponse-question {
+    margin-top: 20px;
+}
+
+.reponse-question-unique {
+    margin-top: 30px;
+}
+
+
+

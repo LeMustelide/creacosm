@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block title %}Question text
+{% endblock %}
+{% block body %}
+    <section class="viewh2">
+
+        <div class="main-question">
+            <div class="header-question">
+                <img src="/assets/img/logo.png" alt="Logo Créasosm" class="logo3">
+                <p class="p1">Temps de réponse : 30min</p>
+            </div>
+            <div class="container-question">
+                <div class="question">
+                    <p>1. Quel âge avez-vous?</p>
+
+                    <div class="col-3">
+                    <input class="effect-1" type="text" placeholder="Ecrivez votre réponse ici ...">
+                    <span class="focus-border"></span>
+                    </div>
+                    <button class="btn-question-ok">OK</button>
+                    <button class="btn-question-precedent">
+                        <span class="material-symbols-outlined">keyboard_backspace</span>
+                        Précédent</button>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="container-pannel-question">
+
+            <p class="text-sondage">Sondage sur votre utilisation quotidienne de produit cosmétique.</p>
+
+            <div class="circle-wrap">
+                <div class="circle">
+                    <div class="mask full">
+                        <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                        <div class="fill"></div>
+                    </div>
+                    <div class="inside-circle"> 75% </div>
+                </div>
+
+        </div>
+
+        </div>
+
+    </section>
+
+
+{% endblock %}
