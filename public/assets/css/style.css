@@ -1288,3 +1288,14 @@ select {
 .pop-up > form {
     width: 100%;
 }
+
+.main-parameters{
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    background-color: var(--gray-dark);
+}

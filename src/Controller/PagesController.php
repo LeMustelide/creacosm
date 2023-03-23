@@ -38,4 +38,10 @@ class PagesController extends AbstractController
     {
         return $this->render('pages/questionsLibrary.html.twig');
     }
+
+    #[Route('/parameters', name: 'parameters')]
+    public function parameters(): Response
+    {
+        return $this->render('pages/parameters.html.twig');
+    }
 }
