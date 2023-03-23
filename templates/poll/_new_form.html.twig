@@ -432,38 +432,6 @@
         updateFormVisibility();
         updateRequiredAttributes();
     }
-
-
-
-
-
-/*
-	// Récupérer le conteneur qui contiendra les questions
-    let questionsContainer = document.querySelector('#form_questions');
-
-    // Ajouter un écouteur d'événements pour le bouton "Ajouter questions"
-    document.querySelector('#add-question').addEventListener('click', function (e) { // Obtenir le nombre de questions actuellement dans le conteneur
-        let index = questionsContainer.children.length;
-
-        // Créer une nouvelle questions en clonant le modèle de questions
-        let prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
-        let newAnswer = document.createElement('div');
-        newAnswer.innerHTML = prototype;
-
-        // Ajouter la nouvelle questions au conteneur
-        questionsContainer.appendChild(newAnswer);
-
-        e.preventDefault();
-    });
-
-    questionsContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('remove-answer')) {
-            const answerDiv = event.target.parentElement;
-            answerDiv.remove();
-        }
-    });
-
-*/
 </script>
 
 {% endblock %}

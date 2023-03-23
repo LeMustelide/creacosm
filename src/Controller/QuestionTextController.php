@@ -31,7 +31,7 @@ class QuestionTextController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionTextRepository->save($questionText, true);
 
-            return $this->redirectToRoute('app_question_text_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('questionsLibrary', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('question_text/new.html.twig', [
