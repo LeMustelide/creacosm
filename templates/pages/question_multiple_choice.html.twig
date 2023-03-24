@@ -2,111 +2,131 @@
 {% block title %}Question multiple choice
 {% endblock %}
 {% block body %}
-    <section class="viewh2">
+	<section class="viewh2">
 
-        <div class="main-question">
-            <div class="header-question">
-                <img src="/assets/img/logo.png" alt="Logo Créasosm" class="logo3">
-                <p class="p1">Temps de réponse : 30min</p>
-            </div>
-            <div class="container-question">
-                <div class="question">
-                    <p>4. Vous trouvez que notre produit : </p>
+		<div class="main-question">
+			<div class="header-question">
+				<img src="/assets/img/logo.png" alt="Logo Créasosm" class="logo3">
+				<p class="p1">Temps de réponse : 30min</p>
+			</div>
+			<div class="container-question">
+				<div class="question">
+					<p>4. Vous trouvez que notre produit :
+					</p>
+                    <form action="{{path('')}}">
+                        <div class="card-checkbox">
+                            <div class="reponse-question-multiple">
+                                <div class="checkbox-wrapper-4">
+                                    <input class="inp-cbx" id="repq1" type="checkbox"/>
+                                    <label class="cbx" for="repq1">
+                                        <span>
+                                            <svg width="12px" height="10px">
+                                                <use xlink:href="#check-4"></use>
+                                            </svg>
+                                        </span>
+                                        <span>Adoucit la peau</span>
+                                    </label>
+                                    <svg class="inline-svg">
+                                        <symbol id="check-4" viewbox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </symbol>
+                                    </svg>
+                                </div>
+                            </div>
 
-                    <div class="card-checkbox">
-                        <div class="reponse-question-multiple">
-                        <div class="checkbox-wrapper-4">
-                            <input class="inp-cbx" id="repq1" type="checkbox"/>
-                            <label class="cbx" for="repq1"><span>
-                                    <svg width="12px" height="10px">
-                                        <use xlink:href="#check-4"></use>
-                                    </svg></span><span>Adoucit la peau</span></label>
-                            <svg class="inline-svg">
-                                <symbol id="check-4" viewbox="0 0 12 10">
-                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                </symbol>
-                            </svg>
-                        </div></div>
+
+                            <div class="reponse-question-multiple">
+                                <div class="checkbox-wrapper-4">
+                                    <input class="inp-cbx" id="repq2" type="checkbox"/>
+                                    <label class="cbx" for="repq2">
+                                        <span>
+                                            <svg width="12px" height="10px">
+                                                <use xlink:href="#check-4"></use>
+                                            </svg>
+                                        </span>
+                                        <span>Tonifie la peau</span>
+                                    </label>
+                                    <svg class="inline-svg">
+                                        <symbol id="check-4" viewbox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </symbol>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="reponse-question-multiple">
+                                <div class="checkbox-wrapper-4">
+                                    <input class="inp-cbx" id="repq3" type="checkbox"/>
+                                    <label class="cbx" for="repq3">
+                                        <span>
+                                            <svg width="12px" height="10px">
+                                                <use xlink:href="#check-4"></use>
+                                            </svg>
+                                        </span>
+                                        <span>Hydrate la peau</span>
+                                    </label>
+                                    <svg class="inline-svg">
+                                        <symbol id="check-4" viewbox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </symbol>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="reponse-question-multiple">
+                                <div class="checkbox-wrapper-4">
+                                    <input class="inp-cbx" id="repq4" type="checkbox"/>
+                                    <label class="cbx" for="repq4">
+                                        <span>
+                                            <svg width="12px" height="10px">
+                                                <use xlink:href="#check-4"></use>
+                                            </svg>
+                                        </span>
+                                        <span>Protège la peau</span>
+                                    </label>
+                                    <svg class="inline-svg">
+                                        <symbol id="check-4" viewbox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </symbol>
+                                    </svg>
+                                </div>
+                            </div>
 
 
-                        <div class="reponse-question-multiple">
-                        <div class="checkbox-wrapper-4">
-                            <input class="inp-cbx" id="repq2" type="checkbox"/>
-                            <label class="cbx" for="repq2"><span>
-                            <svg width="12px" height="10px">
-                            <use xlink:href="#check-4"></use>
-                            </svg></span><span>Tonifie la peau</span></label>
-                            <svg class="inline-svg">
-                                <symbol id="check-4" viewbox="0 0 12 10">
-                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                </symbol>
-                            </svg>
                         </div>
-                        </div>
 
-<div class="reponse-question-multiple">
-                        <div class="checkbox-wrapper-4">
-                            <input class="inp-cbx" id="repq3" type="checkbox"/>
-                            <label class="cbx" for="repq3"><span>
-                            <svg width="12px" height="10px">
-                            <use xlink:href="#check-4"></use>
-                            </svg></span><span>Hydrate la peau</span></label>
-                            <svg class="inline-svg">
-                                <symbol id="check-4" viewbox="0 0 12 10">
-                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                </symbol>
-                            </svg>
-                        </div>
-</div>
-                        <div class="reponse-question-multiple">
-                        <div class="checkbox-wrapper-4">
-                            <input class="inp-cbx" id="repq4" type="checkbox"/>
-                            <label class="cbx" for="repq4"><span>
-                            <svg width="12px" height="10px">
-                            <use xlink:href="#check-4"></use>
-                            </svg></span><span>Protège la peau</span></label>
-                            <svg class="inline-svg">
-                                <symbol id="check-4" viewbox="0 0 12 10">
-                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                </symbol>
-                            </svg>
-                        </div>
-                        </div>
+                        <button class="btn-question-ok" type="submit">OK</button>
+                        <button class="btn-question-precedent">
+                            <span class="material-symbols-outlined">keyboard_backspace</span>
+                            Précédent
+                        </button>
+                    </form>
+				</div>
+			</div>
+		</div>
+		<div class="container-pannel-question">
 
+			<p class="text-sondage">Sondage sur votre utilisation quotidienne de produit cosmétique.</p>
 
-                    </div>
+			<div class="circle-wrap shadow">
+				<div class="circle">
+					<div class="mask full">
+						<div class="fill"></div>
+					</div>
+					<div class="mask half">
+						<div class="fill"></div>
+					</div>
+					<div class="inside-circle">
+						<p>75%</p>
+						<p class="text-circle-wrap">1/10
+						</p>
+					</div>
+				</div>
 
+			</div>
 
-                    <button class="btn-question-ok">OK</button>
-                    <button class="btn-question-precedent">
-                        <span class="material-symbols-outlined">keyboard_backspace</span>
-                        Précédent</button>
-                </div>
+		</div>
 
-
-            </div>
-
-        </div>
-        <div class="container-pannel-question">
-
-            <p class="text-sondage">Sondage sur votre utilisation quotidienne de produit cosmétique.</p>
-
-            <div class="circle-wrap shadow">
-                <div class="circle">
-                    <div class="mask full">
-                        <div class="fill"></div>
-                    </div>
-                    <div class="mask half">
-                        <div class="fill"></div>
-                    </div>
-                    <div class="inside-circle"> <p>75%</p> <p class="text-circle-wrap">1/10 </p>  </div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+	</section>
 
 
 {% endblock %}

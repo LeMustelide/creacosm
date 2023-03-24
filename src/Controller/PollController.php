@@ -89,4 +89,7 @@ class PollController extends AbstractController
 
         return $this->redirectToRoute('app_poll_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
 }
