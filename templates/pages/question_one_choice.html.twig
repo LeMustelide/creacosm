@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block title %}Question one choice
+{% endblock %}
+{% block body %}
+    <section class="viewh2">
+
+        <div class="main-question">
+            <div class="header-question">
+                <img src="/assets/img/logo.png" alt="Logo Créasosm" class="logo3">
+                <p class="p1">Temps de réponse : 30min</p>
+            </div>
+            <div class="container-question">
+                <div class="question">
+                    <p>3. Dans quel tranche d'âge vous situez vous ?</p>
+
+                    <div class="reponse-question">
+                        <div>
+                        <input type="radio" class="reponse-question-unique" id="rep1" name="question" value="rep1"
+                               checked>
+                        <label for="rep1">18-24</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" class="reponse-question-unique" id="rep2" name="question" value="rep2">
+                        <label for="rep2">25-40</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" class="reponse-question-unique" id="rep3" name="question" value="rep3">
+                        <label for="rep3">40-59</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" class="reponse-question-unique" id="rep4" name="question" value="rep4">
+                        <label for="rep4">60-99</label>
+                    </div>
+                    </div>
+
+                    </div>
+                    <button class="btn-question-ok">OK</button>
+                    <button class="btn-question-precedent">
+                        <span class="material-symbols-outlined">keyboard_backspace</span>
+                        Précédent</button>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="container-pannel-question">
+
+            <p class="text-sondage">Sondage sur votre utilisation quotidienne de produit cosmétique.</p>
+
+            <div class="circle-wrap">
+                <div class="circle">
+                    <div class="mask full">
+                        <div class="fill"></div>
+                    </div>
+                    <div class="mask half">
+                        <div class="fill"></div>
+                    </div>
+                    <div class="inside-circle"> 75% </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+{% endblock %}

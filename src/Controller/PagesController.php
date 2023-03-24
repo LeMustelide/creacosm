@@ -61,4 +61,27 @@ class PagesController extends AbstractController
     {
         return $this->render('pages/statistics.html.twig');
     }
+    #[Route('/question_text', name: 'question_text')]
+    public function question_text(): Response
+    {
+        return $this->render('pages/question_text.html.twig');
+    }
+
+    #[Route('/question_number', name: 'question_number')]
+    public function question_number(): Response
+    {
+        return $this->render('pages/question_number.html.twig');
+    }
+
+    #[Route('/question_multiple_choice', name: 'question_multiple_choice')]
+    public function question_multiple_choice(): Response
+    {
+        return $this->render('pages/question_multiple_choice.html.twig');
+    }
+
+    #[Route('/question_one_choice', name: 'question_one_choice')]
+    public function question_one_choice(): Response
+    {
+        return $this->render('pages/question_one_choice.html.twig');
+    }
 }
