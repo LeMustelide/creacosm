@@ -56,9 +56,9 @@ class PagesController extends AbstractController
         ]);
     }
 
-    #[Route('/statistiques', name: 'statistiques')]
+    #[Route('/statistics', name: 'statistics')]
     public function statistiques(): Response
     {
-        return $this->render('pages/statistiques.html.twig');
+        return $this->render('pages/statistics.html.twig');
     }
 }

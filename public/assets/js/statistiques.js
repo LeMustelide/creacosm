@@ -86,6 +86,7 @@ const config_pieChart = {
     data: dataa,
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           position: 'right',
