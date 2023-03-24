@@ -65,6 +65,12 @@ class PollController extends AbstractController
     #[Route('/{id}/edit', name: 'app_poll_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Poll $poll, PollRepository $pollRepository): Response
     {
+
+        $formMultiple = $this->createForm(QuestionMCQMultipleType::class);
+        $formSingle = $this->createForm(QuestionMCQSingleType::class);
+        $formNumber = $this->createForm(QuestionNumberType::class);
+        $formText = $this->createForm(QuestionTextType::class);
+
         $form = $this->createForm(PollType::class, $poll);
         $form->handleRequest($request);
 
@@ -77,6 +83,10 @@ class PollController extends AbstractController
         return $this->renderForm('poll/edit.html.twig', [
             'poll' => $poll,
             'form' => $form,
+            'formMultiple' => $formMultiple->createView(),
+            'formSingle' => $formSingle->createView(),
+            'formNumber' => $formNumber->createView(),
+            'formText' => $formText->createView()
         ]);
     }
 
