@@ -55,4 +55,10 @@ class PagesController extends AbstractController
             'formText' => $formText->createView(),
         ]);
     }
+
+    #[Route('/statistiques', name: 'statistiques')]
+    public function statistiques(): Response
+    {
+        return $this->render('pages/statistiques.html.twig');
+    }
 }

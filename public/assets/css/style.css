@@ -36,8 +36,8 @@ a {
 }
 
 #navigation {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .primary {
@@ -57,11 +57,11 @@ a {
 }
 
 .card {
-    width: 100%;
-    border-radius: 24px;
-    min-width: 64px;
-    min-height: 64px;
-    padding: 24px;
+  width: 100%;
+  border-radius: 24px;
+  min-width: 64px;
+  min-height: 64px;
+  padding: 24px;
 }
 
 .card>h2 {
@@ -70,9 +70,13 @@ a {
     margin: 0;
 }
 
+.card p {
+  margin: 0;
+}
+
 .recent-poll,
 .recent-stats {
-    height: calc(50% - 16px);
+  height: calc(50% - 16px);
 }
 
 .recent-poll>h2,
@@ -208,20 +212,20 @@ input[type="datetime-local"] {
 }
 
 .dashboard {
-    min-height: 100vh;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    overflow: auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: auto;
 }
 
-.dashboard>div:nth-child(1) {
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    padding-right: 3rem;
-    gap: 32px;
+.dashboard > div:nth-child(1) {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 3rem;
+  gap: 32px;
 }
 
 .dashboard>div:nth-child(1)>div {
@@ -234,8 +238,8 @@ input[type="datetime-local"] {
     flex-grow: 1;
 }
 
-.dashboard>div:nth-child(2) {
-    width: 25%;
+.dashboard > div:nth-child(2) {
+  width: 25%;
 }
 
 .dashboard .search-container {
@@ -275,14 +279,13 @@ input[type="datetime-local"] {
 }
 
 .search-container {
-    position: relative;
+  position: relative;
 }
 
 .search-container.large {
-    position: relative;
-    width: 30%;
+  position: relative;
+  width: 30%;
 }
-
 
 .search-container>.material-symbols-outlined {
     position: absolute;
@@ -319,22 +322,22 @@ input[type="datetime-local"] {
 }
 
 .button-selected {
-    background-color: white;
-    border-radius: 24px;
-    border: none;
-    padding: 4px 18px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 30px;
-    margin-left: 4px;
+  background-color: white;
+  border-radius: 24px;
+  border: none;
+  padding: 4px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-left: 4px;
 }
 
 .button-list {
-    display: none !important;
-    flex-wrap: nowrap;
-    width: 85px;
-    margin-right: 24px;
+  display: none !important;
+  flex-wrap: nowrap;
+  width: 85px;
+  margin-right: 24px;
 }
 
 .button-list>button:nth-child(1) {
@@ -357,9 +360,9 @@ input[type="datetime-local"] {
 }
 
 #card-one {
-    background-color: #0b65ab;
-    display: flex;
-    flex-direction: column;
+  background-color: #0b65ab;
+  display: flex;
+  flex-direction: column;
 }
 
 #card-two {
@@ -375,16 +378,16 @@ input[type="datetime-local"] {
 }
 
 #card-three {
-    background-color: #a0b7da;
-    display: flex;
-    flex-direction: column;
+  background-color: #a0b7da;
+  display: flex;
+  flex-direction: column;
 }
 
 #card-fourth {
-    background-color: #fff;
-    height: calc(50% - 16px);
-    display: flex;
-    justify-content: space-between;
+  background-color: #fff;
+  height: calc(50% - 16px);
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-list {
@@ -424,16 +427,16 @@ input[type="datetime-local"] {
 }
 
 @media (min-height: 1150px) {
-    .dashboard {
-        max-height: 100vh;
-    }
+  .dashboard {
+    max-height: 100vh;
+  }
 }
 
-#card-one>div {
-    display: flex;
-    justify-content: space-between;
-    color: #fff;
-    font-size: 20px;
+#card-one > div {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 20px;
 }
 
 #card-one>div>p {
@@ -453,10 +456,10 @@ input[type="datetime-local"] {
     font-size: clamp(80px, 5vw, 512px);
 }
 
-#card-two>div {
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
+#card-two > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
 }
 
 #card-two>div>p {
@@ -465,18 +468,18 @@ input[type="datetime-local"] {
 }
 
 #nb-clients {
-    font-weight: 800;
-    font-size: 30px;
+  font-weight: 800;
+  font-size: 30px;
 }
 
 #plus-client {
-    font-size: 15px;
+  font-size: 15px;
 }
 
-#card-three>div {
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
+#card-three > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
 }
 
 #card-three>div>p {
@@ -495,29 +498,29 @@ input[type="datetime-local"] {
     font-size: clamp(80px, 5vw, 512px);
 }
 
-#card-fourth>p {
-    font-size: 30px;
+#card-fourth > p {
+  font-size: 30px;
 }
 
-.quaternary>p,
-.tertiary>p {
-    color: #fff;
-    font-size: 30px;
+.quaternary > p,
+.tertiary > p {
+  color: #fff;
+  font-size: 30px;
 }
 
 .entry-round {
-    display: block;
-    background-color: #fff;
-    border-radius: 24px;
-    border: none;
-    padding: 10px 18px;
-    font-size: 18px;
+  display: block;
+  background-color: #fff;
+  border-radius: 24px;
+  border: none;
+  padding: 10px 18px;
+  font-size: 18px;
 }
 
 .entry-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .shadow {
@@ -1236,14 +1239,74 @@ select {
 }
 
 .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 99;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.square-blue-button {
+  background-color: var(--primary-color);
+  padding: 12px 15px 12px 15px;
+  border-radius: 18px;
+  color: #fff;
+  position: absolute;
+}
+
+.text-align-center {
+  display: flex;
+  text-align: start;
+}
+
+.text-align-center > .center {
+  min-width: 100%;
+}
+
+.cards-stats {
+  gap: 2vw;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5vh;
+}
+
+.cards-stats > .card {
+  background-color: var(--gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cards-stats > .card > p {
+  text-align: center;
+}
+
+.cards-stats > .card > p:last-child {
+  margin-top: 10px;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.big-card {
+  width: 45vw;
+  background-color: var(--gray);
+  padding: 30px;
+  border-radius: 24px;
+  margin: 40px;
+}
+
+.frame {
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.big-card > .charts-container {
+  width: 100%;
+  height: 100%;
 }
 
 .search-bar {
