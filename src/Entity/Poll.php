@@ -43,12 +43,16 @@ class Poll
     #[ORM\ManyToMany(targetEntity: QuestionMCQSingle::class, mappedBy: 'poll', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $questionsMCQSingle;
 
+    #[ORM\OneToMany(mappedBy: 'poll', targetEntity: History::class, orphanRemoval: true)]
+    private Collection $histories;
+
     public function __construct()
     {
         $this->questionsText = new ArrayCollection();
         $this->questionsNumber = new ArrayCollection();
         $this->questionsMCQMultiple = new ArrayCollection();
         $this->questionsMCQSingle = new ArrayCollection();
+        $this->histories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -269,6 +273,36 @@ class Poll
                     break;
             }
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, History>
+     */
+    public function getHistories(): Collection
+    {
+        return $this->histories;
+    }
+
+    public function addHistory(History $history): self
+    {
+        if (!$this->histories->contains($history)) {
+            $this->histories->add($history);
+            $history->setPoll($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistory(History $history): self
+    {
+        if ($this->histories->removeElement($history)) {
+            // set the owning side to null (unless already changed)
+            if ($history->getPoll() === $this) {
+                $history->setPoll(null);
+            }
+        }
+
         return $this;
     }
 }
