@@ -58,7 +58,7 @@
         </div>
         <div class="card-container">
             {% for poll in polls %}
-            <a href="{{ path('app_question_mcq_multiple_edit', {'id': poll.id}) }}">
+            <a href="{{ path('app_poll_edit', {'id': poll.id}) }}">
                 <div class="card shadow background-color-gray">
                     <div class="card-title">{{ poll.name }}</div>
                     <div class="card-description">{{ poll.description }}</div>
