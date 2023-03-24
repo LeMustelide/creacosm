@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Edit QuestionMCQMultiple{% endblock %}
+{% set title = 'Modifier Question a choix multiple' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
 
 {% block body %}
-    <h1>Edit QuestionMCQMultiple</h1>
 
-    {{ include('question_mcq_multiple/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('overlay/_navbar.html.twig') }}
+	{{ include('overlay/_topbar.html.twig') }}
+    <div class="main edit-questions shadow">
+	{{ include('question_mcq_multiple/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_question_mcq_multiple_index') }}">back to list</a>
+	<a href="{{ path('app_question_mcq_multiple_index') }}">Retour a la liste</a>
 
-    {{ include('question_mcq_multiple/_delete_form.html.twig') }}
+	{{ include('question_mcq_multiple/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

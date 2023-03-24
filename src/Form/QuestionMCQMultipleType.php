@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class QuestionMCQMultipleType extends AbstractType
 {
@@ -16,10 +17,10 @@ class QuestionMCQMultipleType extends AbstractType
             ->add('entitled', null, [
                 'label' => 'Question',
             ])
-            ->add('minNumberAnswer', null, [
+            ->add('minNumberAnswer', NumberType::class, [
                 'label' => 'Nombre de réponses minimum',
             ])
-            ->add('maxNumberAnswer', null, [
+            ->add('maxNumberAnswer', NumberType::class, [
                 'label' => 'Nombre de réponses maximum',
             ])
             ->add('answers', CollectionType::class, [
