@@ -1290,7 +1290,8 @@ select {
 }
 
 .main-parameters{
-    margin: 20px;
+    width: 50vw;
+    margin: 5vh 25vw 5vh 25vw;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -1298,4 +1299,23 @@ select {
     align-items: center;
     border-radius: 24px;
     background-color: var(--gray-dark);
+    text-align: center;
+    gap: 15px;
+}
+
+.main-parameters input{
+    margin: 5px;
+    border-radius: 12px;
+}
+.pure-button{
+    background-color: var(--primary-color);
+    font-size: 12px;
+    padding: 10px 24px;
+    margin: 5px;
+    border-radius: 24px;
+    color: #fff;
+}
+
+.background-color-red{
+    background-color: red;
 }
