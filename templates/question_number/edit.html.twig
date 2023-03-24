@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Edit QuestionNumber{% endblock %}
-
+{% set title = 'Modifier Question a nombre' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
 {% block body %}
-    <h1>Edit QuestionNumber</h1>
+	{{ include('overlay/_navbar.html.twig') }}
+	{{ include('overlay/_topbar.html.twig') }}
+	<div class="main edit-questions shadow">
+		{{ include('question_number/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('question_number/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_question_number_index') }}">back to list</a>
-
-    {{ include('question_number/_delete_form.html.twig') }}
+		{{ include('question_number/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

@@ -1310,3 +1310,8 @@ select {
     display: flex;
     flex-direction: column;
 }
+
+.edit-questions > #question_number {
+    display: flex;
+    flex-direction: column;
+}
