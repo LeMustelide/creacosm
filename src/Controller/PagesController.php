@@ -24,7 +24,7 @@ class PagesController extends AbstractController
         return $this->render('pages/dashboard.html.twig');
     }
 
-    #[Route('/', name: '')]
+    #[Route('/', name: 'home')]
     public function acceuil(): Response
     {
         return $this->render('pages/accueil.html.twig');
@@ -79,9 +79,9 @@ class PagesController extends AbstractController
         return $this->render('pages/question_multiple_choice.html.twig');
     }
 
-    #[Route('/question_one_choice', name: 'question_one_choice')]
-    public function question_one_choice(): Response
+    #[Route('/question_single_choice', name: 'question_single_choice')]
+    public function question_single_choice(): Response
     {
-        return $this->render('pages/question_one_choice.html.twig');
+        return $this->render('pages/question_single_choice.html.twig');
     }
 }
