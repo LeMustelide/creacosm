@@ -115,7 +115,7 @@
                     <h3 style="width: 10%; text-align: center">Numéro</h3>
                     <h3 style="width: 70%">Question</h3>
                     <h3 style="width: 10%">Type</h3>
-                    <h3 style="width: 10%">Actions</h3>
+                    <h3 style="width:a 10%">Actions</h3>
                 </div>
             </div>
         </div>
@@ -331,7 +331,7 @@
                 case 'choix multiple':
                     questionsContainer = document.querySelector('#questionsMCQMultiple_list');
                     index2 = questionsContainer.children.length;
-                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
+                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index2);
                     newQuestion = document.createElement('div');
                     newQuestion.innerHTML = prototype;
                     entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
@@ -342,11 +342,18 @@
                     maxNumberAnswerInput.value = question.maxNumberAnswer;
                     questionsContainer.appendChild(newQuestion);
                     question.answers.forEach((answer, indexAnswer) => {
-                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQMultiple_'+index2+'_answers');
-                        prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
+                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQMultiple_' + index2 + '_answers');
+                        prototypeAnswer = answersContainer.dataset.prototype;
                         newAnswer = document.createElement('div');
                         newAnswer.innerHTML = prototypeAnswer;
+                        
+                        // Mettre à jour les attributs id et name
+                        inputDiv = newAnswer.querySelector('div[id*="_answers_"]');
+                        inputDiv.id = inputDiv.id.replace(/_answers_\d+/, '_answers_' + indexAnswer);
                         entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
+                        entitledInput.id = entitledInput.id.replace(/_answers_\d+_entitled/, '_answers_' + indexAnswer + '_entitled');
+                        entitledInput.name = entitledInput.name.replace(/\[answers\]\[\d+\]/, '[answers][' + indexAnswer + ']');
+                        
                         entitledInput.value = answer;
                         answersContainer.appendChild(newAnswer);
                     });
@@ -361,11 +368,18 @@
                     entitledInput.value = question.entitled;
                     questionsContainer.appendChild(newQuestion);
                     question.answers.forEach((answer, indexAnswer) => {
-                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQSingle_'+index2+'_answers');
-                        prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
+                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQSingle_' + index2 + '_answers');
+                        prototypeAnswer = answersContainer.dataset.prototype;
                         newAnswer = document.createElement('div');
                         newAnswer.innerHTML = prototypeAnswer;
+                        
+                        // Mettre à jour les attributs id et name
+                        inputDiv = newAnswer.querySelector('div[id*="_answers_"]');
+                        inputDiv.id = inputDiv.id.replace(/_answers_\d+/, '_answers_' + indexAnswer);
                         entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
+                        entitledInput.id = entitledInput.id.replace(/_answers_\d+_entitled/, '_answers_' + indexAnswer + '_entitled');
+                        entitledInput.name = entitledInput.name.replace(/\[answers\]\[\d+\]/, '[answers][' + indexAnswer + ']');
+                        
                         entitledInput.value = answer;
                         answersContainer.appendChild(newAnswer);
                     });
@@ -421,7 +435,7 @@
                 for (const selector of answerSelectors) {
                     const addedAnswers = form.querySelectorAll(selector);
                     for (const answer of addedAnswers) {
-                        answer.remove();
+                        answer.innerHTML = '';
                     }
                 }
             }

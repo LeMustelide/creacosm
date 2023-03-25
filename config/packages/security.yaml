@@ -32,6 +32,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/poll/[0-9]+/respond/[0-9]+/[a-zA-Z0-9_-]+, roles: PUBLIC_ACCESS }
+        - { path: ^/poll/end, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: ROLE_USER }
 
 when@test:

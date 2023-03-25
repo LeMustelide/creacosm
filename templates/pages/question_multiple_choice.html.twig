@@ -11,87 +11,30 @@
 			</div>
 			<div class="container-question">
 				<div class="question">
-					<p>4. Vous trouvez que notre produit :
+					<p>{{ advancement }}. {{question.entitled}}</p>
 					</p>
-                    <form action="{{path('')}}">
+                    <form method="POST" action="{{ path('app_poll_respond', {id: poll.id, questionId: question.id, token: token}) }}">
                         <div class="card-checkbox">
-                            <div class="reponse-question-multiple">
-                                <div class="checkbox-wrapper-4">
-                                    <input class="inp-cbx" id="repq1" type="checkbox"/>
-                                    <label class="cbx" for="repq1">
-                                        <span>
-                                            <svg width="12px" height="10px">
-                                                <use xlink:href="#check-4"></use>
-                                            </svg>
-                                        </span>
-                                        <span>Adoucit la peau</span>
-                                    </label>
-                                    <svg class="inline-svg">
-                                        <symbol id="check-4" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </symbol>
-                                    </svg>
+                            {% for answer in question.answers %}
+                                <div class="reponse-question-multiple">
+                                    <div class="checkbox-wrapper-4">
+                                        <input class="inp-cbx" id="repq{{ answer.id }}" type="checkbox" name="checkbox{{ answer.id }}"/>
+                                        <label class="cbx" for="repq{{ answer.id }}">
+                                            <span>
+                                                <svg width="12px" height="10px">
+                                                    <use xlink:href="#check-4"></use>
+                                                </svg>
+                                            </span>
+                                            <span>{{ answer.entitled }}</span>
+                                        </label>
+                                        <svg class="inline-svg">
+                                            <symbol id="check-4" viewbox="0 0 12 10">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </symbol>
+                                        </svg>
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <div class="reponse-question-multiple">
-                                <div class="checkbox-wrapper-4">
-                                    <input class="inp-cbx" id="repq2" type="checkbox"/>
-                                    <label class="cbx" for="repq2">
-                                        <span>
-                                            <svg width="12px" height="10px">
-                                                <use xlink:href="#check-4"></use>
-                                            </svg>
-                                        </span>
-                                        <span>Tonifie la peau</span>
-                                    </label>
-                                    <svg class="inline-svg">
-                                        <symbol id="check-4" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </symbol>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <div class="reponse-question-multiple">
-                                <div class="checkbox-wrapper-4">
-                                    <input class="inp-cbx" id="repq3" type="checkbox"/>
-                                    <label class="cbx" for="repq3">
-                                        <span>
-                                            <svg width="12px" height="10px">
-                                                <use xlink:href="#check-4"></use>
-                                            </svg>
-                                        </span>
-                                        <span>Hydrate la peau</span>
-                                    </label>
-                                    <svg class="inline-svg">
-                                        <symbol id="check-4" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </symbol>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="reponse-question-multiple">
-                                <div class="checkbox-wrapper-4">
-                                    <input class="inp-cbx" id="repq4" type="checkbox"/>
-                                    <label class="cbx" for="repq4">
-                                        <span>
-                                            <svg width="12px" height="10px">
-                                                <use xlink:href="#check-4"></use>
-                                            </svg>
-                                        </span>
-                                        <span>Protège la peau</span>
-                                    </label>
-                                    <svg class="inline-svg">
-                                        <symbol id="check-4" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </symbol>
-                                    </svg>
-                                </div>
-                            </div>
-
-
+                            {% endfor %}
                         </div>
 
                         <button class="btn-question-ok" type="submit">OK</button>
@@ -105,7 +48,7 @@
 		</div>
 		<div class="container-pannel-question">
 
-			<p class="text-sondage">Sondage sur votre utilisation quotidienne de produit cosmétique.</p>
+			<p class="text-sondage">{{ poll.description }}</p>
 
 			<div class="circle-wrap shadow">
 				<div class="circle">
@@ -116,8 +59,8 @@
 						<div class="fill"></div>
 					</div>
 					<div class="inside-circle">
-						<p>75%</p>
-						<p class="text-circle-wrap">1/10
+						<p>{{ percentage }}%</p>
+						<p class="text-circle-wrap">{{ advancement }}/{{ length }}
 						</p>
 					</div>
 				</div>
@@ -129,4 +72,24 @@
 	</section>
 
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function updateProgressRotation(percentage) {
+            const degree = (percentage * 180) / 100;
+            const masks = document.querySelectorAll('.mask.full, .circle .fill');
+
+            masks.forEach(mask => {
+                mask.style.animation = 'none'; // Supprimer l'animation précédente
+                mask.style.transform = `rotate(${degree}deg)`;
+                console.log(degree);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const percentage = {{ percentage }};
+            updateProgressRotation(percentage);
+        });
+    </script>
 {% endblock %}

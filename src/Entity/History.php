@@ -122,6 +122,13 @@ class History
         return $this;
     }
 
+    public function setAnswer(Collection $answer): self
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
     public function removeAnswer(Answer $answer): self
     {
         $this->answer->removeElement($answer);

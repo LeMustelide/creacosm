@@ -305,4 +305,34 @@ class Poll
 
         return $this;
     }
+
+    public function getAllQuestions(): array
+    {
+        $allQuestions = [];
+
+        foreach ($this->getQuestionsText() as $questionText) {
+            $allQuestions[] = $questionText;
+        }
+
+        foreach ($this->getQuestionsNumber() as $questionNumber) {
+            $allQuestions[] = $questionNumber;
+        }
+
+        foreach ($this->getQuestionsMCQMultiple() as $questionMCQMultiple) {
+            $allQuestions[] = $questionMCQMultiple;
+        }
+
+        foreach ($this->getQuestionsMCQSingle() as $questionMCQSingle) {
+            $allQuestions[] = $questionMCQSingle;
+        }
+
+        return $allQuestions;
+    }
+
+    public function getIsClosed(): ?bool
+    {
+        $limitDate = $this->getLimitDate();
+        return $limitDate < new \DateTime();
+    }
+
 }
