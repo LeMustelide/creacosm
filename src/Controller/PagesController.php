@@ -84,4 +84,10 @@ class PagesController extends AbstractController
     {
         return $this->render('pages/question_single_choice.html.twig');
     }
+
+    #[Route('/parameters', name: 'parameters')]
+    public function parameters(): Response
+    {
+        return $this->render('pages/parameters.html.twig');
+    }
 }
