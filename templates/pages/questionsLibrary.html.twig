@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block title %}Page d'administration
+{% set title = 'Bibliothèque de questions' %}
+{% block title %}
+	{{ title }}
 {% endblock %}
 {% block body %}
+    <div class="overlay"></div>
+
 	{{ include('overlay/_navbar.html.twig') }}
+    {{ include('overlay/_topbar.html.twig') }}
 	<div class="main">
         <div class="title-tools">
-            <a href="" class="square-blue-button shadow">
+            <a href="#" id="add-question" class="square-blue-button shadow">
                 <span class="material-symbols-outlined small">
                     add
                 </span>
@@ -17,7 +22,7 @@
                         search
                     </span>
                 </div>
-                <div class="categories-container">
+                <div class="categories-container" style="display: none">
                     <select class="shadow">
                         <option value="1">Tous</option>
                         <option value="2">User 1</option>
@@ -38,7 +43,7 @@
                     </select>
                 </div>
             </div>
-            <div class="sort-container">
+            <div class="sort-container" style="display: none">
                 <select class="shadow">
                     <option value="1">Trier par</option>
                     <option value="2">Date de création</option>
@@ -52,34 +57,209 @@
             </div>
         </div>
         <div class="card-container">
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
-            <div class="card shadow">
-                <div class="card-title">Titre</div>
-                <div class="card-description">defsdfqoidhfiuqjdhbfiqlumhdji</div>
-            </div>
+            {% for question in question_mcq_multiples %}
+            <a href="{{ path('app_question_mcq_multiple_edit', {'id': question.id}) }}">
+                <div class="card shadow background-color-gray">
+                    <div class="card-title">{{ question.entitled }}</div>
+                    <div class="card-description">Question à choix multiple</div>
+                </div>
+            </a>
+            {% endfor %}
+            {% for question in question_mcq_singles %}
+            <a href="{{ path('app_question_mcq_single_edit', {'id': question.id}) }}">
+                <div class="card shadow background-color-gray">
+                    <div class="card-title">{{ question.entitled }}</div>
+                    <div class="card-description">Question à un choix</div>
+                </div>
+            </a>
+            {% endfor %}
+            {% for question in question_texts %}
+            <a href="{{ path('app_question_text_edit', {'id': question.id}) }}">
+                <div class="card shadow background-color-gray">
+                    <div class="card-title">{{ question.entitled }}</div>
+                    <div class="card-description">Question ouverte</div>
+                </div>
+            </a>
+            {% endfor %}
+            {% for question in question_numbers %}
+            <a href="{{ path('app_question_number_edit', {'id': question.id}) }}">
+                <div class="card shadow background-color-gray">
+                    <div class="card-title">{{ question.entitled }}</div>
+                    <div class="card-description">Question à nombre</div>
+                </div>
+            </a>
+            {% endfor %}
         </div>
     </div>
+
+    <div id="popupQuestion" class="pop-up">
+        <h2>Créer une question</h2>
+        <div>
+            <select id="questionTypeSelect">
+                <option>choix multiple</option>
+                <option>choix unique</option>
+                <option>nombre</option>
+                <option>texte</option>
+            </select>
+        </div>
+        <div>
+            <div id="QuestionMCQMultipleType">
+                {{ form_start(formMultiple, { 'action': path('app_question_mcq_multiple_new') }) }}
+                    {% include 'question_mcq_multiple/_form.html.twig' with {'form': formMultiple} %}
+                {{ form_end(formMultiple) }}
+            </div>
+            <div id="QuestionMCQSingleType">
+                {{ form_start(formSingle, { 'action': path('app_question_mcq_single_new') }) }}
+                    {% include 'question_mcq_single/_form.html.twig' with {'form': formSingle} %}
+                {{ form_end(formSingle) }}}
+            </div>
+            <div id="QuestionNumberType">
+                {{ form_start(formNumber, { 'action': path('app_question_number_new') }) }}
+                    {% include 'question_number/_form.html.twig' with {'form': formNumber} %}
+                {{ form_end(formNumber) }}
+            </div>
+            <div id="QuestionTextType">
+                {{ form_start(formText, { 'action': path('app_question_text_new') }) }}
+                    {% include 'question_text/_form.html.twig' with {'form': formText} %}
+                {{ form_end(formText) }}
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="button button-success">Ajouter</button>
+            <a id="closePopupQuestion" class="button button-danger" href="#" >Annuler</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateFormVisibility();
+        updateRequiredAttributes();
+    });
+
+    const addButton = document.querySelector('#add-question');
+    addButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        showPopUp();
+    });
+
+    const submitButton = document.querySelector('.button-success');
+    submitButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        submitSelectedForm();
+    });
+
+    function submitSelectedForm() {
+        const selectedFormType = questionTypeSelect.value;
+        for (const formType in questionForms) {
+            if (questionForms.hasOwnProperty(formType)) {
+                if (formType === selectedFormType) {
+                    const form = questionForms[formType].querySelector('form');
+                    form.submit();
+                    break;
+                }
+            }
+        }
+    }
+
+    function showPopUp() {
+        const popUp = document.querySelector('#popupQuestion');
+        const overlay = document.querySelector('.overlay');
+        popUp.style.display = 'flex';
+        overlay.style.display = 'block';
+    }
+
+    const questionForms = {
+        'choix multiple': document.getElementById('QuestionMCQMultipleType'),
+        'choix unique': document.getElementById('QuestionMCQSingleType'),
+        'nombre': document.getElementById('QuestionNumberType'),
+        'texte': document.getElementById('QuestionTextType'),
+    };
+
+    function updateFormVisibility() {
+        const selectedFormType = questionTypeSelect.value;
+        for (const formType in questionForms) {
+            if (questionForms.hasOwnProperty(formType)) {
+                questionForms[formType].style.display = formType === selectedFormType ? 'block' : 'none';
+            }
+        }
+    }
+
+    questionTypeSelect.addEventListener('change', () => {
+        updateFormVisibility();
+        updateRequiredAttributes();
+    });
+    updateFormVisibility();
+
+    const overlay = document.querySelector('.overlay');
+    overlay.addEventListener('click', () => {
+        hidePopUp();
+    });
+
+    const cancelButton = document.querySelector('#closePopupQuestion');
+    cancelButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        hidePopUp();
+    });
+
+    function hidePopUp() {
+        const popUp = document.querySelector('#popupQuestion');
+        popUp.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+
+    function updateRequiredAttributes() {
+        const selectedFormType = questionTypeSelect.value;
+
+        for (const formType in questionForms) {
+            if (questionForms.hasOwnProperty(formType)) {
+                const form = questionForms[formType];
+                const isDisplayed = formType === selectedFormType;
+
+                // Sélectionner tous les champs de formulaire requis dans le formulaire actuel
+                const requiredFields = form.querySelectorAll('[required]');
+
+                // Activer ou désactiver l'attribut "required" en fonction de l'affichage du formulaire
+                for (const field of requiredFields) {
+                    field.required = isDisplayed;
+                }
+            }
+        }
+    }
+
+    function resetPopUp() {
+        // Réinitialiser la sélection du type de question
+        questionTypeSelect.value = 'choix multiple';
+
+        // Réinitialiser tous les champs du formulaire et supprimer les réponses ajoutées
+        for (const formType in questionForms) {
+            if (questionForms.hasOwnProperty(formType)) {
+                const form = questionForms[formType];
+                const inputs = form.querySelectorAll('input, select');
+                for (const input of inputs) {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        input.checked = false;
+                    } else {
+                        input.value = '';
+                    }
+                }
+
+                // Supprimer les réponses ajoutées
+                const answerSelectors = ['#form_answers_MCQSingle', '#form_answers'];
+                for (const selector of answerSelectors) {
+                    const addedAnswers = form.querySelectorAll(selector);
+                    for (const answer of addedAnswers) {
+                        answer.remove();
+                    }
+                }
+            }
+        }
+
+        // Mettre à jour la visibilité du formulaire et les attributs requis
+        updateFormVisibility();
+        updateRequiredAttributes();
+    }
+</script>
 {% endblock %}

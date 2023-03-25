@@ -31,7 +31,7 @@ class QuestionNumberController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionNumberRepository->save($questionNumber, true);
 
-            return $this->redirectToRoute('app_question_number_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('questionsLibrary', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('question_number/new.html.twig', [

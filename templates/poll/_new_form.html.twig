@@ -54,19 +54,19 @@
                         <div class="flex-column">
                             {{ form_row(form.name) }}
                             {{ form_row(form.description) }}
+                            {{ form_row(form.public) }}
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="button-collection">
                         <button class="button-success button" type="submit">{{ button_label|default('Sauvegarder') }}</button>
-                        <button class="button-info button" type="submit">Publier</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="scrollable-list-card shadow">
+        <div class="scrollable-list-card shadow" style="display: none">
             <div>
                 <h2>Utilisateurs autorisés</h2>
                 <a class="square-button shadow" href="#">
@@ -115,11 +115,10 @@
                     <h3 style="width: 10%; text-align: center">Numéro</h3>
                     <h3 style="width: 70%">Question</h3>
                     <h3 style="width: 10%">Type</h3>
-                    <h3 style="width: 10%">Actions</h3>
+                    <h3 style="width:a 10%">Actions</h3>
                 </div>
             </div>
         </div>
-        {{ form_row(form.public) }}
     </div>
     <div id="questionsMCQMultiple_list" style="display:none" data-prototype="{{ form_widget(form.questionsMCQMultiple.vars.prototype)|e('html_attr') }}">
     </div>
@@ -332,7 +331,7 @@
                 case 'choix multiple':
                     questionsContainer = document.querySelector('#questionsMCQMultiple_list');
                     index2 = questionsContainer.children.length;
-                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
+                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index2);
                     newQuestion = document.createElement('div');
                     newQuestion.innerHTML = prototype;
                     entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
@@ -343,11 +342,18 @@
                     maxNumberAnswerInput.value = question.maxNumberAnswer;
                     questionsContainer.appendChild(newQuestion);
                     question.answers.forEach((answer, indexAnswer) => {
-                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQMultiple_'+index2+'_answers');
-                        prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
+                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQMultiple_' + index2 + '_answers');
+                        prototypeAnswer = answersContainer.dataset.prototype;
                         newAnswer = document.createElement('div');
                         newAnswer.innerHTML = prototypeAnswer;
+                        
+                        // Mettre à jour les attributs id et name
+                        inputDiv = newAnswer.querySelector('div[id*="_answers_"]');
+                        inputDiv.id = inputDiv.id.replace(/_answers_\d+/, '_answers_' + indexAnswer);
                         entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
+                        entitledInput.id = entitledInput.id.replace(/_answers_\d+_entitled/, '_answers_' + indexAnswer + '_entitled');
+                        entitledInput.name = entitledInput.name.replace(/\[answers\]\[\d+\]/, '[answers][' + indexAnswer + ']');
+                        
                         entitledInput.value = answer;
                         answersContainer.appendChild(newAnswer);
                     });
@@ -362,11 +368,18 @@
                     entitledInput.value = question.entitled;
                     questionsContainer.appendChild(newQuestion);
                     question.answers.forEach((answer, indexAnswer) => {
-                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQSingle_'+index2+'_answers');
-                        prototypeAnswer = answersContainer.dataset.prototype.replace(/__name__/g, indexAnswer);
+                        answersContainer = questionsContainer.querySelector('#poll_questionsMCQSingle_' + index2 + '_answers');
+                        prototypeAnswer = answersContainer.dataset.prototype;
                         newAnswer = document.createElement('div');
                         newAnswer.innerHTML = prototypeAnswer;
+                        
+                        // Mettre à jour les attributs id et name
+                        inputDiv = newAnswer.querySelector('div[id*="_answers_"]');
+                        inputDiv.id = inputDiv.id.replace(/_answers_\d+/, '_answers_' + indexAnswer);
                         entitledInput = newAnswer.querySelector('input[name*="[entitled]"]');
+                        entitledInput.id = entitledInput.id.replace(/_answers_\d+_entitled/, '_answers_' + indexAnswer + '_entitled');
+                        entitledInput.name = entitledInput.name.replace(/\[answers\]\[\d+\]/, '[answers][' + indexAnswer + ']');
+                        
                         entitledInput.value = answer;
                         answersContainer.appendChild(newAnswer);
                     });
@@ -422,7 +435,7 @@
                 for (const selector of answerSelectors) {
                     const addedAnswers = form.querySelectorAll(selector);
                     for (const answer of addedAnswers) {
-                        answer.remove();
+                        answer.innerHTML = '';
                     }
                 }
             }
@@ -432,38 +445,6 @@
         updateFormVisibility();
         updateRequiredAttributes();
     }
-
-
-
-
-
-/*
-	// Récupérer le conteneur qui contiendra les questions
-    let questionsContainer = document.querySelector('#form_questions');
-
-    // Ajouter un écouteur d'événements pour le bouton "Ajouter questions"
-    document.querySelector('#add-question').addEventListener('click', function (e) { // Obtenir le nombre de questions actuellement dans le conteneur
-        let index = questionsContainer.children.length;
-
-        // Créer une nouvelle questions en clonant le modèle de questions
-        let prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index);
-        let newAnswer = document.createElement('div');
-        newAnswer.innerHTML = prototype;
-
-        // Ajouter la nouvelle questions au conteneur
-        questionsContainer.appendChild(newAnswer);
-
-        e.preventDefault();
-    });
-
-    questionsContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('remove-answer')) {
-            const answerDiv = event.target.parentElement;
-            answerDiv.remove();
-        }
-    });
-
-*/
 </script>
 
 {% endblock %}

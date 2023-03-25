@@ -31,7 +31,15 @@ class QuestionMCQMultipleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionMCQMultipleRepository->save($questionMCQMultiple, true);
 
-            return $this->redirectToRoute('app_question_mcq_multiple_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('questionsLibrary', [], Response::HTTP_SEE_OTHER);
+        }else {
+            if ($form->isSubmitted()) {
+                // Afficher les erreurs de validation
+                $errors = $form->getErrors(true);
+                foreach ($errors as $error) {
+                    $this->addFlash('error', $error->getMessage());
+                }
+            }
         }
 
         return $this->renderForm('question_mcq_multiple/new.html.twig', [

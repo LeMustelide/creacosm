@@ -52,6 +52,7 @@
         if (event.target.classList.contains('remove-answer')) {
             const answerDiv = event.target.parentElement;
             answerDiv.remove();
+            event.preventDefault();
         }
     });
 </script>

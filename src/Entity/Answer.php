@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]
@@ -21,6 +23,14 @@ class Answer
 
     #[ORM\ManyToOne(inversedBy: 'answers')]
     private ?QuestionMCQSingle $questionSingle = null;
+
+    #[ORM\ManyToMany(targetEntity: History::class, mappedBy: 'answer')]
+    private Collection $histories;
+
+    public function __construct()
+    {
+        $this->histories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +69,33 @@ class Answer
     public function setQuestionSingle(?QuestionMCQSingle $questionSingle): self
     {
         $this->questionSingle = $questionSingle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, History>
+     */
+    public function getHistories(): Collection
+    {
+        return $this->histories;
+    }
+
+    public function addHistory(History $history): self
+    {
+        if (!$this->histories->contains($history)) {
+            $this->histories->add($history);
+            $history->addAnswer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistory(History $history): self
+    {
+        if ($this->histories->removeElement($history)) {
+            $history->removeAnswer($this);
+        }
 
         return $this;
     }
