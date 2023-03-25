@@ -39,6 +39,17 @@ class PollRepository extends ServiceEntityRepository
         }
     }
 
+    public function saves(array $entities, bool $flush = false): void
+    {
+        foreach ($entities as $entity) {
+            $this->save($entity, false);
+        }
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return Poll[] Returns an array of Poll objects
 //     */

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Poll;
+use App\Entity\History;
 use App\Form\PollType;
 use App\Repository\PollRepository;
+use App\Repository\HistoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +15,8 @@ use App\Form\QuestionMCQMultipleType;
 use App\Form\QuestionMCQSingleType;
 use App\Form\QuestionNumberType;
 use App\Form\QuestionTextType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Uid\Uuid;
 
 #[Route('/poll')]
 class PollController extends AbstractController
@@ -52,6 +56,12 @@ class PollController extends AbstractController
             'poll' => $poll,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/end', name: 'app_poll_end', methods: ['GET'])]
+    public function end(): Response
+    {
+        return $this->render('pages/endPoll.html.twig');
     }
 
     #[Route('/{id}', name: 'app_poll_show', methods: ['GET'])]
@@ -99,4 +109,123 @@ class PollController extends AbstractController
 
         return $this->redirectToRoute('app_poll_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/respond/{questionId}/{token}', name: 'app_poll_respond', methods: ['GET', 'POST'])]
+    public function respond(Request $request, Poll $poll, PollRepository $pollRepository, HistoryRepository $historyRepository, $questionId, $token): Response
+    {
+        if (!$poll->isPublic()) {
+            $this->addFlash('error', 'This poll is not public.');
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
+        if ($poll->getIsClosed()) {
+            $this->addFlash('error', 'This poll is closed.');
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $decodedToken = base64_decode($token);
+        $decodedUuid = str_replace('creacosm', '', $decodedToken);
+        if ($decodedToken == null) {
+            $this->addFlash('error', 'Invalid token.');
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        } elseif (!str_contains($decodedToken, 'creacosm') or !Uuid::isValid($decodedUuid)) {
+            $this->addFlash('error', 'Invalid token.');
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
+        
+
+        $question = null;
+        $questions = $poll->getAllQuestions();
+        $advancement = 0;
+        for ($i = 0; $i < count($questions); $i++) {
+            if ($questions[$i]->getId() == $questionId) {
+                $question = $questions[$i];
+                $advancement = $i;
+                break;
+            }
+        }
+
+        if ($questionId == 0) {
+            $question = $questions[0];
+        }
+
+        if ($question == null) {
+            return $this->redirectToRoute('app_poll_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        if ($request->isMethod('POST')) {
+
+            $history = new History();
+            $history->setPoll($poll);
+
+
+
+            if (get_class($question) == "App\Entity\QuestionMCQMultiple") {
+                $checkedAnswerIds = [];
+                foreach ($request->request->all() as $key => $value) {
+                    if (str_starts_with($key, 'checkbox')) {
+                        $answerId = substr($key, 8); // Enlève "checkbox" du nom pour récupérer l'ID
+                        $checkedAnswerIds[] = $answerId;
+                    }
+                }
+                // Récupère toutes les réponses de la question
+                $allAnswers = $question->getAnswers();
+
+                // Filtrer uniquement les réponses sélectionnées
+                $selectedAnswers = [];
+                foreach ($allAnswers as $answer) {
+                    if (in_array($answer->getId(), $checkedAnswerIds)) {
+                        $selectedAnswers[] = $answer;
+                    }
+                }
+
+                // Créer une ArrayCollection avec les réponses sélectionnées
+                $selectedAnswersCollection = new ArrayCollection($selectedAnswers);
+
+                // Utiliser $selectedAnswersCollection pour appeler la méthode setAnswer
+                $history->setAnswer($selectedAnswersCollection);
+                $history->setDate(new \DateTime());
+                $history->setUuid($decodedUuid);
+                //Uuid::v4()
+                $historyRepository->save($history, true);
+            }
+
+            if ($advancement == count($questions) - 1) {
+                return $this->redirectToRoute('app_poll_end', [], Response::HTTP_SEE_OTHER);
+            } else {
+                return $this->redirectToRoute('app_poll_respond', ['id' => $poll->getId(), 'questionId' => $questions[$advancement + 1]->getId(), 'token' => $token], Response::HTTP_SEE_OTHER);
+            }
+        }
+
+        if (get_class($question) == "App\Entity\QuestionMCQMultiple") {
+            return $this->render('pages/question_multiple_choice.html.twig', [
+                'question' => $question,
+                'poll' => $poll,
+                'percentage' => ($advancement + 1) * 100 / count($questions),
+                'questionId' => $questionId,
+                'advancement' => $advancement + 1,
+                'length' => count($questions),
+                'token' => $token,
+            ]);
+        } elseif (get_class($question) == "App\Entity\QuestionMCQSingle") {
+            return $this->render('pages/question_single_choice.html.twig', [
+                'question' => $question,
+                'poll' => $poll,
+                'percentage' => $advancement * 100 / count($questions),
+                'questionId' => $questionId,
+                'advancement' => $advancement + 1,
+                'token' => $token,
+            ]);
+        } elseif (get_class($question) == "App\Entity\QuestionNumber") {
+            return $this->render('poll/edit.html.twig', [
+                'poll' => $poll,
+            ]);
+        } elseif (get_class($question) == "App\Entity\QuestionText") {
+            return $this->render('poll/edit.html.twig', [
+                'poll' => $poll,
+            ]);
+        }
+        return new Response('Aucune condition correspondante à la class' . get_class($question));
+    }
+
+    
 }

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% set title = 'Paramètres' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
+{% block body %}
+	{{ include('overlay/_navbar.html.twig') }}
+	{{ include('overlay/_topbar.html.twig') }}
+	<div>
+		<div class="main-parameters">
+			<div>
+				<p>Votre rôle : Affichage rôle</p>
+			</div>
+			<div>
+				<label for="changeMail">Changez votre adresse email :
+				</label>
+				<br>
+				<input type="email" id="changeMail" name="changeMail">
+			</div>
+			<div>
+				<label for="actualPassword">Mot de passe actuel :
+				</label>
+				<br>
+				<input type="password" id="actualPassword" name="actualPassword">
+				<br>
+				<label for="changePassword">Nouveau mot de passe :
+				</label>
+				<br>
+				<input type="password" id="changePassword" name="changePassword">
+				<br>
+				<label for="confirmChangePassword">Confirmer votre nouveau mot de passe :
+				</label>
+				<br>
+				<input type="password" id="confirmChangePassword" name="confirmChangePassword">
+			</div>
+			<div>
+				<label for="changeName">Changez votre nom :
+				</label>
+				<br>
+				<input type="text" id="changeName" name="changeName">
+				<br>
+				<label for="changeFirstName">Changez votre prénom :
+				</label>
+				<br>
+				<input type="text" id="changeFirstName" name="changeFirstName">
+				<br>
+				<label for="changePseudo">Changez votre pseudo :
+				</label>
+				<br>
+				<input type="text" id="changePseudo" name="changePseudo">
+			</div>
+			<div>
+				<label for="deleteAccountActualPassword">Mot de passe actuel :
+				</label>
+				<br>
+				<input type="password" id="deleteAccountActualPassword" name="deleteAccountActualPassword">
+				<br>
+				<button class="pure-button background-color-red">Supprimer</button>
+			</div>
+			<div>
+				<button class="pure-button">Sauvegarder</button>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

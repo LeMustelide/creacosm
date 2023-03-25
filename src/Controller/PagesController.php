@@ -24,7 +24,7 @@ class PagesController extends AbstractController
         return $this->render('pages/dashboard.html.twig');
     }
 
-    #[Route('/', name: '')]
+    #[Route('/', name: 'home')]
     public function acceuil(): Response
     {
         return $this->render('pages/accueil.html.twig');
@@ -60,5 +60,34 @@ class PagesController extends AbstractController
     public function statistiques(): Response
     {
         return $this->render('pages/statistics.html.twig');
+    }
+    #[Route('/question_text', name: 'question_text')]
+    public function question_text(): Response
+    {
+        return $this->render('pages/question_text.html.twig');
+    }
+
+    #[Route('/question_number', name: 'question_number')]
+    public function question_number(): Response
+    {
+        return $this->render('pages/question_number.html.twig');
+    }
+
+    #[Route('/question_multiple_choice', name: 'question_multiple_choice')]
+    public function question_multiple_choice(): Response
+    {
+        return $this->render('pages/question_multiple_choice.html.twig');
+    }
+
+    #[Route('/question_single_choice', name: 'question_single_choice')]
+    public function question_single_choice(): Response
+    {
+        return $this->render('pages/question_single_choice.html.twig');
+    }
+
+    #[Route('/parameters', name: 'parameters')]
+    public function parameters(): Response
+    {
+        return $this->render('pages/parameters.html.twig');
     }
 }
