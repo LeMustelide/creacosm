@@ -81,9 +81,21 @@
             const masks = document.querySelectorAll('.mask.full, .circle .fill');
 
             masks.forEach(mask => {
-                mask.style.animation = 'none'; // Supprimer l'animation précédente
-                mask.style.transform = `rotate(${degree}deg)`;
-                console.log(degree);
+                // Supprimer l'animation précédente
+                mask.style.animation = 'none';
+                // Forcer un reflow pour que le navigateur prenne en compte la suppression de l'animation
+                void mask.offsetWidth;
+                // Appliquer l'animation fill avec la nouvelle rotation
+                mask.style.animation = `fill ease-in-out 3s forwards`;
+
+                const animation = mask.animate([
+                    { transform: 'rotate(0deg)' },
+                    { transform: `rotate(${degree}deg)` }
+                ], {
+                    duration: 3000,
+                    easing: 'ease-in-out',
+                    fill: 'forwards'
+                });
             });
         }
 

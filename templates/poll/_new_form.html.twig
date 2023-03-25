@@ -166,6 +166,7 @@
 <script>
 
     let temporaryQuestions = [];
+    let temporaryQuestion = null;
 
     document.addEventListener('DOMContentLoaded', function() {
         updateFormVisibility();
@@ -192,7 +193,7 @@
             case 'choix unique':
                 questionData.entitled = document.querySelector('#QuestionMCQSingleType input[name="question_mcq_single[entitled]"]').value;
                 questionData.answers = [];
-                document.querySelectorAll('#QuestionMCQSingleType input[name="question_mcq_single[answers][]"]').forEach(function (answer) {
+                document.querySelectorAll('#form_answers_MCQSingle input[name*="question_mcq_single[answers]"]').forEach(function (answer) {
                     questionData.answers.push(answer.value);
                 });
                 break;
@@ -291,7 +292,14 @@
     }
 
     function updateQuestionList() {
-        // Remplacez ceci par les données réelles des questions (peut-être récupérées via AJAX)
+
+        const mcqMultipleContainer = document.querySelector('#questionsMCQMultiple_list');
+        mcqMultipleContainer.innerHTML = '';
+
+        const mcqSingleContainer = document.querySelector('#questionsMCQSingle_list');
+        mcqSingleContainer.innerHTML = '';
+
+
         const questions = temporaryQuestions;
 
         const listContainer = document.querySelector('#listQuestions');
@@ -367,7 +375,9 @@
                     entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
                     entitledInput.value = question.entitled;
                     questionsContainer.appendChild(newQuestion);
+                    console.log(index2);
                     question.answers.forEach((answer, indexAnswer) => {
+                        console.log(indexAnswer);
                         answersContainer = questionsContainer.querySelector('#poll_questionsMCQSingle_' + index2 + '_answers');
                         prototypeAnswer = answersContainer.dataset.prototype;
                         newAnswer = document.createElement('div');

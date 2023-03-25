@@ -9,13 +9,10 @@
 	<div>
 		<div class="main-parameters">
 			<div>
-				<p>Votre rôle : Affichage rôle</p>
-			</div>
-			<div>
 				<label for="changeMail">Changez votre adresse email :
 				</label>
 				<br>
-				<input type="email" id="changeMail" name="changeMail">
+				<input type="email" id="changeMail" name="changeMail" value="{{ app.user.email }}">
 			</div>
 			<div>
 				<label for="actualPassword">Mot de passe actuel :
@@ -55,10 +52,10 @@
 				<br>
 				<input type="password" id="deleteAccountActualPassword" name="deleteAccountActualPassword">
 				<br>
-				<button class="pure-button background-color-red">Supprimer</button>
+				<button class="button pure-button background-color-red">Supprimer</button>
 			</div>
 			<div>
-				<button class="pure-button">Sauvegarder</button>
+				<button class="button pure-button">Sauvegarder</button>
 			</div>
 		</div>
 	</div>

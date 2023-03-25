@@ -210,9 +210,10 @@ class PollController extends AbstractController
             return $this->render('pages/question_single_choice.html.twig', [
                 'question' => $question,
                 'poll' => $poll,
-                'percentage' => $advancement * 100 / count($questions),
+                'percentage' => ($advancement + 1) * 100 / count($questions),
                 'questionId' => $questionId,
                 'advancement' => $advancement + 1,
+                'length' => count($questions),
                 'token' => $token,
             ]);
         } elseif (get_class($question) == "App\Entity\QuestionNumber") {

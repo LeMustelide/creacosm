@@ -11,20 +11,15 @@
 			</div>
 			<div class="container-question">
 				<div class="question">
-					<p>{{ advancement }}.
-						{{ question.entitled }}</p>
+					<p>{{ advancement }}. {{ question.entitled }}</p>
 
 					<div class="reponse-question">
                         {% for answer in question.answers %}
                             <div>
-                                <input type="radio" class="reponse-question-unique" id="rep1" name="question" value="rep1" checked>
+                                <input type="radio" class="reponse-question-unique" id="rep1" name="question" value="rep1">
                                 <label for="rep1">{{ answer.entitled }}</label>
                             </div>
                         {% endfor %}
-                        <div>
-                            <input type="radio" class="reponse-question-unique" id="rep1" name="question" value="rep1" checked>
-                            <label for="rep1">18-24</label>
-                        </div>
 					</div>
 
 				</div>
@@ -51,7 +46,9 @@
 					<div class="fill"></div>
 				</div>
 				<div class="inside-circle">
-					75%
+					<p>{{ percentage }}%</p>
+                    <p class="text-circle-wrap">{{ advancement }}/{{ length }}
+                    </p>
 				</div>
 			</div>
 
@@ -59,4 +56,38 @@
 
 	</div>
 
-</section>{% endblock %}
+</section>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function updateProgressRotation(percentage) {
+            const degree = (percentage * 180) / 100;
+            const masks = document.querySelectorAll('.mask.full, .circle .fill');
+
+            masks.forEach(mask => {
+                // Supprimer l'animation précédente
+                mask.style.animation = 'none';
+                // Forcer un reflow pour que le navigateur prenne en compte la suppression de l'animation
+                void mask.offsetWidth;
+                // Appliquer l'animation fill avec la nouvelle rotation
+                mask.style.animation = `fill ease-in-out 3s forwards`;
+
+                const animation = mask.animate([
+                    { transform: 'rotate(0deg)' },
+                    { transform: `rotate(${degree}deg)` }
+                ], {
+                    duration: 3000,
+                    easing: 'ease-in-out',
+                    fill: 'forwards'
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const percentage = {{ percentage }};
+            updateProgressRotation(percentage);
+        });
+    </script>
+{% endblock %}
+
