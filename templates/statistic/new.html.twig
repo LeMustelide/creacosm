@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Création statistique' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="overlay"></div>
+
+    {{ include('overlay/_navbar.html.twig') }}
+    {{ include('overlay/_topbar.html.twig') }}
+
+    {{ include('statistic/_new_form.html.twig') }}
+    
+{% endblock %}

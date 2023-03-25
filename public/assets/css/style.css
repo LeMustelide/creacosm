@@ -122,6 +122,11 @@ a {
     flex-direction: column;
 }
 
+.create-stat .card-two-side>div:nth-of-type(2) {
+    gap: 16px;
+    justify-content: flex-start;
+}
+
 .card-two-side input[type="text"] {
     width: 85%;
     height: 28px;
@@ -1855,7 +1860,7 @@ input[type="radio"].demo1 {
     margin-top: 30px;
 }
 
-.main-parameters{
+.main-parameters {
     width: 50vw;
     margin: 5vh 25vw 5vh 25vw;
     padding: 20px;
@@ -1869,11 +1874,12 @@ input[type="radio"].demo1 {
     gap: 15px;
 }
 
-.main-parameters input{
+.main-parameters input {
     margin: 5px;
     border-radius: 12px;
 }
-.pure-button{
+
+.pure-button {
     background-color: var(--primary-color);
     font-size: 12px;
     padding: 10px 24px;
@@ -1882,6 +1888,32 @@ input[type="radio"].demo1 {
     color: #fff;
 }
 
-.background-color-red{
+.background-color-red {
     background-color: red;
+}
+
+.sondages ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sondages h2 {
+    font-size: 24px;
+}
+
+.sondages h3 {
+    font-size: 18px;
+}
+
+.sondages ul ul {
+    margin-left: 20px;
+}
+
+.sondages ul ul ul {
+    margin-left: 40px;
+}
+
+.sondages {
+    overflow-x: auto;
 }
