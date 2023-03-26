@@ -24,9 +24,6 @@ class QuestionMCQSingle
     #[ORM\OneToMany(mappedBy: 'questionSingle', targetEntity: Answer::class, cascade: ['persist', 'remove'])]
     private Collection $answers;
 
-    #[ORM\OneToMany(mappedBy: 'questionMCQMultiple', targetEntity: Question::class)]
-    private Collection $questions;
-
     public function __construct()
     {
         $this->poll = new ArrayCollection();
@@ -100,30 +97,6 @@ class QuestionMCQSingle
                 $answer->setQuestionSingle(null);
             }
         }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Question>
-     */
-    public function getQuestions(): Collection
-    {
-        return $this->questions;
-    }
-
-    public function addQuestion(Question $question): self
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions->add($question);
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): self
-    {
-        $this->questions->removeElement($question);
 
         return $this;
     }

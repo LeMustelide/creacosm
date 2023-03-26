@@ -26,13 +26,13 @@ class History
     #[ORM\JoinColumn(nullable: false)]
     private ?Poll $poll = null;
 
-    #[ORM\ManyToOne(inversedBy: 'histories')]
+    #[ORM\ManyToOne(inversedBy: 'histories', cascade: ['persist', 'remove'])]
     private ?TextAnswer $textAnswer = null;
 
     #[ORM\ManyToOne(inversedBy: 'histories')]
     private ?NumberAnswer $numberAnswer = null;
 
-    #[ORM\ManyToMany(targetEntity: Answer::class, inversedBy: 'histories')]
+    #[ORM\ManyToMany(targetEntity: Answer::class, cascade: ['persist', 'remove'], inversedBy: 'histories')]
     private Collection $answer;
 
     public function __construct()

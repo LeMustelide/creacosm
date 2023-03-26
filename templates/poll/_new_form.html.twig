@@ -124,7 +124,7 @@
     </div>
     <div id="questionsMCQSingle_list" style="display:none" data-prototype="{{ form_widget(form.questionsMCQSingle.vars.prototype)|e('html_attr') }}">
     </div>
-    <div id="questionsMCQNumber_list" style="display:none" data-prototype="{{ form_widget(form.questionsNumber.vars.prototype)|e('html_attr') }}">
+    <div id="questionsNumber_list" style="display:none" data-prototype="{{ form_widget(form.questionsNumber.vars.prototype)|e('html_attr') }}">
     </div>
     <div id="questionsText_list" style="display:none" data-prototype="{{ form_widget(form.questionsText.vars.prototype)|e('html_attr') }}">
     </div>
@@ -205,6 +205,8 @@
                 break;
             case 'texte':
                 questionData.entitled = document.querySelector('#QuestionTextType input[name="question_text[entitled]"]').value;
+                questionData.min = document.querySelector('#QuestionTextType input[name="question_text[minCharacterLimit]"]').value;
+                questionData.max = document.querySelector('#QuestionTextType input[name="question_text[maxCharacterLimit]"]').value;
                 break;
         }
 
@@ -375,7 +377,6 @@
                     entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
                     entitledInput.value = question.entitled;
                     questionsContainer.appendChild(newQuestion);
-                    console.log(index2);
                     question.answers.forEach((answer, indexAnswer) => {
                         console.log(indexAnswer);
                         answersContainer = questionsContainer.querySelector('#poll_questionsMCQSingle_' + index2 + '_answers');
@@ -395,8 +396,34 @@
                     });
                     break;
                 case 'nombre':
+                    questionsContainer = document.querySelector('#questionsNumber_list');
+                    index2 = questionsContainer.children.length;
+                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index2);
+                    newQuestion = document.createElement('div');
+                    newQuestion.innerHTML = prototype;
+                    entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
+                    entitledInput.value = question.entitled;
+                    nbStartInput = newQuestion.querySelector('input[name*="[nbStart]"]');
+                    nbStartInput.value = question.start;
+                    nbEndInput = newQuestion.querySelector('input[name*="[nbEnd]"]');
+                    nbEndInput.value = question.end;
+                    nbStepInput = newQuestion.querySelector('input[name*="[step]"]');
+                    nbStepInput.value = question.step;
+                    questionsContainer.appendChild(newQuestion);
                     break;
                 case 'texte':
+                    questionsContainer = document.querySelector('#questionsText_list');
+                    index2 = questionsContainer.children.length;
+                    prototype = questionsContainer.dataset.prototype.replace(/__name__/g, index2);
+                    newQuestion = document.createElement('div');
+                    newQuestion.innerHTML = prototype;
+                    entitledInput = newQuestion.querySelector('input[name*="[entitled]"]');
+                    entitledInput.value = question.entitled;
+                    minCharacterLimitInput = newQuestion.querySelector('input[name*="[minCharacterLimit]"]');
+                    minCharacterLimitInput.value = question.min;
+                    maxCharacterLimitInput = newQuestion.querySelector('input[name*="[maxCharacterLimit]"]');
+                    maxCharacterLimitInput.value = question.max;
+                    questionsContainer.appendChild(newQuestion);
                     break;
             }
         });

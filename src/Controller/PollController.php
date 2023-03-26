@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Poll;
 use App\Entity\History;
+use App\Entity\TextAnswer;
 use App\Form\PollType;
 use App\Repository\PollRepository;
 use App\Repository\HistoryRepository;
@@ -136,28 +137,22 @@ class PollController extends AbstractController
         $question = null;
         $questions = $poll->getAllQuestions();
         $advancement = 0;
-        for ($i = 0; $i < count($questions); $i++) {
-            if ($questions[$i]->getId() == $questionId) {
-                $question = $questions[$i];
-                $advancement = $i;
-                break;
-            }
+
+        if ($questionId < count($questions)){
+            $question = $questions[$questionId];
+            $advancement = $questionId;
         }
 
-        if ($questionId == 0) {
-            $question = $questions[0];
-        }
 
         if ($question == null) {
-            return $this->redirectToRoute('app_poll_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         if ($request->isMethod('POST')) {
 
             $history = new History();
             $history->setPoll($poll);
-
-
+            $question = $questions[$questionId-1];
 
             if (get_class($question) == "App\Entity\QuestionMCQMultiple") {
                 $checkedAnswerIds = [];
@@ -187,12 +182,34 @@ class PollController extends AbstractController
                 $history->setUuid($decodedUuid);
                 //Uuid::v4()
                 $historyRepository->save($history, true);
+            } elseif (get_class($question) == "App\Entity\QuestionMCQSingle") {
+                $answerId = $request->request->get('radio');
+                $answer = $question->getAnswer($answerId);
+                $history->setAnswer($answer);
+                $history->setDate(new \DateTime());
+                $history->setUuid($decodedUuid);
+                $historyRepository->save($history, true);
+            } elseif (get_class($question) == "App\Entity\QuestionNumber") {
+                $answer = $request->request->get('number');
+                $history->setNumberAnswer($answer);
+                $history->setDate(new \DateTime());
+                $history->setUuid($decodedUuid);
+                $historyRepository->save($history, true);
+            } elseif (get_class($question) == "App\Entity\QuestionText") {
+                $textAnswer = new TextAnswer();
+                $textAnswer->setContent($request->request->get('answer'));
+                $textAnswer->setQuestion($question);
+                $history->setTextAnswer($textAnswer);
+                $history->setDate(new \DateTime());
+                $history->setUuid($decodedUuid);
+                $historyRepository->save($history, true);
             }
 
-            if ($advancement == count($questions) - 1) {
+            if ($advancement >= count($questions)) {
+                //return new Response('Aucune condition correspondante à la class');
                 return $this->redirectToRoute('app_poll_end', [], Response::HTTP_SEE_OTHER);
             } else {
-                return $this->redirectToRoute('app_poll_respond', ['id' => $poll->getId(), 'questionId' => $questions[$advancement + 1]->getId(), 'token' => $token], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_poll_respond', ['id' => $poll->getId(), 'questionId' => $questionId, 'token' => $token], Response::HTTP_SEE_OTHER);
             }
         }
 
@@ -200,9 +217,8 @@ class PollController extends AbstractController
             return $this->render('pages/question_multiple_choice.html.twig', [
                 'question' => $question,
                 'poll' => $poll,
-                'percentage' => ($advancement + 1) * 100 / count($questions),
+                'percentage' => ($advancement) * 100 / count($questions),
                 'questionId' => $questionId,
-                'advancement' => $advancement + 1,
                 'length' => count($questions),
                 'token' => $token,
             ]);
@@ -210,23 +226,30 @@ class PollController extends AbstractController
             return $this->render('pages/question_single_choice.html.twig', [
                 'question' => $question,
                 'poll' => $poll,
-                'percentage' => ($advancement + 1) * 100 / count($questions),
+                'percentage' => ($advancement) * 100 / count($questions),
                 'questionId' => $questionId,
-                'advancement' => $advancement + 1,
                 'length' => count($questions),
                 'token' => $token,
             ]);
         } elseif (get_class($question) == "App\Entity\QuestionNumber") {
-            return $this->render('poll/edit.html.twig', [
+            return $this->render('pages/question_number.html.twig', [
+                'question' => $question,
                 'poll' => $poll,
+                'percentage' => ($advancement) * 100 / count($questions),
+                'questionId' => $questionId,
+                'length' => count($questions),
+                'token' => $token,
             ]);
         } elseif (get_class($question) == "App\Entity\QuestionText") {
-            return $this->render('poll/edit.html.twig', [
+            return $this->render('pages/question_text.html.twig', [
+                'question' => $question,
                 'poll' => $poll,
+                'percentage' => ($advancement) * 100 / count($questions),
+                'questionId' => $questionId,
+                'length' => count($questions),
+                'token' => $token,
             ]);
         }
         return new Response('Aucune condition correspondante à la class' . get_class($question));
     }
-
-    
 }

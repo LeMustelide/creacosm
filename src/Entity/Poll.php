@@ -228,24 +228,6 @@ class Poll
         return $this;
     }
 
-    public function getQuestions(): ?array
-    {
-        $questions = [];
-        foreach ($this->questionsText as $questionText) {
-            $questions[] = new question($questionText->getQuestion(), "Texte");
-        }
-        foreach ($this->questionsNumber as $questionNumber) {
-            $questions[] = new question($questionNumber->getQuestion(), "Nombre");
-        }
-        foreach ($this->questionsMCQMultiple as $questionMCQMultiple) {
-            $questions[] = new question($questionMCQMultiple->getQuestion(), "Choix multiple");
-        }
-        foreach ($this->questionsMCQSingle as $questionMCQSingle) {
-            $questions[] = new question($questionMCQSingle->getQuestion(), "Choix unique");
-        }
-        return $questions;
-    }
-
     public function setQuestions(array $questions): self
     {
         foreach ($questions as $question) {

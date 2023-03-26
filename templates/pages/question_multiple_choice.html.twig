@@ -11,9 +11,8 @@
 			</div>
 			<div class="container-question">
 				<div class="question">
-					<p>{{ advancement }}. {{question.entitled}}</p>
-					</p>
-                    <form method="POST" action="{{ path('app_poll_respond', {id: poll.id, questionId: question.id, token: token}) }}">
+					<p>{{ questionId + 1 }}. {{question.entitled}}</p>
+                    <form method="POST" action="{{ path('app_poll_respond', {id: poll.id, questionId: questionId + 1, token: token}) }}">
                         <div class="card-checkbox">
                             {% for answer in question.answers %}
                                 <div class="reponse-question-multiple">
@@ -38,17 +37,19 @@
                         </div>
 
                         <button class="btn-question-ok" type="submit">OK</button>
-                        <button class="btn-question-precedent">
+                        {% if questionId > 0 %}
+                        <a class="btn-question-precedent" href="{{ path('app_poll_respond', {id: poll.id, questionId: questionId - 1, token: token}) }}">
                             <span class="material-symbols-outlined">keyboard_backspace</span>
                             Précédent
-                        </button>
+                        </a>
+                        {% endif %}
                     </form>
 				</div>
 			</div>
 		</div>
 		<div class="container-pannel-question">
 
-			<p class="text-sondage">{{ poll.description }}</p>
+			<p class="text-sondage">{{ poll.name }}</p>
 
 			<div class="circle-wrap shadow">
 				<div class="circle">
@@ -59,7 +60,7 @@
 						<div class="fill"></div>
 					</div>
 					<div class="inside-circle">
-						<p>{{ percentage }}%</p>
+						<p>{{ percentage|round(0, 'floor') }}%</p>
 						<p class="text-circle-wrap">{{ advancement }}/{{ length }}
 						</p>
 					</div>

@@ -1529,6 +1529,7 @@ select {
 .col-3 {
     float: left;
     width: 27.33%;
+    min-width: 250px;
     margin-top: 40px;
     position: relative;
 }
@@ -1884,4 +1885,11 @@ input[type="radio"].demo1 {
 
 .background-color-red{
     background-color: red;
+}
+
+.question form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }

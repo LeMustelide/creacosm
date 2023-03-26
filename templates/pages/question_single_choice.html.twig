@@ -11,22 +11,25 @@
 			</div>
 			<div class="container-question">
 				<div class="question">
-					<p>{{ advancement }}. {{ question.entitled }}</p>
-
-					<div class="reponse-question">
-                        {% for answer in question.answers %}
-                            <div>
-                                <input type="radio" class="reponse-question-unique" id="rep1" name="question" value="rep1">
-                                <label for="rep1">{{ answer.entitled }}</label>
-                            </div>
-                        {% endfor %}
-					</div>
-
+					<p>{{ questionId + 1 }}.
+						{{ question.entitled }}</p>
+					<form method="POST" action="{{ path('app_poll_respond', {id: poll.id, questionId: questionId + 1, token: token}) }}">
+						<div class="reponse-question">
+							{% for answer in question.answers %}
+								<div>
+									<input type="radio" class="reponse-question-unique" id="rep1" name="question" value="rep1">
+									<label for="rep1">{{ answer.entitled }}</label>
+								</div>
+							{% endfor %}
+						</div>
+					</form>
 				</div>
 				<button class="btn-question-ok">OK</button>
-				<button class="btn-question-precedent">
+                {% if questionId > 0 %}
+				<a class="btn-question-precedent" href="{{ path('app_poll_respond', {id: poll.id, questionId: questionId - 1, token: token}) }}">
 					<span class="material-symbols-outlined">keyboard_backspace</span>
-					Précédent</button>
+					Précédent</a>
+                {% endif %}
 			</div>
 
 
@@ -35,7 +38,7 @@
 	</div>
 	<div class="container-pannel-question">
 
-		<p class="text-sondage">Sondage sur votre utilisation quotidienne de produit cosmétique.</p>
+		<p class="text-sondage">{{ poll.name }}</p>
 
 		<div class="circle-wrap">
 			<div class="circle">
@@ -46,9 +49,9 @@
 					<div class="fill"></div>
 				</div>
 				<div class="inside-circle">
-					<p>{{ percentage }}%</p>
-                    <p class="text-circle-wrap">{{ advancement }}/{{ length }}
-                    </p>
+					<p>{{ percentage|round(0, 'floor') }}%</p>
+					<p class="text-circle-wrap">{{ advancement }}/{{ length }}
+					</p>
 				</div>
 			</div>
 
@@ -56,38 +59,35 @@
 
 	</div>
 
-</section>
-{% endblock %}
+</section>{% endblock %}{% block javascripts %}
+<script>
+	function updateProgressRotation(percentage) {
+const degree = (percentage * 180) / 100;
+const masks = document.querySelectorAll('.mask.full, .circle .fill');
 
-{% block javascripts %}
-    <script>
-        function updateProgressRotation(percentage) {
-            const degree = (percentage * 180) / 100;
-            const masks = document.querySelectorAll('.mask.full, .circle .fill');
+masks.forEach(mask => { // Supprimer l'animation précédente
+mask.style.animation = 'none';
+// Forcer un reflow pour que le navigateur prenne en compte la suppression de l'animation
+void mask.offsetWidth;
+// Appliquer l'animation fill avec la nouvelle rotation
+mask.style.animation = `fill ease-in-out 3s forwards`;
 
-            masks.forEach(mask => {
-                // Supprimer l'animation précédente
-                mask.style.animation = 'none';
-                // Forcer un reflow pour que le navigateur prenne en compte la suppression de l'animation
-                void mask.offsetWidth;
-                // Appliquer l'animation fill avec la nouvelle rotation
-                mask.style.animation = `fill ease-in-out 3s forwards`;
+const animation = mask.animate([
+{
+transform: 'rotate(0deg)'
+}, {
+transform: `rotate(${degree}deg)`
+}
+], {
+duration: 3000,
+easing: 'ease-in-out',
+fill: 'forwards'
+});
+});
+}
 
-                const animation = mask.animate([
-                    { transform: 'rotate(0deg)' },
-                    { transform: `rotate(${degree}deg)` }
-                ], {
-                    duration: 3000,
-                    easing: 'ease-in-out',
-                    fill: 'forwards'
-                });
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const percentage = {{ percentage }};
-            updateProgressRotation(percentage);
-        });
-    </script>
-{% endblock %}
-
+document.addEventListener('DOMContentLoaded', () => {
+const percentage = {{ percentage }};
+updateProgressRotation(percentage);
+});
+</script>{% endblock %}
