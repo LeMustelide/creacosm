@@ -136,16 +136,10 @@ class PollController extends AbstractController
 
         $question = null;
         $questions = $poll->getAllQuestions();
-        $advancement = 0;
+        $advancement = $questionId;
 
         if ($questionId < count($questions)){
             $question = $questions[$questionId];
-            $advancement = $questionId;
-        }
-
-
-        if ($question == null) {
-            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         if ($request->isMethod('POST')) {
@@ -209,8 +203,13 @@ class PollController extends AbstractController
                 //return new Response('Aucune condition correspondante à la class');
                 return $this->redirectToRoute('app_poll_end', [], Response::HTTP_SEE_OTHER);
             } else {
+                //return new Response('Aucune condition correspondante à la class');
                 return $this->redirectToRoute('app_poll_respond', ['id' => $poll->getId(), 'questionId' => $questionId, 'token' => $token], Response::HTTP_SEE_OTHER);
             }
+        }
+
+        if ($question == null) {
+            //return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         if (get_class($question) == "App\Entity\QuestionMCQMultiple") {

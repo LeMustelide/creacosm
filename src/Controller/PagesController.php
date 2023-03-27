@@ -13,15 +13,46 @@ use App\Form\QuestionMCQMultipleType;
 use App\Form\QuestionMCQSingleType;
 use App\Form\QuestionNumberType;
 use App\Form\QuestionTextType;
+use App\Repository\ConsumerRepository;
+use App\Repository\PollRepository;
+use App\Repository\HistoryRepository;
 
 
 class PagesController extends AbstractController
 {
 
     #[Route('/dashboard', name: 'dashboard')]
-    public function index(): Response
+    public function index(PollRepository $pollRepository, HistoryRepository $historyRepository, ConsumerRepository $consumerRepository): Response
     {
-        return $this->render('pages/dashboard.html.twig');
+        $responsesCountByDate = $historyRepository->findResponsesCountByMonth();
+        $consumersCountByDate = $consumerRepository->findConsumersCountByMonth();
+
+        $responsesCountByMonth = [];
+        foreach ($responsesCountByDate as $response) {
+            $month = $response['date']->format('Y-m');
+            if (!isset($responsesCountByMonth[$month])) {
+                $responsesCountByMonth[$month] = 0;
+            }
+            $responsesCountByMonth[$month] += $response['count'];
+        }
+        ksort($responsesCountByMonth);
+
+        $consumersCountByMonth = [];
+        foreach ($consumersCountByDate as $consumer) {
+            $month = $consumer['date']->format('Y-m');
+            if (!isset($consumersCountByMonth[$month])) {
+                $consumersCountByMonth[$month] = 0;
+            }
+            $consumersCountByMonth[$month] += $consumer['count'];
+        }
+        ksort($consumersCountByMonth);
+        return $this->render('pages/dashboard.html.twig', [
+            'nbPoll' => count($pollRepository->findAll()),
+            'polls' => $pollRepository->findRecentPolls(),
+            'responsesCountByMonth' => $responsesCountByMonth,
+            'consumersCountByMonth' => $consumersCountByMonth,
+            'nbConsumer' => count($consumerRepository->findAll()),
+        ]);
     }
 
     #[Route('/', name: 'home')]
@@ -44,7 +75,7 @@ class PagesController extends AbstractController
         $formNumber = $this->createForm(QuestionNumberType::class);
         $formText = $this->createForm(QuestionTextType::class);
 
-        return $this->render('pages/questionsLibrary.html.twig',[
+        return $this->render('pages/questionsLibrary.html.twig', [
             'question_mcq_multiples' => $questionMCQMultipleRepository->findAll(),
             'question_mcq_singles' => $questionMCQSingleRepository->findAll(),
             'question_texts' => $questionTextRepository->findAll(),
