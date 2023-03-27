@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Edit QuestionText{% endblock %}
-
+{% set title = 'Modifier Question a texte' %}
+{% block title %}
+	{{ title }}
+{% endblock %}
 {% block body %}
-    <h1>Edit QuestionText</h1>
+	{{ include('overlay/_navbar.html.twig') }}
+	{{ include('overlay/_topbar.html.twig') }}
+	<div class="main edit-questions shadow">
 
-    {{ include('question_text/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_question_text_index') }}">back to list</a>
-
-    {{ include('question_text/_delete_form.html.twig') }}
+		{{ include('question_text/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('question_text/_delete_form.html.twig') }}
+	</div>
 {% endblock %}
