@@ -228,24 +228,6 @@ class Poll
         return $this;
     }
 
-    public function getQuestions(): ?array
-    {
-        $questions = [];
-        foreach ($this->questionsText as $questionText) {
-            $questions[] = new question($questionText->getQuestion(), "Texte");
-        }
-        foreach ($this->questionsNumber as $questionNumber) {
-            $questions[] = new question($questionNumber->getQuestion(), "Nombre");
-        }
-        foreach ($this->questionsMCQMultiple as $questionMCQMultiple) {
-            $questions[] = new question($questionMCQMultiple->getQuestion(), "Choix multiple");
-        }
-        foreach ($this->questionsMCQSingle as $questionMCQSingle) {
-            $questions[] = new question($questionMCQSingle->getQuestion(), "Choix unique");
-        }
-        return $questions;
-    }
-
     public function setQuestions(array $questions): self
     {
         foreach ($questions as $question) {
@@ -305,4 +287,34 @@ class Poll
 
         return $this;
     }
+
+    public function getAllQuestions(): array
+    {
+        $allQuestions = [];
+
+        foreach ($this->getQuestionsText() as $questionText) {
+            $allQuestions[] = $questionText;
+        }
+
+        foreach ($this->getQuestionsNumber() as $questionNumber) {
+            $allQuestions[] = $questionNumber;
+        }
+
+        foreach ($this->getQuestionsMCQMultiple() as $questionMCQMultiple) {
+            $allQuestions[] = $questionMCQMultiple;
+        }
+
+        foreach ($this->getQuestionsMCQSingle() as $questionMCQSingle) {
+            $allQuestions[] = $questionMCQSingle;
+        }
+
+        return $allQuestions;
+    }
+
+    public function getIsClosed(): ?bool
+    {
+        $limitDate = $this->getLimitDate();
+        return $limitDate < new \DateTime();
+    }
+
 }

@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+{% block title %}Question Nombre
+{% endblock %}
+{% block body %}
+	<section class="viewh2">
+
+		<div class="main-question">
+			<div class="header-question">
+				<img src="/assets/img/logo.png" alt="Logo Créasosm" class="logo3">
+				<p class="p1">Temps de réponse : 30min</p>
+			</div>
+			<div class="container-question">
+				<div class="question">
+					<p>{{ questionId + 1 }}.
+						{{question.entitled}}</p>
+					<form method="POST" action="{{ path('app_poll_respond', {id: poll.id, questionId: questionId + 1, token: token}) }}">
+						<div class="rating-satisfaction">
+							<div class="rating">
+								<input type="radio" id="rating-1" name="rating" value="1">
+								<label for="rating-1">
+									<span class="number">1</span>
+								</label>
+								<input type="radio" id="rating-2" name="rating" value="2">
+								<label for="rating-2">
+									<span class="number">2</span>
+								</label>
+								<input type="radio" id="rating-3" name="rating" value="3">
+								<label for="rating-3">
+									<span class="number">3</span>
+								</label>
+								<input type="radio" id="rating-4" name="rating" value="4">
+								<label for="rating-4">
+									<span class="number">4</span>
+								</label>
+								<input type="radio" id="rating-5" name="rating" value="5">
+								<label for="rating-5">
+									<span class="number">5</span>
+								</label>
+								<input type="radio" id="rating-6" name="rating" value="6">
+								<label for="rating-6">
+									<span class="number">6</span>
+								</label>
+								<input type="radio" id="rating-7" name="rating" value="7">
+								<label for="rating-7">
+									<span class="number">7</span>
+								</label>
+								<input type="radio" id="rating-8" name="rating" value="8">
+								<label for="rating-8">
+									<span class="number">8</span>
+								</label>
+								<input type="radio" id="rating-9" name="rating" value="9">
+								<label for="rating-9">
+									<span class="number">9</span>
+								</label>
+								<input type="radio" id="rating-10" name="rating" value="10">
+								<label for="rating-10">
+									<span class="number">10</span>
+								</label>
+							</div>
+							<div class="text-satisfaction">
+								<p>Pas satisfait</p>
+								<p>Très satisfait</p>
+							</div>
+						</div>
+						<button class="btn-question-ok">OK</button>
+                        {% if questionId > 0 %}
+						<a class="btn-question-precedent" href="{{ path('app_poll_respond', {id: poll.id, questionId: questionId - 1, token: token}) }}">
+							<span class="material-symbols-outlined">keyboard_backspace</span>
+							Précédent</a>
+                        {% endif %}
+					</form>
+				</div>
+
+
+			</div>
+
+		</div>
+		<div class="container-pannel-question">
+
+			<p class="text-sondage">{{ poll.name }}</p>
+
+			<div class="circle-wrap">
+				<div class="circle">
+					<div class="mask full">
+						<div class="fill"></div>
+					</div>
+					<div class="mask half">
+						<div class="fill"></div>
+					</div>
+					<div class="inside-circle">
+						<p>{{ percentage|round(0, 'floor') }}%</p>
+						<p class="text-circle-wrap">{{ questionId }}/{{ length }}
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function updateProgressRotation(percentage) {
+            const degree = (percentage * 180) / 100;
+            const masks = document.querySelectorAll('.mask.full, .circle .fill');
+
+            masks.forEach(mask => {
+                // Supprimer l'animation précédente
+                mask.style.animation = 'none';
+                // Forcer un reflow pour que le navigateur prenne en compte la suppression de l'animation
+                void mask.offsetWidth;
+                // Appliquer l'animation fill avec la nouvelle rotation
+                mask.style.animation = `fill ease-in-out 3s forwards`;
+
+                const animation = mask.animate([
+                    { transform: 'rotate(0deg)' },
+                    { transform: `rotate(${degree}deg)` }
+                ], {
+                    duration: 3000,
+                    easing: 'ease-in-out',
+                    fill: 'forwards'
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const percentage = {{ percentage }};
+            updateProgressRotation(percentage);
+        });
+    </script>
+{% endblock %}

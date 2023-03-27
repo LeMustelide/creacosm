@@ -27,7 +27,7 @@ class QuestionText
     #[ORM\ManyToMany(targetEntity: Poll::class, inversedBy: 'questionsText')]
     private Collection $poll;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: TextAnswer::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: TextAnswer::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $textAnswers;
 
     public function __construct()
