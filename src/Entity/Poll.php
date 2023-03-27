@@ -46,6 +46,9 @@ class Poll
     #[ORM\OneToMany(mappedBy: 'poll', targetEntity: History::class, orphanRemoval: true)]
     private Collection $histories;
 
+    #[ORM\OneToMany(mappedBy: 'poll', targetEntity: Statistic::class, orphanRemoval: true)]
+    private Collection $statistics;
+
     public function __construct()
     {
         $this->questionsText = new ArrayCollection();
@@ -53,6 +56,7 @@ class Poll
         $this->questionsMCQMultiple = new ArrayCollection();
         $this->questionsMCQSingle = new ArrayCollection();
         $this->histories = new ArrayCollection();
+        $this->statistics = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -315,6 +319,36 @@ class Poll
     {
         $limitDate = $this->getLimitDate();
         return $limitDate < new \DateTime();
+    }
+
+    /**
+     * @return Collection<int, Statistic>
+     */
+    public function getStatistics(): Collection
+    {
+        return $this->statistics;
+    }
+
+    public function addStatistic(Statistic $statistic): self
+    {
+        if (!$this->statistics->contains($statistic)) {
+            $this->statistics->add($statistic);
+            $statistic->setPoll($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatistic(Statistic $statistic): self
+    {
+        if ($this->statistics->removeElement($statistic)) {
+            // set the owning side to null (unless already changed)
+            if ($statistic->getPoll() === $this) {
+                $statistic->setPoll(null);
+            }
+        }
+
+        return $this;
     }
 
 }
