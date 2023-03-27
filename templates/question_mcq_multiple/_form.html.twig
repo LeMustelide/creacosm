@@ -1,3 +1,7 @@
+{% if save_button|default(false) %}
+    {{ form_start(form) }}
+{% endif %}
+
 {{ form_row(form.entitled) }}
 {{ form_row(form.minNumberAnswer) }}
 {{ form_row(form.maxNumberAnswer) }}
@@ -12,7 +16,10 @@
 </div>
 
 <button id="add-answer">Ajouter réponse</button>
-{# <button class="btn">{{ button_label|default('Save') }}</button> #}
+{% if save_button|default(false) %}
+    <button class="button button-success">Sauvegarder</button>
+    {{ form_end(form) }}
+{% endif %}
 
 
 <script>
@@ -43,6 +50,9 @@
         // Ajouter la nouvelle réponse au conteneur
         answersContainer.appendChild(newAnswer);
 
+        newAnswer.style.display = 'flex';
+        newAnswer.style.justifyContent = 'space-between';
+
         e.preventDefault();
     });
 
@@ -59,4 +69,3 @@
         }
     });
 </script>
-

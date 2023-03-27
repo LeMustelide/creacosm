@@ -57,7 +57,7 @@ class QuestionMCQSingleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionMCQSingleRepository->save($questionMCQSingle, true);
 
-            return $this->redirectToRoute('app_question_mcq_single_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('questionsLibrary', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('question_mcq_single/edit.html.twig', [
@@ -73,6 +73,6 @@ class QuestionMCQSingleController extends AbstractController
             $questionMCQSingleRepository->remove($questionMCQSingle, true);
         }
 
-        return $this->redirectToRoute('app_question_mcq_single_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('questionsLibrary', [], Response::HTTP_SEE_OTHER);
     }
 }

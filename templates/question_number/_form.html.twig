@@ -1,1 +1,8 @@
+{% if save_button|default(false) %}
+    {{ form_start(form) }}
+{% endif %}
 {{ form_widget(form) }}
+{% if save_button|default(false) %}
+    <button class="button button-success">Sauvegarder</button>
+    {{ form_end(form) }}
+{% endif %}

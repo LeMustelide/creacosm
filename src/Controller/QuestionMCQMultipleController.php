@@ -65,7 +65,7 @@ class QuestionMCQMultipleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionMCQMultipleRepository->save($questionMCQMultiple, true);
 
-            return $this->redirectToRoute('app_question_mcq_multiple_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('questionsLibrary', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('question_mcq_multiple/edit.html.twig', [
@@ -81,6 +81,6 @@ class QuestionMCQMultipleController extends AbstractController
             $questionMCQMultipleRepository->remove($questionMCQMultiple, true);
         }
 
-        return $this->redirectToRoute('app_question_mcq_multiple_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('questionsLibrary', [], Response::HTTP_SEE_OTHER);
     }
 }

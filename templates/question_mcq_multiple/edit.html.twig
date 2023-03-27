@@ -7,8 +7,8 @@
 {% block body %}
 	{{ include('overlay/_navbar.html.twig') }}
 	{{ include('overlay/_topbar.html.twig') }}
-    <div class="main edit-questions shadow">
-	{{ include('question_mcq_multiple/_form.html.twig', {'button_label': 'Update'}) }}
-	{{ include('question_mcq_multiple/_delete_form.html.twig') }}
-    </div>
+	<div class="main edit-questions shadow">
+		{{ include('question_mcq_multiple/_form.html.twig', {'save_button': 'true'}) }}
+		{{ include('question_mcq_multiple/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

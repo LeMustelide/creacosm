@@ -1,3 +1,6 @@
+{% if save_button|default(false) %}
+    {{ form_start(form) }}
+{% endif %}
 {{ form_row(form.entitled) }}
 <h2>Réponses</h2>
 <div id="form_answers_MCQSingle" data-prototype="{{ form_widget(form.answers.vars.prototype)|e('html_attr') }}">
@@ -9,7 +12,11 @@
 </div>
 
 <button id="add-answer-MCQSingle">Ajouter réponse</button>
-{# <button class="btn">{{ button_label|default('Save') }}</button> #}
+{% if save_button|default(false) %}
+    <button class="button button-success">Sauvegarder</button>
+    {{ form_end(form) }}
+{% endif %}
+
 <script>
     // Récupérer le conteneur qui contiendra les réponses
     let answersContainerMCQSingle = document.querySelector('#form_answers_MCQSingle');
@@ -55,4 +62,3 @@
         }
     });
 </script>
-
