@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\QuestionMCQMultiple;
+use App\Entity\QuestionMCQSingle;
+use App\Entity\QuestionNumber;
+use App\Entity\QuestionText;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +26,7 @@ class PagesController extends AbstractController
 {
 
     #[Route('/dashboard', name: 'dashboard')]
-    public function index(PollRepository $pollRepository, HistoryRepository $historyRepository, ConsumerRepository $consumerRepository): Response
+    public function index(PollRepository $pollRepository, QuestionMCQSingleRepository $questionMCQSingleRepository, QuestionMCQMultipleRepository $questionMCQMultipleRepository, QuestionTextRepository $questionTextRepository, QuestionNumberRepository $questionNumberRepository, HistoryRepository $historyRepository, ConsumerRepository $consumerRepository): Response
     {
         $responsesCountByDate = $historyRepository->findResponsesCountByMonth();
         $consumersCountByDate = $consumerRepository->findConsumersCountByMonth();
@@ -52,6 +56,7 @@ class PagesController extends AbstractController
             'responsesCountByMonth' => $responsesCountByMonth,
             'consumersCountByMonth' => $consumersCountByMonth,
             'nbConsumer' => count($consumerRepository->findAll()),
+            'nbQuestion' => count($questionMCQMultipleRepository->findAll()) + count($questionMCQSingleRepository->findAll()) + count($questionTextRepository->findAll()) + count($questionNumberRepository->findAll()),
         ]);
     }
 
